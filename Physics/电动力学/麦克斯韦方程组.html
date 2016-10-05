@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>麦克斯韦方程组 - </title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  </style>
+  
+  
+  <meta charset="UTF-8"/>
+  <meta name="author" content="潘霄鹏 - weibo.com/pxp1230">
+  <meta name="keywords" content="潘霄鹏笔记">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath:[['$','$']],processEscapes:true}
+  });
+  </script>
+  <script type="text/javascript" src="file:///storage/emulated/0/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///C:/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///C:/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/pxp1230.github.io.js"></script>
+  <script type="text/javascript" src="file:///C:/pxp1230.github.io.js"></script>
+  <script type="text/javascript">
+  if(window.location.protocol!="file:"){var d=document,s=d.createElement('script');s.src='/pxp1230.github.io.js';d.head.appendChild(s);}
+  </script>
+</head>
+<body>
+<h1>麦克斯韦方程组</h1>
+<h2>积分形式</h2>
+<p>$$\begin{align}<br />
+\oint_S {\vec E \cdot d\vec S} &amp;= \frac{q}{{{\varepsilon _0}}} = \frac{1}{{{\varepsilon _0}}}\int_V {\rho dV} \\<br />
+\oint_S {\vec B \cdot d\vec S} &amp;= 0 \\<br />
+\oint_L {\vec E \cdot d\vec l} &amp;= - \frac{{d\Phi _B}}{{dt}} = - \int_S {\frac{{\partial \vec B}}{{\partial t}} \cdot d\vec S} \\<br />
+\oint_L {\vec B \cdot d\vec l} &amp;= {\mu _0}I + {\mu _0}{\varepsilon _0}\frac{{d{\Phi _E}}}{{dt}} = {\mu _0}\int_S {\left( {\vec J + {\varepsilon _0}\frac{{\partial \vec E}}{{\partial t}}} \right) \cdot d\vec S} \\<br />
+\end{align} $$</p>
+<h2>微分形式</h2>
+<p>$$\oint_S {\overrightarrow E \cdot d\overrightarrow S } = \int_V {\nabla \cdot \overrightarrow E dV} \quad \Rightarrow \quad \nabla \cdot \overrightarrow E = {\rho _q}$$</p>
+<p>$$\oint_S {\overrightarrow B \cdot d\overrightarrow S } = \int_V {\nabla \cdot \overrightarrow B dV} \quad \Rightarrow \quad \nabla \cdot \overrightarrow B = 0$$</p>
+<p>$$\oint_L {\overrightarrow E \cdot d\overrightarrow l } = \int_S {\nabla \times \overrightarrow E \cdot d\overrightarrow S } \quad \Rightarrow \quad \nabla \times \overrightarrow E = - \frac{{\partial \overrightarrow B }}{{\partial t}}$$</p>
+<p>$$\oint_L {\overrightarrow B \cdot d\overrightarrow l } = \int_S {\nabla \times \overrightarrow B \cdot d\overrightarrow S } \quad \Rightarrow \quad \nabla \times \overrightarrow B = {\mu _0}\left( {\overrightarrow J + {\varepsilon _0}\frac{{\partial \overrightarrow E }}{{\partial t}}} \right)$$</p>
+<h1>描述介质性质的方程</h1>
+<ul>
+<li>$\varepsilon $：相对介电常量</li>
+<li>$\mu $：相对磁导率</li>
+</ul>
+<p>$$\overrightarrow D = \varepsilon {\varepsilon _0}\overrightarrow E $$</p>
+<p>$$\overrightarrow B = \mu {\mu _0}\overrightarrow H $$</p>
+<h2>欧姆定律的微分形式</h2>
+<ul>
+<li>$\sigma $：电导率，电阻率的倒数为电导率；在国际单位制中，电导率的单位是西门子/米(S/m)；电导率的物理意义是表示物质导电的性能。电导率越大则导电性能越强，反之越小。另外，不少人将电导跟电导率混淆：电导是电阻的倒数，电导率是电阻率的倒数。</li>
+</ul>
+<p>$$\overrightarrow J = \sigma \overrightarrow E $$</p>
+</body>
+</html>

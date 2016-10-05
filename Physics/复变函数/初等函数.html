@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>初等函数 - </title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  </style>
+  
+  
+  <meta charset="UTF-8"/>
+  <meta name="author" content="潘霄鹏 - weibo.com/pxp1230">
+  <meta name="keywords" content="潘霄鹏笔记">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath:[['$','$']],processEscapes:true}
+  });
+  </script>
+  <script type="text/javascript" src="file:///storage/emulated/0/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///C:/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///C:/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/pxp1230.github.io.js"></script>
+  <script type="text/javascript" src="file:///C:/pxp1230.github.io.js"></script>
+  <script type="text/javascript">
+  if(window.location.protocol!="file:"){var d=document,s=d.createElement('script');s.src='/pxp1230.github.io.js';d.head.appendChild(s);}
+  </script>
+</head>
+<body>
+<h1>初等函数</h1>
+<h2>1、指数函数</h2>
+<p>$\exp z = {e^{x + yi}}$</p>
+<p>性质：在复平面内处处解析</p>
+<p>$\left( {\exp z} \right)' = \exp z$</p>
+<p>$\exp {z_1} \cdot \exp {z_2} = \exp \left( {{z_1} + {z_2}} \right)$<br />
+</p>
+<h2>2、对数函数</h2>
+<p>$f\left( z \right) = \ln \left| z \right| + i\;arg\left( z \right)$<br />
+<br />
+性质：是多值函数</p>
+<p>lnz在除去原点及负实轴的平面内解析</p>
+<p>$Ln\left( {{z_1}{z_2}} \right) = Ln{z_1} + Ln{z_2}$</p>
+<p>$Ln\frac{{{z_1}}}{{{z_2}}} = Ln{z_1} - Ln{z_2}$</p>
+<p>$Ln{z^n} \ne nLnz$</p>
+<p>$$Ln\root n \of z \ne \frac{1}{n}Lnz$$</p>
+<h2>3、幂函数</h2>
+<ul>
+<li><div>
+当b为整数时：
+$${a^b} = {e^{b\ln a}}$$
+</div></li>
+<li><div>
+当$b = \frac{p}{q}$（p和q为互质的整数，q>0）时：
+$${a^b} = {e^{\frac{p}{q}\ln \left| a \right| + i\frac{p}{q}\left( {\arg a + 2k\pi } \right)}}$$
+</div>
+<h2>4、三角函数</h2></li>
+<li><div></li>
+<li><p>$\theta$取复数仍成立：<br />
+$${\left( {\cos \varphi + i\sin \varphi } \right)^n} = \cos \left( {n\varphi } \right) + i\sin \left( {n\varphi } \right)$$<br />
+$$\sin \theta = \frac{{{e^{i\theta }} - {e^{ - i\theta }}}}{{2i}}$$<br />
+$$\cos \theta = \frac{{{e^{i\theta }} + {e^{ - i\theta }}}}{2}$$<br />
+$${e^{i\theta }} = \cos \theta + i\sin \theta $$<br />
+$$\left( {\cos \theta } \right)' = - \sin \theta $$<br />
+$$\left( {\sin \theta } \right)' = \cos \theta $$<br />
+$$\cos iy = \frac{{{e^{ - y}} + {e^y}}}{2} = \cosh y$$<br />
+$$\sin iy = \frac{{{e^{ - y}} - {e^y}}}{{2i}} = i\sinh y$$<br />
+$$\cos \left( {x + iy} \right) = \cos x\cosh y - i\sin x\sinh y$$<br />
+$$\sin \left( {x + iy} \right) = \sin x\cosh y + i\cos x\sinh y$$<br />
+</div></p>
+<h2>5、双曲函数</h2>
+<div>
+$$\cosh z = \frac{{{e^z} + {e^{ - z}}}}{2}$$
+</div>
+<div>
+$$\sinh z = \frac{{{e^z} - {e^{ - z}}}}{2}$$
+</div>
+<div>
+$$\tanh z = \frac{{{e^z} - {e^{ - z}}}}{{{e^z} + {e^{ - z}}}}$$
+</div></li>
+<li><div>
+导数：
+$$\left( {\cosh z} \right)' = \sinh z$$
+$$\left( {\sinh z} \right)' = \cosh z$$
+</div></li>
+<li><div>
+性质：
+$$\cosh iy = \cos y$$
+$$\sinh iy = i\sin y$$
+$$\cosh \left( {x + iy} \right) = \cosh x\cos y + i\sinh x\sin y$$
+$$\sinh \left( {x + iy} \right) = \sinh x\cos y + i\cosh x\sin y$$
+</div>
+<h2>6、反三角函数</h2></li>
+<li><div>
+反三角函数是一个多值函数：
+$$\arccos z =  - i\ln \left( {z + \sqrt {{z^2} - 1} } \right)$$
+$$\arcsin z =  - i\ln \left( {iz + \sqrt {1 - {z^2}} } \right)$$
+$$\arctan z =  - \frac{i}{2}\ln \frac{{1 + iz}}{{1 - iz}}$$
+</div>
+<h2>7、反双曲函数</h2></li>
+<li><div>
+反双曲函数是一个多值函数：
+$${\text{arcsinh}}z = \ln \left( {z + \sqrt {{z^2} + 1} } \right)$$
+$${\text{arccosh}}z = \ln \left( {z + \sqrt {{z^2} - 1} } \right)$$
+$${\text{arctanh}}z = \frac{1}{2}\ln \frac{{1 + z}}{{1 - z}}$$
+</div></li>
+</ul>
+</body>
+</html>

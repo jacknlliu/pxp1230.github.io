@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>矢量运算法则 - </title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  </style>
+  
+  
+  <meta charset="UTF-8"/>
+  <meta name="author" content="潘霄鹏 - weibo.com/pxp1230">
+  <meta name="keywords" content="潘霄鹏笔记">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath:[['$','$']],processEscapes:true}
+  });
+  </script>
+  <script type="text/javascript" src="file:///storage/emulated/0/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///C:/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///C:/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/pxp1230.github.io.js"></script>
+  <script type="text/javascript" src="file:///C:/pxp1230.github.io.js"></script>
+  <script type="text/javascript">
+  if(window.location.protocol!="file:"){var d=document,s=d.createElement('script');s.src='/pxp1230.github.io.js';d.head.appendChild(s);}
+  </script>
+</head>
+<body>
+<h1>单位向量</h1>
+<p>$$\hat u = \frac{{\vec u}}{{\left\| {\vec u} \right\|}}$$</p>
+<h1>向量的向量积</h1>
+<p>$$\begin{aligned}<br />
+ \overrightarrow a \times \overrightarrow b &amp; = \left| {\begin{array}{*{20}{c}}<br />
+ {{a_y}}&amp;{{a_z}} \\<br />
+ {{b_y}}&amp;{{b_z}}<br />
+\end{array}} \right|\vec i - \left| {\begin{array}{*{20}{c}}<br />
+ {{a_x}}&amp;{{a_z}} \\<br />
+ {{b_x}}&amp;{{b_z}}<br />
+\end{array}} \right|\overrightarrow j + \left| {\begin{array}{*{20}{c}}<br />
+ {{a_x}}&amp;{{a_y}} \\<br />
+ {{b_x}}&amp;{{b_y}}<br />
+\end{array}} \right|\overrightarrow k \\<br />
+ &amp; = \left| {\begin{array}{*{20}{c}}<br />
+ {\overrightarrow i }&amp;{\overrightarrow j }&amp;{\overrightarrow k } \\<br />
+ {{a_x}}&amp;{{a_y}}&amp;{{a_z}} \\<br />
+ {{b_x}}&amp;{{b_y}}&amp;{{b_z}}<br />
+\end{array}} \right| \\<br />
+\end{aligned} $$</p>
+<h2>向量的向量积的性质</h2>
+<p>$$\begin{aligned}<br />
+ \overrightarrow a \times \overrightarrow a &amp;= 0 \\<br />
+ \overrightarrow a \times \overrightarrow b &amp;= - \overrightarrow b \times \overrightarrow a \\<br />
+ \left( {\overrightarrow a + \overrightarrow b } \right) \times c &amp;= \overrightarrow a \times \overrightarrow c + \overrightarrow b \times \overrightarrow c \\<br />
+\end{aligned} $$</p>
+<p>$$\left( {\vec a \times \vec b} \right) \times \vec c = \left( {\vec a \cdot \vec c} \right)\vec b - \left( {\vec b \cdot \vec c} \right)\vec a$$</p>
+<p>$$\left( {\vec a \times \vec b} \right) \cdot \vec c = \vec a \cdot \left( {\vec b \times \vec c} \right)$$</p>
+<p>$$\left( {\vec a \times \vec b} \right) \times \overrightarrow b = \left( {\begin{array}{*{20}{c}}<br />
+ { - \left( {b_y^2 + b_z^2} \right)}&amp;{{b_x}{b_y}}&amp;{{b_x}{b_z}} \\<br />
+ {{b_x}{b_y}}&amp;{ - \left( {b_y^2 + b_z^2} \right)}&amp;{{b_y}{b_z}} \\<br />
+ {{b_x}{b_z}}&amp;{{b_y}{b_z}}&amp;{ - \left( {b_y^2 + b_z^2} \right)}<br />
+\end{array}} \right)\left( {\begin{array}{*{20}{c}}<br />
+ {{a_x}} \\<br />
+ {{a_y}} \\<br />
+ {{a_z}}<br />
+\end{array}} \right)$$</p>
+<h1>方向角的方向余弦</h1>
+<p>$$\left( {\cos \alpha ,\cos \beta ,\cos \gamma } \right) = \left( {\frac{x}{{\left| {\vec r} \right|}},\frac{y}{{\left| {\vec r} \right|}},\frac{z}{{\left| {\vec r} \right|}}} \right) = \frac{{\vec r}}{{\left| {\vec r} \right|}} = \widehat {{r}}$$</p>
+<h1>向量的混合积</h1>
+<p>$$\left[ {\begin{array}{*{20}{c}} {\vec a}&amp;{\vec b}&amp;{\vec c} \end{array}} \right] = \vec a \times \vec b \cdot \vec c = \left| {\begin{array}{*{20}{c}} {{a_x}}&amp;{{a_y}}&amp;{{a_z}} \\ {{b_x}}&amp;{{b_y}}&amp;{{b_z}} \\ {{c_x}}&amp;{{c_y}}&amp;{{c_z}} \end{array}} \right|$$</p>
+<p>向量的混合积的几何意义：以向量a,b,c为棱的平行六面体体积是混合积[a b c]的绝对值。</p>
+<h1>导数与积分</h1>
+<p>设矢量函数 $\overrightarrow A = \overrightarrow A \left( t \right)$，$\overrightarrow B = \overrightarrow B \left( t \right)$</p>
+<p>$$\frac{{d\overrightarrow A }}{{dt}} = \frac{{d{A_x}}}{{dt}}\overrightarrow i + \frac{{d{A_y}}}{{dt}}\overrightarrow j + \frac{{d{A_z}}}{{dt}}\overrightarrow k $$</p>
+<p>$$\frac{{d\left( {\overrightarrow A \cdot \overrightarrow B } \right)}}{{dt}} = \frac{{d\overrightarrow A }}{{dt}} \cdot \overrightarrow B + \overrightarrow A \cdot \frac{{d\overrightarrow B }}{{dt}}$$</p>
+<p>$$\frac{{d\left( {\overrightarrow A \times \overrightarrow B } \right)}}{{dt}} = \frac{{d\overrightarrow A }}{{dt}} \times \overrightarrow B + \overrightarrow A \times \frac{{d\overrightarrow B }}{{dt}}$$</p>
+<p>设 $\frac{{d\overrightarrow A }}{{dt}} = \overrightarrow B $，则</p>
+<p>$$\begin{aligned}<br />
+ \overrightarrow A &amp; = \int_{{t_1}}^{{t_2}} {\overrightarrow B } \\<br />
+ &amp; = \int_{{t_1}}^{{t_2}} {\left( {{B_x}\overrightarrow i + {B_y}\overrightarrow j } \right)} dt \\<br />
+ &amp; = \left( {\int_{{t_1}}^{{t_2}} {{B_x}dt} } \right)\overrightarrow i + \left( {\int_{{t_1}}^{{t_2}} {{B_y}dt} } \right)\overrightarrow j \\<br />
+ &amp; = {A_x}\overrightarrow i + {A_y}\overrightarrow j \\<br />
+\end{aligned} $$</p>
+<p>设矢量 $\overrightarrow A $ 沿曲线的线积分为</p>
+<p>$$\int_l {\overrightarrow A \cdot d\overrightarrow s} = \int_l {{A_x}dx + {A_y}dy + {A_z}dz } $$</p>
+</body>
+</html>

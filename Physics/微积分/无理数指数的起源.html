@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>无理数指数的起源 - </title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  </style>
+  
+  
+  <meta charset="UTF-8"/>
+  <meta name="author" content="潘霄鹏 - weibo.com/pxp1230">
+  <meta name="keywords" content="潘霄鹏笔记">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath:[['$','$']],processEscapes:true}
+  });
+  </script>
+  <script type="text/javascript" src="file:///storage/emulated/0/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///C:/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///C:/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/pxp1230.github.io.js"></script>
+  <script type="text/javascript" src="file:///C:/pxp1230.github.io.js"></script>
+  <script type="text/javascript">
+  if(window.location.protocol!="file:"){var d=document,s=d.createElement('script');s.src='/pxp1230.github.io.js';d.head.appendChild(s);}
+  </script>
+</head>
+<body>
+<h1 id="ln-x">函数$\ln x$的起源</h1>
+<p>任意幂函数的原函数我们都能轻易得到，除了$F'\left( x \right) = {x^{ - 1}}$之外</p>
+<p>因此我们设定它的原函数为$\ln x = F\left( x \right) = \int_a^x {\frac{1}{u}du} $</p>
+<p>$\ln x$的性质和普通${\log _a}x$一样，首先因为$y = {a^x}\,\left( {a &gt; 0} \right)$是x的连续函数，所以才会有$y = {a^0} = 1$，为了方便计算取$\ln 1 = {\log _a}1 = 0$，从而进一步定义了原函数$\ln x = F\left( x \right) = \int_1^x {\frac{1}{u}du} $</p>
+<p>接下来，容易推得$\ln x$的一个性质：<br />
+$$\begin{aligned}<br />
+ \because \; &amp; K\left( x \right) = \ln \left( {ax} \right) = \ln w = F\left( w \right) \\<br />
+ \therefore \; &amp; K'\left( x \right) = F'\left( w \right)w'\left( x \right) = \frac{a}{{ax}} = \frac{1}{x} \\<br />
+ \therefore \; &amp; \ln \left( {ax} \right) = K\left( x \right) = F\left( x \right) + C \\<br />
+ \therefore \; &amp; K\left( 1 \right) = \ln \left( {a \cdot 1} \right) = \ln a = \ln 1 + C \\<br />
+ \because \; &amp; {\text{根据lnx函数的定义}\ln x = }\int_1^x {\frac{1}{u}du} \\<br />
+ \therefore \; &amp; \ln 1 = 0 \\<br />
+ \therefore \; &amp; C = \ln a \\<br />
+ \therefore \; &amp; \ln \left( {ax} \right) = \ln a + \ln x \\<br />
+\end{aligned} $$<br />
+令$x=b$，便得到公式$\ln \left( {ab} \right) = \ln a + \ln b$</p>
+<p>根据这个性质，又可以得到：<br />
+$$\ln x + \ln \frac{1}{x} = 0$$</p>
+<p>即：<br />
+$$\ln \left( {{x^{ - 1}}} \right) = - \ln x$$</p>
+<p>$\ln x$的另一个性质（n为非0自然数，$u = {x^{\frac{m}{n}}}$）：<br />
+$$n\ln u = \ln {u^n} = \ln {x^{\frac{m}{n} \cdot n}} = \ln {x^m} = m\ln x$$</p>
+<p>即：<br />
+$$\ln {x^{\frac{m}{n}}} = \frac{m}{n}\ln x$$</p>
+<p>因为$y = \ln x$是x的连续函数，所以$y = \ln \left( {{a^x}} \right){\mkern 1mu} \left( {a &gt; 0} \right)$也是x的连续函数，因此$\ln {x^r} = r\ln x$对所有实数r都成立。</p>
+<p>下面验证数$e$的幂运算。</p>
+<p>定义$\ln x$的反函数为$E\left( x \right)$，推导出它的性质：<br />
+$$\begin{aligned}<br />
+ \because \; &amp; \ln xz = \ln x + \ln z = b + a \\<br />
+ \therefore \; &amp; E\left( {b + a} \right) = xz = E\left( b \right) \cdot E\left( a \right) \\<br />
+\end{aligned} $$<br />
+定义$\ln e=1$，我们有$E\left( 1 \right) = e$，容易推得对于任意实数r，有$E\left( r \right) = {e^r}$</p>
+<h1 id="ex">推导$e^x$的导数</h1>
+<p>$$E'\left( x \right) = \frac{{dy}}{{dx}} = \frac{1}{{\frac{{dx}}{{dy}}}} = \frac{1}{{\ln 'y}} = \frac{1}{{\frac{1}{y}}} = y = E\left( x \right)$$</p>
+<p>由$e^x$的导数推导出指数函数$f\left( x \right) = {a^x}$的导数：<br />
+$$f'\left( x \right) = \frac{{d({e^{x\ln a}})}}{{dx}} = \ln a \cdot {e^{x\ln a}} = \ln a \cdot {a^x}$$</p>
+<p>由$e^x$的导数推导出幂函数$f\left( x \right) = {x^a}$的导数：<br />
+$$f'\left( x \right) = \frac{{d({e^{a\ln x}})}}{{dx}} = a{e^{a\ln x}} \cdot \frac{1}{x} = a{x^a} \cdot \frac{1}{x} = a{x^{a - 1}}$$</p>
+<h1>推导复数中的欧拉公式</h1>
+<p>因为${e^x}$的幂级数展开式为</p>
+<p>$${e^x} = \sum\limits_{n = 0}^\infty {\frac{{{x^n}}}{{n!}}} $$</p>
+<p>对于复数$z = x + iy$，定义${e^z}$的幂级数展开式为</p>
+<p>$${e^z} = \sum\limits_{n = 0}^\infty {\frac{{{z^n}}}{{n!}}} $$</p>
+<p>则</p>
+<p>$$\begin{gathered}<br />
+ {e^{iy}} = \sum\limits_{n = 0}^\infty {\frac{{{{\left( {iy} \right)}^n}}}{{n!}}} = 1 + iy - \frac{{{y^2}}}{{2!}} - i\frac{{{y^3}}}{{3!}} + \frac{{{y^4}}}{{4!}} + i\frac{{{y^5}}}{{5!}} - \cdots \hfill \\<br />
+ = \left( {1 - \frac{{{y^2}}}{{2!}} + \frac{{{y^4}}}{{4!}} - \cdots } \right) + i\left( {y - \frac{{{y^3}}}{{3!}} + \frac{{{y^5}}}{{5!}} - \cdots } \right) = \cos y + i\sin y \hfill \\<br />
+\end{gathered} $$</p>
+<p>得</p>
+<p>$${e^{iy}} = \cos y + i\sin y$$<br />
+$${e^{ - iy}} = \cos \left( { - y} \right) + i\sin \left( { - y} \right) = \cos y - i\sin y$$</p>
+<p>两式相加减，得欧拉公式</p>
+<p>$$\cos x = \frac{{{e^{ix}} + {e^{ - ix}}}}{2}$$<br />
+$$\sin x = \frac{{{e^{ix}} - {e^{ - ix}}}}{{2i}}$$</p>
+<p>从而</p>
+<p>$$\left| {{e^{ix}}} \right| = \sqrt {{{\cos }^2}x + {{\sin }^2}x} = 1$$<br />
+$${e^{x + iy}} = {e^x}{e^{iy}} = {e^x}\left( {\cos y + i\sin y} \right)$$<br />
+$$\left| {{e^{x + iy}}} \right| = {e^x}$$</p>
+</body>
+</html>

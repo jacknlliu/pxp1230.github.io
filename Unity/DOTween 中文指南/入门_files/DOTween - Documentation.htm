@@ -1,0 +1,1695 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>DOTween - Documentation</title>
+<meta name="description" content="DOTween is the evolution of HOTween, a Unity Tween Engine" />
+<meta name="keywords" content="tween, tweening, animation, hotween, hotween v2, unity, unity3d, indie, indie games, indie developer, games, videogames, video games, assets, plugins, android, ios, iphone, ipad, windows, win, pc, mac, daniele giardini" />
+<meta name="viewport" content="width=device-width" />
+	<link type="text/css" rel="stylesheet" href="http://dotween.demigiant.com/_code/css/main.css?v=1.0.005" />
+<script type="text/javascript" src="http://dotween.demigiant.com/_code/js/jquery-1.11.0.min.js"></script>
+<link type="text/css" rel="stylesheet" href="http://dotween.demigiant.com/_code/js/highlightjs/obsidian.css?v=1.0.005">
+<script type="text/javascript" src="http://dotween.demigiant.com/_code/js/highlightjs/highlight.pack.js"></script>
+<script type="text/javascript" src="http://dotween.demigiant.com/_code/js/stickykit/stickykit.min.js"></script>
+<script type="text/javascript" src="http://dotween.demigiant.com/_code/js/bjqs/bjqs-1.3.min.js"></script>
+<link type="text/css" rel="stylesheet" href="http://dotween.demigiant.com/_code/js/bjqs/bjqs.css" />
+<script type="text/javascript" src="http://dotween.demigiant.com/_code/js/main.js?v=1.0.005"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-48104206-3', 'auto');
+  ga('send', 'pageview');
+</script></head>
+<body>
+	<div id="container">
+		
+<header id="header">
+	<h1>DOTween (HOTween v2) - a Unity Tween Engine</h1>
+	<div id="topWrap">
+		<div class="inner">
+			<a class="logoDemigiant" href="http://www.demigiant.com"><img alt="Demigiant" src="http://dotween.demigiant.com/_imgs/logo_demigiant_header.png"></a>
+			<a class="logoDotween" href="http://dotween.demigiant.com/index.php"><img alt="DOTween" src="http://dotween.demigiant.com/_imgs/logo_dotween_header.png"></a>
+		</div>
+	</div>
+
+	<nav>
+		<ul class="menu">
+			<!-- <li><a  href="http://dotween.demigiant.com/index.php">Intro</a></li> -->
+			<li><a  href="http://dotween.demigiant.com/getstarted.php">Get Started</a></li>
+			<li><a  class="menu-selected" href="http://dotween.demigiant.com/documentation.php">Documentation</a></li>
+			<li><a  href="http://dotween.demigiant.com/examples.php">Examples</a></li>
+			<li><a  href="http://dotween.demigiant.com/support.php">Support</a></li>
+			<li><a  href="http://dotween.demigiant.com/showcase.php">Showcase</a></li>
+			<li><a  href="http://dotween.demigiant.com/pro.php">Pro</a></li>
+			<li><a  href="http://dotween.demigiant.com/download.php">Download</a></li>
+			<li><a  href="http://dotween.demigiant.com/credits.php">Credits</a></li>
+		</ul>
+	</nav>
+</header>
+		<div id="pageWrap">
+			<section id="main">
+
+				<article>
+					<!-- <div class="splash">
+						To see the full API check out
+						<br><big><a href="api/annotated.html">DOTween API</a></big>
+						<br><small>(API might be out of date while in alpha)</small>
+					</div> -->
+					<!-- <div class="splash black">
+						<strong>DOTween is in alpha</strong> and there are still <strong>missing features</strong> <small>(like the new path plugin, additional callbacks and other tween options)</small>.
+						<br>This documentation will be expanded in the near future and some parts of the <strong>API might change</strong>
+					</div> -->
+					<h2 id="nomenclature">Nomenclature</h2>
+					<dl class="inline">
+						<dt>Tweener</dt>
+							<dd>A tween that takes control of a value and animates it.</dd>
+						<dt>Sequence</dt>
+							<dd>A special tween that, instead of taking control of a value, takes control of other tweens and animates them as a group.</dd>
+						<dt>Tween</dt>
+							<dd>A generic word that indicates both a Tweener and a Sequence.</dd>
+						<dt>Nested tween</dt>
+							<dd>A tween contained inside a Sequence.</dd>
+					</dl>
+					<h3 id="prefixes">Prefixes</h3>
+					<p>Prefixes are important to use the most out of <strong>IntelliSense</strong>, so try to remember these:</p>
+					<dl class="inline">
+						<dt>DO</dt>
+							<dd>Prefix for all tween shortcuts (operations that can be started directly from a known object, like a transform or a material). Also the prefix of the main DOTween class.</dd>
+							<pre><code>transform.DOMoveX(100, 1);
+								transform.DORestart();
+								DOTween.Play();</code></pre>
+						<dt>Set</dt>
+							<dd>Prefix for all settings that can be chained to a tween (except for <a href="api:From">From</a>, since it's applied as a setting but is not really a setting).</dd>
+							<pre><code>myTween.SetLoops(4, LoopType.Yoyo).SetSpeedBased();</code></pre>
+						<dt>On</dt>
+							<dd>Prefix for all callbacks that can be chained to a tween.</dd>
+							<pre><code>myTween.OnStart(myStartFunction).OnComplete(myCompleteFunction);</code></pre>
+					</dl>
+				</article>
+
+				<article>
+					<h2 id="init">DOTween.Init</h2>
+					<p>The first time you create a tween, DOTween will initialize itself automatically, using default values.</p>
+					<p>If instead you prefer to initialize it yourself (recommended), call this methods once, BEFORE creating any tween (calling it afterwards will have no effect).</p>
+					<p>Consider that you can still change all init settings whenever your want, by using DOTween's <a href="#globalSettings">global settings</a></p>
+					<p>Optionally, you can chain <code>SetCapacity</code> to the Init method, which allows to set the max Tweeners/Sequences initial capacity (it's the same as calling <a href="api:SetTweensCapacity">DOTween.SetTweensCapacity</a> later).</p>
+					<dl class="api">
+						<dt>static DOTween.Init(bool recycleAllByDefault = false, bool useSafeMode = true, LogBehaviour logBehaviour = LogBehaviour.ErrorsOnly)</dt>
+							<dd>Initializes DOTween. Call it without any parameter to use the preferences you set in DOTween's Utility Panel (otherwise they will be overrided by any eventual parameter passed).
+							<br><span>recycleAllByDefault</span> If TRUE all new tweens will be set for recycling, meaning that when killed they won't be destroyed but instead will be put in a pool and reused rather than creating new tweens. This option allows you to avoid GC allocations by reusing tweens, but you will have to take care of tween references, since they might result active even if they were killed (since they might have been respawned and might now be in use as other completely different tweens).
+							<br>If you want to automatically set your tween references to NULL when a tween is killed you can use the OnKill callback like this:
+							<pre><code>.OnKill(()=> myTweenReference = null)</code></pre>
+							You can change this setting at any time by changing the static <a href="api:DOTween.defaultRecyclable">DOTween.defaultRecyclable</a> property, or you can set the recycling behaviour for each tween separately, using <a href="api:SetRecyclable">SetRecyclable</a>
+							<br><span>useSafeMode</span> If set to TRUE tweens will be slightly slower but safer, allowing DOTween to automatically take care of things like targets being destroyed while a tween is running.
+							<br><strong>WARNING:</strong> on iOS safeMode works only if stripping level is set to "Strip Assemblies" or Script Call Optimization is set to "Slow and Safe".
+							<br><span>logBehaviour</span> Depending on the chosen mode DOTween will log only errors, errors and warnings, or everything plus additional informations.
+							</dd>
+					</dl>
+					<pre><code>// EXAMPLE A: initialize with the preferences set in DOTween's Utility Panel
+					DOTween.Init();
+					// EXAMPLE B: initialize with custom settings, and set capacities immediately
+					DOTween.Init(true, true, LogBehaviour.Verbose).SetCapacity(200, 10);</code></pre>
+				</article>
+
+				<article>
+					<h2 id="creatingTweener">Creating a Tweener</h2>
+					<p>Tweeners are the working ants of DOTween. They take a property/field and animate it towards a given value.</p>
+					<div class="splash">
+						As of now DOTween can tween these types of values:
+						<br><strong>float, int, uint, Vector2/3/4, Quaternion, Rect, RectOffset, string</strong>
+						<br><small>(some of these values can be tweened in <a href="#tweenerOptions">special ways</a>)</small>
+					</div>
+					<p><strong>There are 3 ways to create a Tweener:</strong> the <a href="#genericTo">generic way</a>, <a href="#shortcuts">the shortcuts way</a> and <a href="#additionalGenericTo">additional generic ways</a>.</p>
+
+					<h3 id="genericTo">A. The generic way</h3>
+					<p>This is the most flexible way of tweening and allows you to tween almost any value, either <strong>public or private, static or dynamic</strong> <small>(just so you know, the shortcuts way actually uses the generic way in the background)</small>.</p>
+					<p><strong>As with shortcuts, the generic way has a FROM alternate version</strong>. Just chain a <a href="api:From">From</a> to a Tweener to make the tween behave as a FROM tween instead of a TO tween.</p>
+					<dl class="api">
+						<dt>static DOTween.To(getter, setter, to, float duration)</dt>
+							<dd>Changes the given property from its current value to the given one.
+							
+							<br><span>getter</span> A delegate that returns the value of the property to tween. Can be written as a lambda like this:
+							<code>()=> myValue</code>
+							<br>where <code>myValue</code> is the name of the property to tween.
+							<br><span>setter</span> A delegate that sets the value of the property to tween. Can be written as a lambda like this:
+							<code>x=> myValue = x</code>
+							<br>where <code>myValue</code> is the name of the property to tween.
+							<br><span>to</span> The end value to reach.
+							<br><span>duration</span> The duration of the tween.
+
+							<h4>Examples</h4>
+							<pre><code>// Tween a Vector3 called myVector to 3,4,8 in 1 second
+							DOTween.To(()=> myVector, x=> myVector = x, new Vector3(3,4,8), 1);
+							// Tween a float called myFloat to 52 in 1 second
+							DOTween.To(()=> myFloat, x=> myFloat = x, 52, 1);</code></pre>
+							</dd>
+					</dl>
+					
+					<h3 id="shortcuts">B. The shortcuts way</h3>
+					<p>DOTween includes shortcuts for some known Unity objects, like Transform, Rigidbody and Material. You can start a tween directly from a reference to these objects (which will also <strong>automatically set the object itself as the tween target</strong>), like:</p>
+					<pre><code>transform.DOMove(new Vector3(2,3,4), 1);
+					rigidbody.DOMove(new Vector3(2,3,4), 1);
+					material.DOColor(Color.green, 1);</code></pre>
+					<p><strong>Each of these shortcuts also has a FROM alternate version</strong> except where indicated. Just chain a <a href="api:From">From</a> to a Tweener to make the tween behave as a FROM tween instead of a TO tween.
+					<br><strong>IMPORTANT: when you assign a FROM to a tween, the target will immediately jump to the FROM position </strong>(immediately as in "the moment you write that line of code", not "the moment the tween starts").</p>
+					<pre><code>transform.DOMove(new Vector3(2,3,4), 1).From();
+					rigidbody.DOMove(new Vector3(2,3,4), 1).From();
+					material.DOColor(Color.green, 1).From();</code></pre>
+
+					<p class="subh3">Basic elements shortcuts</p>
+					<h4 id="audiomixerShortcuts">AudioMixer (Unity 5)</h4>
+					<dl class="api">
+						<dt>DOSetFloat(string floatName, float to, float duration)</dt>
+							<dd>Tweens an AudioMixer's exposed float to the given value.
+							<br>Note that you need to manually expose a float in an AudioMixerGroup in order to be able to tween it from an AudioMixer.
+							</dd>
+					</dl>
+					<h4 id="audiosourceShortcuts">AudioSource</h4>
+					<dl class="api">
+						<dt>DOFade(float to, float duration)</dt>
+							<dd>Tweens an AudioSource's <code>volume</code> to the given value.</code>.
+							</dd>
+						<dt>DOPitch(float to, float duration)</dt>
+							<dd>Tweens an AudioSource's <code>pitch</code> to the given value.</code>.
+							</dd>
+					</dl>
+					<h4 id="cameraShortcuts">Camera</h4>
+					<dl class="api">
+						<dt>DOAspect(float to, float duration)</dt>
+							<dd>Tweens a Camera's <code>aspect</code>.
+							</dd>
+						<dt>DOColor(Color to, float duration)</dt>
+							<dd>Tweens a Camera's <code>backgroundColor</code>.
+							</dd>
+						<dt>DOFarClipPlane(float to, float duration)</dt>
+							<dd>Tweens a Camera's <code>farClipPlane</code>.
+							</dd>
+						<dt>DOFieldOfView(float to, float duration)</dt>
+							<dd>Tweens a Camera's <code>fieldOfView</code>.
+							</dd>
+						<dt>DONearClipPlane(float to, float duration)</dt>
+							<dd>Tweens a Camera's <code>nearClipPlane</code>.
+							</dd>
+						<dt>DOOrthoSize(float to, float duration)</dt>
+							<dd>Tweens a Camera's <code>orthographicSize</code>.
+							</dd>
+						<dt>DOPixelRect(Rect to, float duration)</dt>
+							<dd>Tweens a Camera's <code>pixelRect</code>.
+							</dd>
+						<dt>DORect(Rect to, float duration)</dt>
+							<dd>Tweens a Camera's <code>rect</code>.
+							</dd>
+						<dt>DOShakePosition(float duration, float/Vector3 strength, int vibrato, float randomness)</dt>
+							<dd><strong>No FROM version.</strong>
+							<br>Shakes a Camera's <code>localPosition</code> along its relative X Y axes with the given values.
+							<br><span>strength</span> The shake strength. Using a Vector3 instead of a float lets you choose the strength for each axis.
+							<br><span>vibrato</span> How much will the shake vibrate.
+							<br><span>randomness</span> How much the shake will be random (0 to 180 - values higher than 90 kind of suck, so beware). Setting it to 0 will shake along a single direction.
+							</dd>
+						<dt>DOShakeRotation(float duration, float/Vector3 strength, int vibrato, float randomness)</dt>
+							<dd><strong>No FROM version.</strong>
+							<br>Shakes a Camera's <code>localRotation</code>.
+							<br><span>strength</span> The shake strength. Using a Vector3 instead of a float lets you choose the strength for each axis.
+							<br><span>vibrato</span> How much will the shake vibrate.
+							<br><span>randomness</span> How much the shake will be random (0 to 180 - values higher than 90 kind of suck, so beware). Setting it to 0 will shake along a single direction.
+							</dd>
+					</dl>
+					<h4 id="lightShortcuts">Light</h4>
+					<dl class="api">
+						<dt>DOColor(Color to, float duration)</dt>
+							<dd>Changes the light's color to the given one</dd>
+						<dt>DOIntensity(float to, float duration)</dt>
+							<dd>Changes the light's intensity to the given one</dd>
+						<dt>DOShadowStrength(float to, float duration)</dt>
+							<dd>Changes the light's shadowStrength to the given one</dd>
+					<h5>Blendable tweens</h5>
+						<dt>DOBlendableColor(Color to, float duration)</dt>
+							<dd>Tweens the target's color to the given value, in a way that allows other DOBlendableColor tweens to work together on the same target, instead than fight each other as multiple DOColor would do.</dd>
+					</dl>
+					<h4 id="lineRendererShortcuts">LineRenderer</h4>
+					<dl class="api">
+						<dt>DOColor(Color2 startValue, Color2 endValue, float duration)</dt>
+							<dd>Changes the target's color to the given one. Note that this method requires to also insert the start colors for the tween, since LineRenderers have no way to get them.
+							<br><strong>Color2</strong> is a special DOTween struct which allows to store two colors in a single variable.
+							<pre><code>myLineRenderer.DOColor(new Color2(Color.white, Color.white), new Color2(Color.green, Color.black), 1);</code></pre>
+							</dd>
+					</dl>
+					<h4 id="materialShortcuts">Material</h4>
+					<dl class="api">
+						<dt>DOColor(Color to, float duration)</dt>
+							<dd>Changes the target's color to the given one.</dd>
+						<dt>DOColor(Color to, string property, float duration)</dt>
+							<dd>Changes the target's named color property to the given one.
+							<br><span>property</span> The name of the property to tween.
+							<pre><code>// Tween the specular value of a material
+							myMaterial.DOColor(Color.green, "_SpecColor", 1);</code></pre>
+							</dd>
+						<dt>DOFade(float to, float duration)</dt>
+							<dd>Fades the target's alpha to the given value (works only with materials that support alpha).</dd>
+						<dt>DOFade(float to, string property, float duration)</dt>
+							<dd>Fades the target's named alpha property to the given one.
+							<br><span>property</span> The name of the property to tween.
+							</dd>
+						<dt>DOFloat(float to, string property, float duration)</dt>
+							<dd>Changes the target's named float property to the given one.
+							<br><span>property</span> The name of the property to tween.
+							</dd>
+						<dt>DOGradientColor(Gradient to, float duration)</dt>
+							<dd>Changes the target's color via the given gradient.
+							<br><strong>NOTE: </strong> Creates a Sequence, not a Tweener.
+							<br><strong>Works only with Unity 4.3 or later (the Gradient class didn't exist before that)</strong>.
+							</dd>
+						<dt>DOGradientColor(Gradient to, string property, float duration)</dt>
+							<dd>Changes the target's named color property via the given gradient.
+							<br><span>property</span> The name of the property to tween.
+							<br><strong>NOTE: </strong> Creates a Sequence, not a Tweener.
+							<br><strong>Works only with Unity 4.3 or later (the Gradient class didn't exist before that)</strong>.
+							<pre><code>// Tween the specular value of a material
+							myMaterial.DOGradientColor(myGradient, "_SpecColor", 1);</code></pre>
+							</dd>
+						<dt>DOOffset(Vector2 to, float duration)</dt>
+							<dd>Changes the target's <code>textureOffset</code> to the given one.</dd>
+						<dt>DOOffset(Vector2 to, string property, float duration)</dt>
+							<dd>Changes the target's named <code>textureOffset</code> property to the given one.
+							<br><span>property</span> The name of the property to tween.
+							</dd>
+						<dt>DOTiling(Vector2 to, float duration)</dt>
+							<dd>Changes the target's <code>textureScale</code> to the given one.</dd>
+						<dt>DOTiling(Vector2 to, string property, float duration)</dt>
+							<dd>Changes the target's named <code>textureScale</code> property to the given one.
+							<br><span>property</span> The name of the property to tween.
+							</dd>
+						<dt>DOVector(Vector4 to, string property, float duration)</dt>
+							<dd>Changes the target's named Vector property to the given one.
+							<br><span>property</span> The name of the property to tween.
+							</dd>
+					<h5>Blendable tweens</h5>
+						<dt>DOBlendableColor(Color to, float duration)</dt>
+							<dd>Tweens a Material's color to the given value, in a way that allows other DOBlendableColor tweens to work together on the same target, instead than fight each other as multiple DOColor would do.</dd>
+						<dt>DOBlendableColor(Color to, string property, float duration)</dt>
+							<dd>Tweens a Material's named color property to the given value, in a way that allows other DOBlendableColor tweens to work together on the same target, instead than fight each other as multiple DOColor would do.
+							<br><span>property</span> The name of the property to tween.
+							<pre><code>// Tween the specular value of a material
+							myMaterial.DOBlendableColor(Color.green, "_SpecColor", 1);</code></pre>
+							</dd>
+					</dl>
+					<h4 id="rigidbodyShortcuts">Rigidbody</h4>
+					<p>These shortcuts use rigidbody's MovePosition/MoveRotation methods in the background, to correctly animate things related to physics objects.</p>
+					<dl class="api">
+						<h5>Move</h5>
+						<dt>DOMove(Vector3 to, float duration, bool snapping)</dt>
+							<dd>Moves the target's position to the given value.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							</dd>
+						<dt>DOMoveX/DOMoveY/DOMoveZ(float to, float duration, bool snapping)</dt>
+							<dd>Moves the target's position to the given value, tweening only the chosen axis.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							</dd>
+						<dt>DOJump(Vector3 endValue, float jumpPower, int numJumps, float duration, bool snapping)</dt>
+							<dd>Tweens the target's position to the given value, while also applying a jump effect along the Y axis.
+							<br><strong>NOTE:</strong> Returns a Sequence instead of a Tweener.
+							<br><span>endValue</span> The end value to reach.
+							<br><span>jumpPower</span> Power of the jump (the max height of the jump is represented by this plus the final Y offset).
+							<br><span>numJumps</span> Total number of jumps.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							<img src="http://dotween.demigiant.com/_imgs/content/dotween_dojump.gif">
+							</dd>
+						<h5>Rotate</h5>
+						<dt>DORotate(Vector3 to, float duration, RotateMode mode)</dt>
+							<dd>Rotates the target to the given value.
+							<br><strong>Requires a <code>Vector3</code> end value, not a <code>Quaternion</code></strong> (if you really want to pass a Quaternion, just convert it using <code>myQuaternion.eulerAngles</code>).
+							<br><code>Fast</code> (<strong>default</strong>): the rotation will take the shortest route and will not rotate more than 360°.
+							<br><code>FastBeyond360</code>: The rotation will go beyond 360°.
+							<br><code>WorldAxisAdd</code>: Adds the given rotation to the transform using world axis and an advanced precision mode (like when using transform.Rotate(Space.World)). In this mode the end value is always considered relative.
+							<br><code>LocalAxisAdd</code>: Adds the given rotation to the transform's local axis (like when rotating an object with the "local" switch enabled in Unity's editor or using transform.Rotate(Space.Self)). In this mode the end value is is always considered relative.
+							</dd>
+						<dt>DOLookAt(Vector3 towards, float duration, AxisConstraint axisConstraint = AxisConstraint.None, Vector3 up = Vector3.up)</dt>
+							<dd>Rotates the target so that it will look towards the given position.
+							<br><span>axisConstraint</span> Eventual axis constraint for the rotation.
+							<br><strong>Default:</strong> AxisConstraint.None
+							<br><span>up</span> The vector that defines in which direction up is.
+							<br><strong>Default:</strong> Vector3.up
+							</dd>
+						<h5><span class="pro-only">PRO ONLY &#10152; </span>Spiral &ndash; no FROM</h5>
+						<dt>DOSpiral(float duration, Vector3 axis = null, SpiralMode mode = SpiralMode.Expand, float speed = 1, float frequency = 10, float depth = 0, bool snapping = false)</dt>
+							<dd>Tweens a Rigidbody's <code>position</code> in a spiral shape.
+							<br><span>duration</span> The duration of the tween.
+							<br><span>axis</span> The axis around which the spiral will rotate.
+							<br><span>mode</span> The type of spiral movement.
+							<br><span>speed</span> Speed of the rotations.
+							<br><span>frequency</span> Frequency of the rotation. Lower values lead to wider spirals.
+							<br><span>depth</span> Indicates how much the tween should move along the spiral's axis.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							<pre><code>transform.DOSpiral(3, Vector3.forward, SpiralMode.ExpandThenContract, 1, 10);</code></pre>
+							<img src="http://dotween.demigiant.com/_imgs/content/dotween_dospiral.gif">
+							</dd>
+					</dl>
+					<h4 id="rigidbody2DShortcuts">Rigidbody2D</h4>
+					<p>These shortcuts use rigidbody2D's MovePosition/MoveRotation methods in the background, to correctly animate things related to physics objects.</p>
+					<dl class="api">
+						<h5>Move</h5>
+						<dt>DOMove(Vector2 to, float duration, bool snapping)</dt>
+							<dd>Moves the target's position to the given value.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							</dd>
+						<dt>DOMoveX/DOMoveY(float to, float duration, bool snapping)</dt>
+							<dd>Moves the target's position to the given value, tweening only the chosen axis.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							</dd>
+						<dt>DOJump(Vector2 endValue, float jumpPower, int numJumps, float duration, bool snapping)</dt>
+							<dd>Tweens the target's position to the given value, while also applying a jump effect along the Y axis.
+							<br><strong>NOTE:</strong> Returns a Sequence instead of a Tweener.
+							<br><span>endValue</span> The end value to reach.
+							<br><span>jumpPower</span> Power of the jump (the max height of the jump is represented by this plus the final Y offset).
+							<br><span>numJumps</span> Total number of jumps.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							<img src="http://dotween.demigiant.com/_imgs/content/dotween_dojump.gif">
+							</dd>
+						<h5>Rotate</h5>
+						<dt>DORotate(float toAngle, float duration)</dt>
+							<dd>Rotates the target to the given value.</dd>
+					</dl>
+					<h4 id="spriteRendererShortcuts">SpriteRenderer</h4>
+					<dl class="api">
+						<dt>DOColor(Color to, float duration)</dt>
+							<dd>Changes the target's color to the given one.</dd>
+						<dt>DOFade(float to, float duration)</dt>
+							<dd>Fades the target's alpha to the given value.</dd>
+						<dt>DOGradientColor(Gradient to, float duration)</dt>
+							<dd>Changes the target's color via the given gradient.
+							<br><strong>NOTE: </strong> Creates a Sequence, not a Tweener.
+							</dd>
+					<h5>Blendable tweens</h5>
+						<dt>DOBlendableColor(Color to, float duration)</dt>
+							<dd>Tweens the target's color to the given value, in a way that allows other DOBlendableColor tweens to work together on the same target, instead than fight each other as multiple DOColor would do.</dd>
+					</dl>
+					<h4 id="trailRendererShortcuts">TrailRenderer</h4>
+					<dl class="api">
+						<dt>DOResize(float toStartWidth, float toEndWidth, float duration)</dt>
+							<dd>Changes the TrailRenderer's <code>startWidth/endWidth</code> to the given ones</dd>
+						<dt>DOTime(float to, float duration)</dt>
+							<dd>Changes the target's <code>time</code> value to the given one</dd>
+					</dl>
+					<h4 id="transformShortcuts">Transform</h4>
+					<dl class="api">
+						<h5>Move</h5>
+						<dt>DOMove(Vector3 to, float duration, bool snapping)</dt>
+							<dd>Moves the target's position to the given value.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							</dd>
+						<dt>DOMoveX/DOMoveY/DOMoveZ(float to, float duration, bool snapping)</dt>
+							<dd>Moves the target's position to the given value, tweening only the chosen axis.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							</dd>
+						<dt>DOLocalMove(Vector3 to, float duration, bool snapping)</dt>
+							<dd>Moves the target's <code>localPosition</code> to the given value.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							</dd>
+						<dt>DOLocalMoveX/DOLocalMoveY/DOLocalMoveZ(float to, float duration, bool snapping)</dt>
+							<dd>Moves the target's <code>localPosition</code> to the given value, tweening only the chosen axis.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							</dd>
+						<dt>DOJump(Vector3 endValue, float jumpPower, int numJumps, float duration, bool snapping)</dt>
+							<dd>Tweens the target's position to the given value, while also applying a jump effect along the Y axis. 
+							<br><strong>NOTE:</strong> Returns a Sequence instead of a Tweener.
+							<br><span>endValue</span> The end value to reach.
+							<br><span>jumpPower</span> Power of the jump (the max height of the jump is represented by this plus the final Y offset).
+							<br><span>numJumps</span> Total number of jumps.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							<img src="http://dotween.demigiant.com/_imgs/content/dotween_dojump.gif">
+							</dd>
+						<dt>DOLocalJump(Vector3 endValue, float jumpPower, int numJumps, float duration, bool snapping)</dt>
+							<dd>Tweens the target's localPosition to the given value, while also applying a jump effect along the Y axis.
+							<br><strong>NOTE:</strong> Returns a Sequence instead of a Tweener.
+							<br><span>endValue</span> The end value to reach.
+							<br><span>jumpPower</span> Power of the jump (the max height of the jump is represented by this plus the final Y offset).
+							<br><span>numJumps</span> Total number of jumps.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							<img src="http://dotween.demigiant.com/_imgs/content/dotween_dojump.gif">
+							</dd>
+						<h5>Rotate</h5>
+						<dt>DORotate(Vector3 to, float duration, RotateMode mode)</dt>
+							<dd>Rotates the target to the given value.
+							<br><strong>Requires a <code>Vector3</code> end value, not a <code>Quaternion</code></strong> (if you really want to pass a Quaternion, just convert it using <code>myQuaternion.eulerAngles</code>).
+							<br><span>mode</span> Indicates the rotation mode.
+							<br><code>Fast</code> (<strong>default</strong>): the rotation will take the shortest route and will not rotate more than 360°.
+							<br><code>FastBeyond360</code>: The rotation will go beyond 360°.
+							<br><code>WorldAxisAdd</code>: Adds the given rotation to the transform using world axis and an advanced precision mode (like when using transform.Rotate(Space.World)). In this mode the end value is always considered relative.
+							<br><code>LocalAxisAdd</code>: Adds the given rotation to the transform's local axis (like when rotating an object with the "local" switch enabled in Unity's editor or using transform.Rotate(Space.Self)). In this mode the end value is is always considered relative.
+							</dd>
+						<dt>DOLocalRotate(Vector3 to, float duration, RotateMode mode)</dt>
+							<dd>Rotates the target's <code>localRotation</code> to the given value.
+							<br><strong>Requires a <code>Vector3</code> end value, not a <code>Quaternion</code></strong> (if you really want to pass a Quaternion, just convert it using <code>myQuaternion.eulerAngles</code>).
+							<br><span>mode</span> Indicates the rotation mode.
+							<br><code>Fast</code> (<strong>default</strong>): the rotation will take the shortest route and will not rotate more than 360°.
+							<br><code>FastBeyond360</code>: The rotation will go beyond 360°.
+							<br><code>WorldAxisAdd</code>: Adds the given rotation to the transform using world axis and an advanced precision mode (like when using transform.Rotate(Space.World)). In this mode the end value is always considered relative.
+							<br><code>LocalAxisAdd</code>: Adds the given rotation to the transform's local axis (like when rotating an object with the "local" switch enabled in Unity's editor or using transform.Rotate(Space.Self)). In this mode the end value is is always considered relative.
+							</dd>
+						<dt>DOLookAt(Vector3 towards, float duration, AxisConstraint axisConstraint = AxisConstraint.None, Vector3 up = Vector3.up)</dt>
+							<dd>Rotates the target so that it will look towards the given position.
+							<br><span>axisConstraint</span> Eventual axis constraint for the rotation.
+							<br><strong>Default:</strong> AxisConstraint.None
+							<br><span>up</span> The vector that defines in which direction up is.
+							<br><strong>Default:</strong> Vector3.up
+							</dd>
+						<h5>Scale</h5>
+						<dt>DOScale(float/Vector3 to, float duration)</dt>
+							<dd>Scales the target's <code>localScale</code> to the given value.
+							<br>Passing a <code>float</code> instead of a <code>Vector3</code> allows to scale stuff uniformly.</dd>
+						<dt>DOScaleX/DOScaleY/DOScaleZ(float to, float duration)</dt>
+							<dd>Scales the target's <code>localScale</code> to the given value while tweening only the chosen axis.</dd>
+						<h5>Punch &ndash; no FROM</h5>
+						<dt>DOPunchPosition(Vector3 punch, float duration, int vibrato, float elasticity, bool snapping)</dt>
+							<dd>Punches a Transform's <code>localPosition</code> towards the given direction and then back to the starting one as if it was connected to the starting position via an elastic.
+							<br><span>punch</span> The direction and strength of the punch (added to the Transform's current position).
+							<br><span>duration</span> The duration of the tween.
+							<br><span>vibrato</span> Indicates how much will the punch vibrate.
+							<br><span>elasticity</span> Represents how much (0 to 1) the vector will go beyond the starting position when bouncing backwards. 1 creates a full oscillation between the punch direction and the opposite direction, while 0 oscillates only between the punch and the start position.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							<img src="http://dotween.demigiant.com/_imgs/content/dotween_dopunchposition.gif">
+							</dd>
+						<dt>DOPunchRotation(Vector3 punch, float duration, int vibrato, float elasticity)</dt>
+							<dd>Punches a Transform's <code>localRotation</code> towards the given size and then back to the starting one as if it was connected to the starting rotation via an elastic.
+							<br><span>punch</span> The punch strength (added to the Transform's current rotation).
+							<br><span>duration</span> The duration of the tween.
+							<br><span>vibrato</span> Indicates how much will the punch vibrate.
+							<br><span>elasticity</span> Represents how much (0 to 1) the vector will go beyond the starting rotation when bouncing backwards. 1 creates a full oscillation between the punch rotation and the opposite rotation, while 0 oscillates only between the punch and the start rotation.
+							<img src="http://dotween.demigiant.com/_imgs/content/dotween_dopunchrotation.gif">
+							</dd>
+						<dt>DOPunchScale(Vector3 punch, float duration, int vibrato, float elasticity)</dt>
+							<dd>Punches a Transform's <code>localScale</code> towards the given size and then back to the starting one as if it was connected to the starting size via an elastic.
+							<br><span>punch</span> The punch strength (added to the Transform's current scale).
+							<br><span>duration</span> The duration of the tween.
+							<br><span>vibrato</span> Indicates how much will the punch vibrate.
+							<br><span>elasticity</span> Represents how much (0 to 1) the vector will go beyond the starting size when bouncing backwards. 1 creates a full oscillation between the punch scale and the opposite scale, while 0 oscillates only between the punch scale and the start scale.
+							<img src="http://dotween.demigiant.com/_imgs/content/dotween_dopunchscale.gif">
+							</dd>
+						<h5>Shake &ndash; no FROM</h5>
+						<dt>DOShakePosition(float duration, float/Vector3 strength, int vibrato, float randomness, bool snapping)</dt>
+							<dd>Shakes a Transform's <code>localPosition</code> with the given values.
+							<br><span>duration</span> The duration of the tween.
+							<br><span>strength</span> The shake strength. Using a Vector3 instead of a float lets you choose the strength for each axis.
+							<br><span>vibrato</span> Indicates how much will the shake vibrate.
+							<br><span>randomness</span> Indicates how much the shake will be random (0 to 180 - values higher than 90 kind of suck, so beware). Setting it to 0 will shake along a single direction.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							<img src="http://dotween.demigiant.com/_imgs/content/dotween_doshakeposition.gif">
+							</dd>
+						<dt>DOShakeRotation(float duration, float/Vector3 strength, int vibrato, float randomness)</dt>
+							<dd>Shakes a Transform's <code>localRotation</code> with the given values.
+							<br><span>duration</span> The duration of the tween.
+							<br><span>strength</span> The shake strength. Using a Vector3 instead of a float lets you choose the strength for each axis.
+							<br><span>vibrato</span> Indicates how much will the shake vibrate.
+							<br><span>randomness</span> Indicates how much the shake will be random (0 to 180 - values higher than 90 kind of suck, so beware). Setting it to 0 will shake along a single direction.
+							<img src="http://dotween.demigiant.com/_imgs/content/dotween_doshakerotation.gif">
+							</dd>
+						<dt>DOShakeScale(float duration, float/Vector3 strength, int vibrato, float randomness)</dt>
+							<dd>Shakes a Transform's <code>localScale</code> with the given values.
+							<br><span>duration</span> The duration of the tween.
+							<br><span>strength</span> The shake strength. Using a Vector3 instead of a float lets you choose the strength for each axis.
+							<br><span>vibrato</span> Indicates how much will the shake vibrate.
+							<br><span>randomness</span> Indicates how much the shake will be random (0 to 180 - values higher than 90 kind of suck, so beware). Setting it to 0 will shake along a single direction.
+							<img src="http://dotween.demigiant.com/_imgs/content/dotween_doshakescale.gif">
+							</dd>
+						<h5>Path &ndash; no FROM</h5>
+						<dt>DOPath(Vector3[] waypoints, float duration, PathType pathType = Linear, PathMode pathMode = Full3D, int resolution = 10, Color gizmoColor = null)</dt>
+							<dd>Tweens a Transform's <code>position</code> through the given path waypoints, using the chosen path algorithm.
+							<br>Additional options are available via <a href="api:Path tween &#10152; SetOptions">SetOptions</a> and <a href="api:Path tween &#10152; SetLookAt">SetLookAt</a>.
+							<br><span>waypoints</span> The waypoints to go through.
+							<br><span>duration</span> The duration of the tween.
+							<br><span>pathType</span> The type of path: Linear (straight path) or CatmullRom (curved CatmullRom path).
+							<br><span>pathMode</span> The path mode, used to determine correct LookAt options: Ignore (ignores any lookAt option passed), 3D, side-scroller 2D, top-down 2D.
+							<br><span>resolution</span> The resolution of the path (useless in case of Linear paths): higher resolutions make for more detailed curved paths but are more expensive. Defaults to 10, but a value of 5 is usually enough if you don't have dramatic long curves between waypoints.
+							<br><span>gizmoColor</span> The color of the path (shown when gizmos are active in the Play panel and the tween is running).
+							</dd>
+						<dt>DOLocalPath(Vector3[] waypoints, float duration, PathType pathType = Linear, PathMode pathMode = Full3D, int resolution = 10, Color gizmoColor = null)</dt>
+							<dd>Tweens a Transform's <code>localPosition</code> through the given path waypoints, using the chosen path algorithm.
+							<br>Additional options are available via <a href="api:Path tween &#10152; SetOptions">SetOptions</a> and <a href="api:Path tween &#10152; SetLookAt">SetLookAt</a>.
+							<br><span>waypoints</span> The waypoints to go through.
+							<br><span>duration</span> The duration of the tween.
+							<br><span>pathType</span> The type of path: Linear (straight path) or CatmullRom (curved CatmullRom path).
+							<br><span>pathMode</span> The path mode, used to determine correct LookAt options: Ignore (ignores any lookAt option passed), 3D, side-scroller 2D, top-down 2D.
+							<br><span>resolution</span> The resolution of the path (useless in case of Linear paths): higher resolutions make for more detailed curved paths but are more expensive. Defaults to 10, but a value of 5 is usually enough if you don't have dramatic long curves between waypoints.
+							<br><span>gizmoColor</span> The color of the path (shown when gizmos are active in the Play panel and the tween is running).
+							</dd>
+						<h5>Blendable tweens</h5>
+						<dt>DOBlendableMoveBy(Vector3 by, float duration, bool snapping)</dt>
+							<dd>Tweens a Transform's position BY the given value (as if it was set to relative), in a way that allows other DOBlendableMove tweens to work together on the same target, instead than fight each other as multiple DOMove would do.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							<pre><code>// Tween a target by moving it by 3,3,0
+							// while blending another move by -3,0,0 that will loop 3 times
+							// (using the default OutQuad ease)
+							transform.DOBlendableMoveBy(new Vector3(3, 3, 0), 3);
+							transform.DOBlendableMoveBy(new Vector3(-3, 0, 0), 1f).SetLoops(3, LoopType.Yoyo);</code></pre>
+        					<img src="http://dotween.demigiant.com/_imgs/content/dotween_doblendablemove.gif">
+							</dd>
+						<dt>DOBlendableLocalMoveBy(Vector3 by, float duration, bool snapping)</dt>
+							<dd>Tweens a Transform's localPosition BY the given value (as if it was set to relative), in a way that allows other DOBlendableMove tweens to work together on the same target, instead than fight each other as multiple DOMove would do.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							</dd>
+						<dt>DOBlendableRotateBy(Vector3 by, float duration, RotateMode mode)</dt>
+							<dd>Tweens a Transform's rotation BY the given value (as if it was set to relative), in a way that allows other DOBlendableRotate tweens to work together on the same target, instead than fight each other as multiple DORotate would do.
+							<br><strong>NOTE: </strong>This is an experimental feature.
+							<br><span>mode</span> Indicates the rotation mode.
+							</dd>
+						<dt>DOBlendableLocalRotateBy(Vector3 by, float duration, RotateMode mode)</dt>
+							<dd>Tweens a Transform's localRotation BY the given value (as if it was set to relative), in a way that allows other DOBlendableRotate tweens to work together on the same target, instead than fight each other as multiple DORotate would do.
+							<br><strong>NOTE: </strong>This is an experimental feature.
+							<br><span>mode</span> Indicates the rotation mode.
+							</dd>
+						<dt>DOBlendableScaleBy(Vector3 by, float duration)</dt>
+							<dd>Tweens a Transform's localScale BY the given value (as if it was set to relative), in a way that allows other DOBlendableScale tweens to work together on the same target, instead than fight each other as multiple DOScale would do.
+							</dd>
+						<h5><span class="pro-only">PRO ONLY &#10152; </span>Spiral &ndash; no FROM</h5>
+						<dt>DOSpiral(float duration, Vector3 axis = null, SpiralMode mode = SpiralMode.Expand, float speed = 1, float frequency = 10, float depth = 0, bool snapping = false)</dt>
+							<dd>Tweens a Transform's <code>localPosition</code> in a spiral shape.
+							<br><span>duration</span> The duration of the tween.
+							<br><span>axis</span> The axis around which the spiral will rotate.
+							<br><span>mode</span> The type of spiral movement.
+							<br><span>speed</span> Speed of the rotations.
+							<br><span>frequency</span> Frequency of the rotation. Lower values lead to wider spirals.
+							<br><span>depth</span> Indicates how much the tween should move along the spiral's axis.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							<pre><code>transform.DOSpiral(3, Vector3.forward, SpiralMode.ExpandThenContract, 1, 10);</code></pre>
+							<img src="http://dotween.demigiant.com/_imgs/content/dotween_dospiral.gif">
+							</dd>
+					</dl>
+
+					<p id="uguiShortcuts" class="subh3">Unity UI 4.6 shortcuts</p>
+					<h4 id="canvasGroupShortcuts">CanvasGroup (Unity UI 4.6)</h4>
+					<dl class="api">
+						<dt>DOFade(float to, float duration)</dt>
+							<dd>Fades the target's alpha to the given value.</dd>
+					</dl>
+					<h4 id="graphicShortcuts">Graphic (Unity UI 4.6)</h4>
+					<dl class="api">
+						<dt>DOColor(Color to, float duration)</dt>
+							<dd>Changes the target's color to the given one.</dd>
+						<dt>DOFade(float to, float duration)</dt>
+							<dd>Fades the target's alpha to the given value.</dd>
+					<h5>Blendable tweens</h5>
+						<dt>DOBlendableColor(Color to, float duration)</dt>
+							<dd>Tweens the target's color to the given value, in a way that allows other DOBlendableColor tweens to work together on the same target, instead than fight each other as multiple DOColor would do.</dd>
+					</dl>
+					<h4 id="imageShortcuts">Image (Unity UI 4.6)</h4>
+					<dl class="api">
+						<dt>DOColor(Color to, float duration)</dt>
+							<dd>Changes the target's color to the given one.</dd>
+						<dt>DOFade(float to, float duration)</dt>
+							<dd>Fades the target's alpha to the given value.</dd>
+						<dt>DOFillAmount(float to, float duration)</dt>
+							<dd>Changes target's <code>fillAmount</code> to the given value (0 to 1).</dd>
+						<dt>DOGradientColor(Gradient to, float duration)</dt>
+							<dd>Changes the target's color via the given gradient.
+							<br><strong>NOTE: </strong> Creates a Sequence, not a Tweener.
+							</dd>
+					<h5>Blendable tweens</h5>
+						<dt>DOBlendableColor(Color to, float duration)</dt>
+							<dd>Tweens the target's color to the given value, in a way that allows other DOBlendableColor tweens to work together on the same target, instead than fight each other as multiple DOColor would do.</dd>
+					</dl>
+					<h4 id="layoutElementShortcuts">LayoutElement (Unity UI 4.6)</h4>
+					<dl class="api">
+						<dt>DOFlexibleSize(Vector2 to, float duration, bool snapping)</dt>
+							<dd>Changes the layoutElement's <code>flexibleWidth/Height</code> to the given one
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							</dd>
+						<dt>DOMinSize(Vector2 to, float duration, bool snapping)</dt>
+							<dd>Changes the layoutElement's <code>minWidth/Height</code> to the given one
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							</dd>
+						<dt>DOPreferredSize(Vector2 to, float duration, bool snapping)</dt>
+							<dd>Changes the layoutElement's <code>preferredWidth/Height</code> to the given one
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							</dd>
+					</dl>
+					<h4 id="outlineShortcuts">Outline (Unity UI 4.6)</h4>
+					<dl class="api">
+						<dt>DOColor(Color to, float duration)</dt>
+							<dd>Changes the outline's color to the given one</dd>
+						<dt>DOFade(float to, float duration)</dt>
+							<dd>Fades the outline's alpha to the given value.</dd>
+					</dl>
+					<h4 id="rectTransformShortcuts">RectTransform (Unity UI 4.6)</h4>
+					<dl class="api">
+						<dt>DOAnchorPos(Vector2 to, float duration, bool snapping)</dt>
+							<dd>Tweens the target's <code>anchoredPosition</code> to the given value.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							</dd>
+						<dt>DOAnchorPos3D(Vector3 to, float duration, bool snapping)</dt>
+							<dd>Tweens the target's <code>anchoredPosition3D</code> to the given value.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							</dd>
+						<dt>DOJumpAnchorPos(Vector2 endValue, float jumpPower, int numJumps, float duration, bool snapping)</dt>
+							<dd>Tweens the target's <code>anchoredPosition</code> to the given value, while also applying a jump effect along the Y axis.
+							<br><strong>NOTE:</strong> Returns a Sequence instead of a Tweener.
+							<br><span>endValue</span> The end value to reach.
+							<br><span>jumpPower</span> Power of the jump (the max height of the jump is represented by this plus the final Y offset).
+							<br><span>numJumps</span> Total number of jumps.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							</dd>
+						<dt>DOPunchAnchorPos(Vector2 punch, float duration, int vibrato, float elasticity, bool snapping)</dt>
+							<dd>Punches the target's <code>anchoredPosition</code> with the given values.
+							<br><span>punch</span> The direction and strength of the punch (added to the RectTransform's current position).
+							<br><span>duration</span> The duration of the tween.
+							<br><span>vibrato</span> Indicates how much will the punch vibrate.
+							<br><span>elasticity</span> Represents how much (0 to 1) the vector will go beyond the starting position when bouncing backwards. 1 creates a full oscillation between the punch direction and the opposite direction, while 0 oscillates only between the punch and the start position.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							</dd>
+						<dt>DOShakeAnchorPos(float duration, float/Vector3 strength, int vibrato, float randomness, bool snapping)</dt>
+							<dd>Shakes the target's <code>anchoredPosition</code> with the given values.
+							<br><span>duration</span> The duration of the tween.
+							<br><span>strength</span> The shake strength. Using a Vector3 instead of a float lets you choose the strength for each axis.
+							<br><span>vibrato</span> Indicates how much will the shake vibrate.
+							<br><span>randomness</span> Indicates how much the shake will be random (0 to 180 - values higher than 90 kind of suck, so beware). Setting it to 0 will shake along a single direction.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							</dd>
+						<dt>DOSizeDelta(Vector2 to, float duration, bool snapping)</dt>
+							<dd>Tweens the target's <code>sizeDelta</code> to the given value.
+							<br><span>snapping</span> If TRUE the tween will smoothly snap all values to integers.
+							</dd>
+					</dl>
+					<h4 id="sliderShortcuts">Slider (Unity UI 4.6)</h4>
+					<dl class="api">
+						<dt>DOValue(float to, float duration, bool snapping = false)</dt>
+							<dd>Changes the target's <code>value</code> to the given one.
+							<br><span>snapping</span> If TRUE values will smoothly snap to integers.</dd>
+					</dl>
+					<h4 id="textShortcuts">Text (Unity UI 4.6)</h4>
+					<dl class="api">
+						<dt>DOColor(Color to, float duration)</dt>
+							<dd>Changes the target's color to the given one.</dd>
+						<dt>DOFade(float to, float duration)</dt>
+							<dd>Fades the target's alpha to the given value.</dd>
+						<dt>DOText(string to, float duration, bool richTextEnabled = true, ScrambleMode scrambleMode = ScrambleMode.None, string scrambleChars = null)</dt>
+							<dd>Tweens the target's text to the given value.
+							<br><span>richTextEnabled</span> If TRUE (default), rich text will be interpreted correctly while animated, otherwise all tags will be considered as normal text.
+							<br><span>scramble</span> The type of scramble mode to use, if any.
+							<br>If different than <code>ScrambleMode.None</code> the string will appear from a random animation of characters, otherwise it will compose itself regularly.
+							<br><code>None</code> (<strong>default</strong>): no scrambling will be applied.
+							<br><code>All/Uppercase/Lowercase/Numerals</code>: type of characters to be used while scrambling.
+							<br><code>Custom</code>: will use the custom characters in <code>scrambleChars</code>.
+							<br><span>scrambleChars</span> A string containing the characters to use for custom scrambling. Use as many characters as possible (minimum 10) because DOTween uses a fast scramble mode which gives better results with more characters.
+							<img src="http://dotween.demigiant.com/_imgs/content/dotween_dotext.gif">
+							</dd>
+					<h5>Blendable tweens</h5>
+						<dt>DOBlendableColor(Color to, float duration)</dt>
+							<dd>Tweens the target's color to the given value, in a way that allows other DOBlendableColor tweens to work together on the same target, instead than fight each other as multiple DOColor would do.</dd>
+					</dl>
+
+					<p id="2dtoolkitShortcuts" class="subh3"><span class="pro-only">PRO ONLY &#10152; </span>2D Toolkit shortcuts</p>
+					<h4 id="spriteShortcuts">tk2dBaseSprite</h4>
+					<dl class="api">
+						<dt>DOScale(Vector3 to, float duration)</dt>
+							<dd>Changes the target's <code>scale</code> property to the given value.</dd>
+						<dt>DOScaleX/Y/Z(float to, float duration)</dt>
+							<dd>Changes the target's <code>scale</code> property to the given value, tweening only the chosen axis.</dd>
+						<dt>DOColor(Color to, float duration)</dt>
+							<dd>Changes the target's color to the given one.</dd>
+						<dt>DOFade(float to, float duration)</dt>
+							<dd>Fades the target's alpha to the given value.</dd>
+					</dl>
+					<h4 id="slicedspriteShortcuts">tk2dSlicedSprite</h4>
+					<dl class="api">
+						<dt>DOScale(Vector2 to, float duration)</dt>
+							<dd>Changes the target's <code>dimensions</code> property to the given value.</dd>
+						<dt>DOScaleX/Y(float to, float duration)</dt>
+							<dd>Changes the target's <code>dimensions</code> property to the given value, tweening only the chosen axis.</dd>
+					</dl>
+					<h4 id="textShortcuts">tk2dTextMesh</h4>
+					<dl class="api">
+						<dt>DOColor(Color to, float duration)</dt>
+							<dd>Changes the target's color to the given one.</dd>
+						<dt>DOFade(float to, float duration)</dt>
+							<dd>Fades the target's alpha to the given value.</dd>
+						<dt>DOText(string to, float duration, bool richTextEnabled = true, ScrambleMode scrambleMode = ScrambleMode.None, string scrambleChars = null)</dt>
+							<dd>Tweens the target's text to the given value.
+							<br><span>richTextEnabled</span> If TRUE (default), rich text will be interpreted correctly while animated, otherwise all tags will be considered as normal text.
+							<br><span>scramble</span> The type of scramble mode to use, if any.
+							<br>If different than <code>ScrambleMode.None</code> the string will appear from a random animation of characters, otherwise it will compose itself regularly.
+							<br><code>None</code> (<strong>default</strong>): no scrambling will be applied.
+							<br><code>All/Uppercase/Lowercase/Numerals</code>: type of characters to be used while scrambling.
+							<br><code>Custom</code>: will use the custom characters in <code>scrambleChars</code>.
+							<br><span>scrambleChars</span> A string containing the characters to use for custom scrambling. Use as many characters as possible (minimum 10) because DOTween uses a fast scramble mode which gives better results with more characters.
+							<img src="http://dotween.demigiant.com/_imgs/content/dotween_dotext.gif">
+							</dd>
+					</dl>
+
+					<p id="textMeshProShortcuts" class="subh3"><span class="pro-only">PRO ONLY &#10152; </span>TextMesh Pro shortcuts</p>
+					<h4 id="tmpShortcuts">TextMeshPro + TextMeshProUGUI</h4>
+					<dl class="api">
+						<dt>DOScale(float to, float duration)</dt>
+							<dd>Changes the target's <code>scale</code> property uniformly to the given value.</dd>
+						<dt>DOColor(Color to, float duration)</dt>
+							<dd>Changes the target's color to the given one.</dd>
+						<dt>DOFaceColor(Color to, float duration)</dt>
+							<dd>Changes the target's <code>faceColor</code> to the given one.</dd>
+						<dt>DOFaceFade(float to, float duration)</dt>
+							<dd>Fades the target's <code>faceColor</code> to the given value.</dd>
+						<dt>DOFade(float to, float duration)</dt>
+							<dd>Fades the target's alpha to the given value.</dd>
+						<dt>DOFontSize(float to, float duration)</dt>
+							<dd>Changes the target's <code>fontSize</code> to the given value.</dd>
+						<dt>DOGlowColor(Color to, float duration)</dt>
+							<dd>Changes the target's <code>glowColor</code> to the given one.</dd>
+						<dt>DOMaxVisibleCharacters(int to, float duration)</dt>
+							<dd>Changes the target's <code>maxVisibleCharacters</code> to the given value.
+							<br><strong>NOTE:</strong> if you didn't set the <code>maxVisibleCharacters</code> property before starting the tween, TextMesh Pro will automatically set the starting value to 0 (because the property is activated only the first time it's used).</dd>
+						<dt>DOOutlineColor(Color to, float duration)</dt>
+							<dd>Changes the target's <code>outlineColor</code> to the given one.</dd>
+						<dt>DOText(string to, float duration, bool richTextEnabled = true, ScrambleMode scrambleMode = ScrambleMode.None, string scrambleChars = null)</dt>
+							<dd>Tweens the target's text to the given value.
+							<br><span>richTextEnabled</span> If TRUE (default), rich text will be interpreted correctly while animated, otherwise all tags will be considered as normal text.
+							<br><span>scramble</span> The type of scramble mode to use, if any.
+							<br>If different than <code>ScrambleMode.None</code> the string will appear from a random animation of characters, otherwise it will compose itself regularly.
+							<br><code>None</code> (<strong>default</strong>): no scrambling will be applied.
+							<br><code>All/Uppercase/Lowercase/Numerals</code>: type of characters to be used while scrambling.
+							<br><code>Custom</code>: will use the custom characters in <code>scrambleChars</code>.
+							<br><span>scrambleChars</span> A string containing the characters to use for custom scrambling. Use as many characters as possible (minimum 10) because DOTween uses a fast scramble mode which gives better results with more characters.
+							<img src="http://dotween.demigiant.com/_imgs/content/dotween_dotext.gif">
+							</dd>
+					</dl>
+
+					<h3 id="additionalGenericTo">C. Additional generic ways</h3>
+					<p>These are additional generic methods that allow to tween values in specific ways.</p>
+					<p><strong>These too have FROM alternate versions</strong> except where indicated. Just chain a <a href="api:From">From</a> to a Tweener to make the tween behave as a FROM tween instead of a TO tween.</p>
+					<dl class="api">
+						<dt>static DOTween.Punch(getter, setter, Vector3 direction, float duration, int vibrato, float elasticity)</dt>
+							<dd><strong>No FROM version.</strong>
+							<br>Punches a <code>Vector3</code> towards the given direction and then back to the starting one as if it was connected to the starting position via an elastic.
+							<br><span>getter</span> A delegate that returns the value of the property to tween. Can be written as a lambda like this:
+							<code>()=> myValue</code>
+							<br>where <code>myValue</code> is the name of the property to tween.
+							<br><span>setter</span> A delegate that sets the value of the property to tween. Can be written as a lambda like this:
+							<code>x=> myValue = x</code>
+							<br>where <code>myValue</code> is the name of the property to tween.
+							<br><span>direction</span> The direction and strength of the punch.
+							<br><span>duration</span> The duration of the tween.
+							<br><span>vibrato</span> Indicates how much will the punch vibrate,
+							<br><span>elasticity</span> Represents how much (0 to 1) the vector will go beyond the starting position when bouncing backwards. 1 creates a full oscillation between the direction and the opposite decaying direction, while 0 oscillates only between the starting position and the decaying direction.
+
+							<pre><code>// Punch upwards a Vector3 called myVector in 1 second
+							DOTween.Punch(()=> myVector, x=> myVector = x, Vector3.up, 1);</code></pre>
+							</dd>
+
+						<dt>static DOTween.Shake(getter, setter, float duration, float/Vector3 strength, int vibrato, float randomness, bool ignoreZAxis)</dt>
+							<dd><strong>No FROM version.</strong>
+							<br>Shakes a <code>Vector3</code> along its X Y axes with the given values.
+							<br><span>getter</span> A delegate that returns the value of the property to tween. Can be written as a lambda like this:
+							<code>()=> myValue</code>
+							<br>where <code>myValue</code> is the name of the property to tween.
+							<br><span>setter</span> A delegate that sets the value of the property to tween. Can be written as a lambda like this:
+							<code>x=> myValue = x</code>
+							<br>where <code>myValue</code> is the name of the property to tween.
+							<br><span>duration</span> The duration of the tween.
+							<br><span>strength</span> The shake strength. Using a Vector3 instead of a float lets you choose the strength for each axis.
+							<br><span>vibrato</span> Indicates how much will the shake vibrate,
+							<br><span>randomness</span> Indicates how much the shake will be random (0 to 360 - values higher than 90 kind of suck, so beware). Setting it to 0 will shake along a single direction and behave like a random punch.
+							<br><span>ignoreZAxis</span> If TRUE shakes only along the X Y axis (not available if you use a Vector3 for <code>strength</code>).
+
+							<pre><code>// Shake a Vector3 called myVector in 1 second
+							DOTween.Shake(()=> myVector, x=> myVector = x, 1, 5, 10, 45, false);</code></pre>
+							</dd>
+
+						<dt>static DOTween.ToAlpha(getter, setter, float to, float duration)</dt>
+							<dd>Tweens the alpha of a <code>Color</code> from its current value to the given one.
+							<br><span>getter</span> A delegate that returns the value of the property to tween. Can be written as a lambda like this:
+							<code>()=> myValue</code>
+							<br>where <code>myValue</code> is the name of the property to tween.
+							<br><span>setter</span> A delegate that sets the value of the property to tween. Can be written as a lambda like this:
+							<code>x=> myValue = x</code>
+							<br>where <code>myValue</code> is the name of the property to tween.
+							<br><span>to</span> The end value to reach.
+							<br><span>duration</span> The duration of the tween.
+
+							<pre><code>// Tween the alpha of a color called myColor to 0 in 1 second
+							DOTween.ToAlpha(()=> myColor, x=> myColor = x, 0, 1);</code></pre>
+							</dd>
+
+						<dt>static DOTween.ToArray(getter, setter, float to, float duration)</dt>
+							<dd><strong>No FROM version.</strong>
+							<br>Tweens a Vector3 to the given end values. Ease is applied between each segment and not as a whole.
+							<br><span>getter</span> A delegate that returns the value of the property to tween. Can be written as a lambda like this:
+							<code>()=> myValue</code>
+							<br>where <code>myValue</code> is the name of the property to tween.
+							<br><span>setter</span> A delegate that sets the value of the property to tween. Can be written as a lambda like this:
+							<code>x=> myValue = x</code>
+							<br>where <code>myValue</code> is the name of the property to tween.
+							<br><span>endValues</span> The end values to reach for each segment. This array must have the same length as <code>durations</code>.
+							<br><span>durations</span> The duration of each segment. This array must have the same length as <code>endValues</code>.
+							<h4>Examples</h4>
+							<pre><code>// Tween a Vector3 between 3 values, for 1 second each
+							Vector3[] endValues = new[] { new Vector3(1,0,1), new Vector3(2,0,2), new Vector3(1,4,1) };
+							float[] durations = new[] { 1, 1, 1 };
+							DOTween.ToArray(()=> myVector, x=> myVector = x, endValues, durations);</code></pre>
+							</dd>
+
+						<dt>static DOTween.ToAxis(getter, setter, float to, float duration, AxisConstraint axis)</dt>
+							<dd>Tweens a single axis of a <code>Vector3</code> from its current value to the given one.
+							<br><span>getter</span> A delegate that returns the value of the property to tween. Can be written as a lambda like this:
+							<code>()=> myValue</code>
+							<br>where <code>myValue</code> is the name of the property to tween.
+							<br><span>setter</span> A delegate that sets the value of the property to tween. Can be written as a lambda like this:
+							<code>x=> myValue = x</code>
+							<br>where <code>myValue</code> is the name of the property to tween.
+							<br><span>to</span> The end value to reach.
+							<br><span>duration</span> The duration of the tween.
+							<br><span>axis</span> The axis to tween.
+
+							<pre><code>// Tween the X of a Vector3 called myVector to 3 in 1 second
+							DOTween.ToAxis(()=> myVector, x=> myVector = x, 3, 1);
+							// Same as above, but tween the Y axis
+							DOTween.ToAxis(()=> myVector, x=> myVector = x, 3, 1, AxisConstraint.Y);</code></pre>
+							</dd>
+
+						<h5>Virtual Tween</h5>
+						<dt>static DOTween.To(setter, float startValue, float endValue, float duration)</dt>
+							<dd>Tweens a virtual property from the given start to the given end value and implements a setter that allows to use that value with an external method or a lambda.
+							<br><span>setter</span> The action to perform with the tweened value.
+							<br><span>startValue</span> The value to start from.
+							<br><span>endValue</span> The value to reach.
+							<br><span>duration</span> The duration of the virtual tween.
+
+							<pre><code>DOTween.To(MyMethod, 0, 12, 0.5f);
+							// Where MyMethod is a function that accepts a float parameter
+							// (which will be the result of the virtual tween)
+
+							// Alternatively, with a lambda
+							DOTween.To(x => someProperty = x, 0, 12, 0.5f);</code></pre>
+        					</dd>
+					</dl>
+
+				</article>
+
+				<article>
+					<h2 id="creatingSequence">Creating a Sequence</h2>
+					<p>Sequences are like Tweeners, but instead of animating a property or value they animate other Tweeners or Sequences as a group.</p>
+					<p><strong>Sequences can be contained inside other Sequences</strong> without any limit to the depth of the hierarchy.</p>
+					<p>The sequenced tweens don't have to be one after each other. <strong>You can overlap tweens</strong> with the <a href="api:Insert">Insert</a> method.</p>
+					<p>A tween (Sequence or Tweener) <strong>can be nested only inside a single other Sequence</strong>, meaning <strong>you can't reuse the same tween in multiple Sequences</strong>.</p>
+					<p>To create a Sequence, you follow these two steps:</p>
+
+					<h4>1. Grab a new Sequence to use and store it as a reference</h4>
+					<dl class="api">
+						<dt>static DOTween.Sequence()</dt>
+							<dd>Returns a usable Sequence which you can store and add tweens to.
+							<pre><code>Sequence mySequence = DOTween.Sequence();</code></pre>
+							</dd>
+					</dl>
+
+					<h4>2. Add tweens, intervals and callbacks to your Sequence</h4>
+					<p>Note that all <strong>these methods need to be applied before the Sequence starts</strong> (<small>usually the next frame after you create it, unless it's paused</small>), or they won't have any effect.</p>
+					<p>Also note that <strong>any nested Tweener/Sequence needs to be fully created before adding it to a Sequence</strong>, because after that it will be locked.</p>
+					<p><strong>Delays and loops (when not infinite) will work even inside nested tweens</strong>.</p>
+					<dl class="api">
+						<dt>Append(Tween tween)</dt>
+							<dd>Adds the given tween to the end of the Sequence.
+							<pre><code>mySequence.Append(transform.DOMoveX(45, 1));</code></pre>
+							</dd>
+						<dt>AppendCallback(TweenCallback callback)</dt>
+							<dd>Adds the given callback to the end of the Sequence.
+							<pre><code>mySequence.AppendCallback(MyCallback);</code></pre>
+							</dd>
+						<dt>AppendInterval(float interval)</dt>
+							<dd>Adds the given interval to the end of the Sequence.
+							<pre><code>mySequence.AppendInterval(interval);</code></pre>
+							</dd>
+						<dt>Insert(float atPosition, Tween tween)</dt>
+							<dd>Inserts the given tween at the given time position, thus allowing you to overlap tweens instead of just placing them one after each other.
+							<pre><code>mySequence.Insert(1, transform.DOMoveX(45, 1));</code></pre>
+							</dd>
+						<dt>InsertCallback(float atPosition, TweenCallback callback)</dt>
+							<dd>Inserts the given callback at the given time position.
+							<pre><code>mySequence.InsertCallback(1, MyCallback);</code></pre>
+							</dd>
+						<dt>Join(Tween tween)</dt>
+							<dd>Inserts the given tween at the same time position of the last tween added to the Sequence.
+							<pre><code>// The rotation tween will be played together with the movement tween
+							mySequence.Append(transform.DOMoveX(45, 1));
+							mySequence.Join(transform.DORotate(new Vector3(0,180,0), 1));</code></pre>
+							</dd>
+						<dt>Prepend(Tween tween)</dt>
+							<dd>Adds the given tween to the beginning of the Sequence, pushing forward in time the rest of the contents.n
+							<pre><code>mySequence.Prepend(transform.DOMoveX(45, 1));</code></pre>
+							</dd>
+						<dt>PrependCallback(TweenCallback callback)</dt>
+							<dd>Adds the given callback to the beginning of the Sequence.
+							<pre><code>mySequence.PrependCallback(MyCallback);</code></pre>
+							</dd>
+						<dt>PrependInterval(float interval)</dt>
+							<dd>Adds the given interval to the beginning of the Sequence, pushing forward in time the rest of the contents.
+							<pre><code>mySequence.PrependInterval(interval);</code></pre>
+							</dd>
+					</dl>
+
+					<div class="tip"><strong>TIP:</strong> You can create Sequences made only of callbacks and use them as timers or stuff like that.
+					</div>
+
+					<h4>Examples</h4>
+					<p>Creating a Sequence</p>
+					<pre><code>// Grab a free Sequence to use
+					Sequence mySequence = DOTween.Sequence();
+					// Add a movement tween at the beginning
+					mySequence.Append(transform.DOMoveX(45, 1));
+					// Add a rotation tween as soon as the previous one is finished
+					mySequence.Append(transform.DORotate(new Vector3(0,180,0), 1));
+					// Delay the whole Sequence by 1 second
+					mySequence.PrependInterval(1);
+					// Insert a scale tween for the whole duration of the Sequence
+					mySequence.Insert(0, transform.DOScale(new Vector3(3,3,3), mySequence.Duration()));</code></pre>
+					<p>Same as the previous example but with chaining (plus line breaks to make things clearer):</p>
+					<pre><code>Sequence mySequence = DOTween.Sequence();
+					mySequence.Append(transform.DOMoveX(45, 1))
+					  .Append(transform.DORotate(new Vector3(0,180,0), 1))
+					  .PrependInterval(1)
+					  .Insert(0, transform.DOScale(new Vector3(3,3,3), mySequence.Duration()));</code></pre>
+
+				</article>
+
+				<article>
+					<h2 id="options">Settings, options and callbacks</h2>
+					<p>DOTween uses a chaining approach when it comes to applying settings to a tween. Or you can change the global default options that will be applied to all newly created tweens.</p>
+					
+					<h3 id="globalSettings">Global settings</h3>
+					<h4>General settings</h4>
+					<dl class="api">
+						<dt>static LogBehaviour DOTween.logBehaviour</dt>
+							<dd><strong>Default:</strong> LogBehaviour.ErrorsOnly
+							<br>Depending on the chosen mode DOTween will log only errors, errors and warnings, or everything plus additional informations.
+							<br><code>LogBehaviour.ErrorsOnly:</code> Logs errors and nothing else.
+							<br><code>LogBehaviour.Default:</code> Logs errors and warnings.
+							<br><code>LogBehaviour.Verbose:</code> Logs errors, warnings and additional information.
+							</dd>
+						<dt>static bool DOTween.showUnityEditorReport</dt>
+							<dd><strong>Default:</strong> FALSE
+							<br>If set to TRUE you will get a DOTween report when exiting play mode (only in the Editor). Useful to know how many max Tweeners and Sequences you reached and optimize your final project accordingly.
+							<br>Beware, this will slightly slow down your performance while inside Unity Editor.
+							</dd>
+						<dt>static float DOTween.timeScale</dt>
+							<dd><strong>Default:</strong> 1
+							<br>Global timeScale applied to all tweens, both regular and independent.
+							</dd>
+						<dt>static bool DOTween.useSafeMode</dt>
+							<dd><strong>Default:</strong> TRUE
+							<br>If set to TRUE tweens will be slightly slower but safer, allowing DOTween to automatically take care of things like targets being destroyed while a tween is running.
+							<br>Setting it to FALSE means you'll have to personally take care of killing a tween before its target is destroyed or somehow rendered invalid.
+							<br><strong>WARNING:</strong> on iOS safeMode works only if stripping level is set to "Strip Assemblies" or Script Call Optimization is set to "Slow and Safe".
+							</dd>
+						<dt>static DOTween.SetTweensCapacity(int maxTweeners, int maxSequences)</dt>
+							<dd>In order to be faster DOTween limits the max amount of active tweens you can have. If you go beyond that limit don't worry: it is automatically increased. Still, if you already know you'll need more (or less) than the default max Tweeners/Sequences (which is 200 Tweeners and 50 Sequences) you can set DOTween's capacity at startup and avoid hiccups when it's raised automatically.
+							<pre><code>// Set max Tweeners to 2000 and max Sequences to 100
+							DOTween.SetTweensCapacity(2000, 100);</code></pre>
+							</dd>
+					</dl>
+
+					<h4 id="globalDefaults">Settings applied to all newly created tweens</h4>
+					<dl class="api">
+						<dt>static bool DOTween.defaultAutoKill</dt>
+							<dd><strong>Default:</strong> TRUE
+							<br>Default autoKill behaviour applied to all newly created tweens.
+							</dd>
+						<dt>static AutoPlay DOTween.defaultAutoPlay</dt>
+							<dd><strong>Default:</strong> AutoPlay.All
+							<br>Default autoPlay behaviour applied to all newly created tweens.
+							</dd>
+						<dt>static float DOTween.defaultEaseOvershootOrAmplitude</dt>
+							<dd><strong>Default:</strong> 1.70158f
+							<br>Default overshoot/amplitude used for eases.
+							</dd>
+						<dt>static float DOTween.defaultEasePeriod</dt>
+							<dd><strong>Default:</strong> 0
+							<br>Default period used for eases.
+							</dd>
+						<dt>static Ease DOTween.defaultEaseType</dt>
+							<dd><strong>Default:</strong> Ease.OutQuad
+							<br>Default ease applied to all newly created Tweeners.
+							</dd>
+						<dt>static LoopType DOTween.defaultLoopType</dt>
+							<dd><strong>Default:</strong> LoopType.Restart
+							<br>Default loop type applied to all newly created tweens that involve loops.
+							</dd>
+						<dt>static bool DOTween.defaultRecyclable</dt>
+							<dd><strong>Default:</strong> false
+							<br>Default recycling behaviour applied to all newly created tweens.
+							</dd>
+						<dt>static bool DOTween.defaultTimeScaleIndependent</dt>
+							<dd><strong>Default:</strong> false
+							<br>Sets whether Unity's timeScale should be taken into account by default or not.
+							</dd>
+						<dt>static UpdateType DOTween.defaultUpdateType</dt>
+							<dd><strong>Default:</strong> UpdateType.Normal
+							<br>Default <code>UpdateType</code> applied to all newly created tweens.
+							</dd>
+					</dl>
+
+					<h3 id="tweenerSequenceSettings">Tweener and Sequence settings</h3>
+					<h4>Instance properties</h4>
+					<dl class="api">
+						<dt>float timeScale</dt>
+							<dd><strong>Default: </strong> 1
+							<br>Sets the internal timeScale for the tween.
+							<pre><code>// Sets the tween so that it plays at half the speed
+							myTween.timeScale = 0.5f;</code></pre>
+							<div class="tip"><strong>TIP:</strong> This value can be tweened by another tween to achieve smooth slow-motion effects.</div>
+							</dd>
+					</dl>
+					<h4>Chained settings</h4>
+					<p>These settings can be chained to all types of tweens.
+					<br>You can also chain them while a tween is running (except for <code>SetLoops</code> and <code>SetAs</code>)</p>
+					<dl class="api">
+						<dt>SetAs(Tween tween \ TweenParams tweenParams)</dt>
+							<dd>Sets the parameters of the tween (id, ease, loops, delay, timeScale, callbacks, etc) as the parameters of the given one (doesn't copy specific <a href="#tweenerOptions">SetOptions</a> settings: those will need to be applied manually each time) or of the given <a href="#TweenParams">TweenParams</a> object.
+							<br><strong>Has no effect if the tween has already started.</strong>
+							<pre><code>transform.DOMoveX(4, 1).SetAs(myOtherTween);</code></pre>
+							</dd>
+						<dt>SetAutoKill(bool autoKillOnCompletion = true)</dt>
+							<dd>If <code>autoKillOnCompletion</code> is set to TRUE the tween will be killed as soon as it completes, otherwise it will stay in memory and you'll be able to reuse it.
+							<pre><code>transform.DOMoveX(4, 1).SetAutoKill(false);</code></pre>
+							</dd>
+						<dt>SetEase(Ease easeType \ AnimationCurve animCurve \ EaseFunction customEase)</dt>
+							<dd>Sets the ease of the tween.
+							<br><b>If applied to a Sequence instead of a Tweener</b>, the ease will be applied to the whole Sequence as if it was a single animated timeline. Sequences always have <code>Ease.Linear</code> by default, independently of the global default ease settings.
+							<br>You can pass it either a default ease (<code>Ease</code> &ndash; to see how default ease curves look, check out <a href="http://easings.net/">easings.net</a>), an <code>AnimationCurve</code> or a custom ease function.
+							<br>Additionally, the following optional parameters can be set: they work only with Back and Elastic eases.
+							<br><span>overshoot</span> Eventual overshoot to use with Back ease (default is 1.70158).
+							<br><span>amplitude</span> Eventual amplitude to use with Elastic ease (default is 1.70158).
+							<br><span>period</span> Eventual period to use with Elastic ease (default is 0).
+							<pre><code>transform.DOMoveX(4, 1).SetEase(Ease.InOutQuint);
+							transform.DOMoveX(4, 1).SetEase(myAnimationCurve);
+							transform.DOMoveX(4, 1).SetEase(myEaseFunction);</code></pre>
+							<strong>EXTRA: EaseFactory</strong>
+							<br><code>EaseFactory.StopMotion</code> is an extra layer you can add to your easings, making them behave as if they were playing in stop-motion (practically, they will simulate the given FPS while tweening). It can be applied as a wrapper to any ease.
+							<br><code>EaseFactory.StopMotion(int fps, Ease\AnimationCurve\EaseFunction ease)</code>
+							<pre><code>transform.DOMoveX(4, 1).SetEase(EaseFactory.StopMotion(5, Ease.InOutQuint));</code></pre>
+							</dd>
+						<dt>SetId(object id)</dt>
+							<dd>Sets an ID for the tween (which can then be used as a filter with DOTween's static methods). It can be an int, a string, an object or whatever.
+							<pre><code>transform.DOMoveX(4, 1).SetId("supertween");</code></pre>
+							</dd>
+						<dt>SetLoops(int loops, LoopType loopType = LoopType.Restart)</dt>
+							<dd>Sets the looping options (<code>Restart</code>, <code>Yoyo</code>, <code>Incremental</code>) for the tween.
+							<br>Setting <code>loops</code> to <code>-1</code> will make the tween loop infinitely.
+							<br><code>LoopType.Restart: </code> When a loop ends it will restart from the beginning.
+							<br><code>LoopType.Yoyo: </code> When a loop ends it will play backwards until it completes another loop, then forward again, then backwards again, and so on and on and on.
+							<br><code>LoopType.Incremental: </code> Each time a loop ends the difference between its endValue and its startValue will be added to the endValue, thus creating tweens that increase their values with each loop cycle.
+							<br><strong>Has no effect if the tween has already started.</strong> Also, infinite loops will not be applied if the tween is inside a Sequence.
+							<pre><code>transform.DOMoveX(4, 1).SetLoops(3, LoopType.Yoyo);</code></pre>
+							</dd>
+						<dt>SetRecyclable(bool recyclable)</dt>
+							<dd>Sets the recycling behaviour for the tween. If you don't set it then the default value (set either via <a href="api:Init">DOTween.Init</a> or <a href="api:defaultRecyclable">DOTween.defaultRecyclable</a>) will be used.
+							<br><span>recyclable</span> If TRUE the tween will be recycled after being killed, otherwise it will be destroyed.
+							<pre><code>transform.DOMoveX(4, 1).SetRecyclable(true);</code></pre>
+							</dd>
+						<dt>SetRelative(bool isRelative = true)</dt>
+							<dd>If <code>isRelative</code> is TRUE sets the tween as relative (the endValue will be calculated as <code>startValue + endValue</code> instead of being used directly). In case of Sequences, sets all the nested tweens as relative.
+							<br><strong>IMPORTANT:</strong> Has no effect on From tweens, since in that case you directly choose if the tween is relative or not when chaining the <code>From</code> setting.
+							<br><strong>Has no effect if the tween has already started.</strong>
+							<pre><code>transform.DOMoveX(4, 1).SetRelative();</code></pre>
+							</dd>
+						<dt>SetUpdate(UpdateType updateType, bool isIndependentUpdate = false)</dt>
+							<dd>Sets the type of update (<code>Normal</code>, <code>Late</code> or <code>Fixed</code>) for the tween and eventually tells it to ignore Unity's timeScale.
+							<br><span>updateType</span> The <code>UpdateType</code> to use:
+							<br><code>UpdateType.Normal:</code> Updates every frame during Update calls.
+							<br><code>UpdateType.Late:</code> Updates every frame during LateUpdate calls.
+							<br><code>UpdateType.Fixed:</code> Updates using FixedUpdate calls.
+							<br><span>isIndependentUpdate</span> If TRUE the tween will ignore Unity's Time.timeScale.
+							<br><strong>NOTE:</strong> independentUpdate works also with <code>UpdateType.Fixed</code> but is not recommended in that case (because at timeScale 0 FixedUpdate won't run).
+							<pre><code>transform.DOMoveX(4, 1).SetUpdate(UpdateType.Late, true);</code></pre>
+							</dd>
+					</dl>
+					<h4>Chained callbacks</h4>
+					<dl class="api">
+						<dt>OnComplete(TweenCallback callback)</dt>
+							<dd>Sets a callback that will be fired the moment the tween reaches completion, all loops included.
+							<pre><code>transform.DOMoveX(4, 1).OnComplete(MyCallback);</code></pre>
+							</dd>
+						<dt>OnKill(TweenCallback callback)</dt>
+							<dd>Sets a callback that will be fired the moment the tween is killed.
+							<pre><code>transform.DOMoveX(4, 1).OnKill(MyCallback);</code></pre>
+							</dd>
+						<dt>OnPlay(TweenCallback callback)</dt>
+							<dd>Sets a callback that will be fired when the tween is set in a playing state, after any eventual delay. Also called each time the tween resumes playing from a paused state.
+							<pre><code>transform.DOMoveX(4, 1).OnPlay(MyCallback);</code></pre>
+							</dd>
+						<dt>OnPause(TweenCallback callback)</dt>
+							<dd>Sets a callback that will be fired when the tween state changes from playing to paused. If the tween has autoKill set to FALSE, this is called also when the tween reaches completion.
+							<pre><code>transform.DOMoveX(4, 1).OnPause(MyCallback);</code></pre>
+							</dd>
+						<dt>OnRewind(TweenCallback callback)</dt>
+							<dd>Sets a callback that will be fired when the tween is rewinded, either by calling <code>Rewind</code> or by reaching the start position while playing backwards.
+							<br><strong>NOTE:</strong> Rewinding a tween that is already rewinded will not fire this callback.
+							<pre><code>transform.DOMoveX(4, 1).OnRewind(MyCallback);</code></pre>
+							</dd>
+						<dt>OnStart(TweenCallback callback)</dt>
+							<dd>Sets a callback that will be fired when the tween starts (meaning when the tween is set in a playing state the first time, after any eventual delay).
+							<pre><code>transform.DOMoveX(4, 1).OnStart(MyCallback);</code></pre>
+							</dd>
+						<dt>OnStepComplete(TweenCallback callback)</dt>
+							<dd>Sets a callback that will be fired each time the tween completes a single loop cycle.
+							<pre><code>transform.DOMoveX(4, 1).OnStepComplete(MyCallback);</code></pre>
+							</dd>
+						<dt>OnUpdate(TweenCallback callback)</dt>
+							<dd>Sets a callback that will be fired every time the tween updates.
+							<pre><code>transform.DOMoveX(4, 1).OnUpdate(MyCallback);</code></pre>
+							</dd>
+						<dt>OnWaypointChange(TweenCallback&lt;int&gt; callback)</dt>
+							<dd>Sets a callback that will be fired when a path tween's current waypoint changes.
+							<br><strong>This is a special callback which, contrary to the other ones, needs to accept a parameter of type <code>int</code></strong> (which will be the newly changed waypoint index).
+							<pre><code>void Start() {
+							   transform.DOPath(waypoints, 1).OnWaypointChange(MyCallback);
+							}
+							void MyCallback(int waypointIndex) {
+							   Debug.Log("Waypoint index changed to " + waypointIndex);
+							}</code></pre>
+							</dd>
+					</dl>
+					<p>By the way, <strong>callbacks attached to nested tweens will still work</strong> in the correct order.</p>
+					<div class="tip">If you want to use a callback with parameters, lambdas come to the rescue:
+						<pre><code>// Callback without parameters
+						transform.DOMoveX(4, 1).OnComplete(MyCallback);
+						// Callback with parameters
+						transform.DOMoveX(4, 1).OnComplete(()=>MyCallback(someParam, someOtherParam));</code></pre>
+					</div>
+
+					<h3 id="specificSettings">Tweener-specific settings and options</h3>
+					<p>These settings are specific to Tweeners, and will have no effect on Sequences.
+					<br>Apart from <code>SetEase</code>, chaining these settings while a tween is running will have no effect.</p>
+					<dl class="api">
+						<dt>From(bool isRelative = false)</dt>
+							<dd>Changes the Tweener to a FROM tween (instead of a regular TO tween), immediately sending the target to its given value and then tweening to what was its previous value.
+							<br><strong>Must be chained before any other setting, except <a href="#setOptions">tween specific options</a>.</strong>
+							<br><span>isRelative</span> If TRUE sets the tween as relative (the FROM value will be calculated as <code>currentValue + endValue</code> instead of being used directly). With FROM tweens you need to use this parameter instead of <code>SetRelative</code>.
+							<pre><code>// Regular TO tween
+							transform.DOMoveX(2, 1);
+							// FROM tween
+							transform.DOMoveX(2, 1).From();
+							// FROM tween but with relative FROM value
+							transform.DOMoveX(2, 1).From(true);</code></pre>
+							</dd>
+						<dt>SetDelay(float delay)</dt>
+							<dd>Sets a delayed startup for the tween.
+							<br><strong>Has no effect if the tween has already started.</strong>
+							<pre><code>transform.DOMoveX(4, 1).SetDelay(1);</code></pre>
+							</dd>
+						<dt>SetSpeedBased(bool isSpeedBased = true)</dt>
+							<dd>If <code>isSpeedBased</code> is TRUE sets the tween as speed based (the duration will represent the number of units/degrees the tween moves x second). NOTE: if you want your speed to be constant, also set the ease to <code>Ease.Linear</code>.
+							<br><strong>Has no effect if the tween has already started or is inside a Sequence.</strong>
+							<pre><code>transform.DOMoveX(4, 1).SetSpeedBased();</code></pre>
+							</dd>
+					</dl>
+
+					<h4 id="tweenerOptions">SetOptions</h4>
+					<p><strong>Some Tweeners have specific special options</strong> that will be available to you depending on the type of thing you're tweening. It's all automatic: if a Tweener has specific options you'll see a specific <code>SetOptions</code> methods present for that Tweener, otherwise you won't. It's magic!</p>
+					<p>Note that <strong>these options are usually available only when creating tweens via the generic way</strong>, while <strong>shortcuts have the same options already included in their main creation method</strong>.</p>
+					<p>The important thing to remember is that, while all other settings can be chained together in any order, <code>SetOptions</code> <strong>must be chained immediately after the tween creation</strong> function, or it won't be available anymore.</p>
+
+					<dl class="api">
+						<h5 id="setOptions">Generic Tweens Specific Options <small>(already included in the corresponding tween shortcuts)</small></h5>
+						<dt>Color tween &#10152; SetOptions(bool alphaOnly)</dt>
+							<dd>Sets specific options for the tween of a Color.
+							<br><span>alphaOnly</span> If TRUE only the alpha of the color will be tweened.
+							<pre><code>DOTween.To(()=> myColor, x=> myColor = x, new Color(1,1,1,0), 1).SetOptions(true);</code></pre>
+							</dd>
+						<dt>float tween &#10152; SetOptions(bool snapping)</dt>
+							<dd>Sets specific options for the tween of a float.
+							<br><span>snapping</span> If TRUE values will smoothly snap to integers.
+							<pre><code>DOTween.To(()=> myFloat, x=> myFloat = x, 45, 1).SetOptions(true);</code></pre>
+							</dd>
+						<dt>Quaternion tween &#10152; SetOptions(bool useShortest360Route)</dt>
+							<dd>Sets specific options for the tween of a Quaternion array.
+							<br><span>useShortest360Route</span> If TRUE (<strong>default</strong>) the rotation will take the shortest route and will not rotate more than 360°. If FALSE the rotation will be fully accounted. Is always FALSE if the tween is set as relative.
+							<pre><code>DOTween.To(()=> myQuaternion, x=> myQuaternion = x, new Vector3(0,180,0), 1).SetOptions(true);</code></pre>
+							</dd>
+						<dt>Rect tween &#10152; SetOptions(bool snapping)</dt>
+							<dd>Sets specific options for the tween of a Rect.
+							<br><span>snapping</span> If TRUE values will smoothly snap to integers.
+							<pre><code>DOTween.To(()=> myRect, x=> myRect = x, new Rect(0,0,10,10), 1).SetOptions(true);</code></pre>
+							</dd>
+						<dt>String tween &#10152; SetOptions(bool richTextEnabled, ScrambleMode scrambleMode = ScrambleMode.None, string scrambleChars = null)</dt>
+							<dd>Sets specific options for the tween of a string.
+							<br><span>richTextEnabled</span> If TRUE (default), rich text will be interpreted correctly while animated, otherwise all tags will be considered as normal text.
+							<br><span>scramble</span> The type of scramble mode to use, if any.
+							<br>If different than <code>ScrambleMode.None</code> the string will appear from a random animation of characters, otherwise it will compose itself regularly.
+							<br><code>None</code> (<strong>default</strong>): no scrambling will be applied.
+							<br><code>All/Uppercase/Lowercase/Numerals</code>: type of characters to be used while scrambling.
+							<br><code>Custom</code>: will use the custom characters in <code>scrambleChars</code>.
+							<br><span>scrambleChars</span> A string containing the characters to use for custom scrambling. Use as many characters as possible (minimum 10) because DOTween uses a fast scramble mode which gives better results with more characters.
+							<pre><code>DOTween.To(()=> myString, x=> myString = x, "hello world", 1).SetOptions(true, ScrambleMode.All);</code></pre>
+							</dd>
+						<dt>Vector2/3/4 tween &#10152; SetOptions(AxisConstraint constraint, bool snapping)</dt>
+							<dd>Sets specific options for the tween of a Vector2/3/4.
+							<br><span>constraint</span> Tells the tween to animate only the given axis.
+							<br><span>snapping</span> If TRUE values will smoothly snap to integers (great for pixel perfect movement).
+							<pre><code>DOTween.To(()=> myVector, x=> myVector = x, new Vector3(2,2,2), 1).SetOptions(AxisConstraint.Y, true);</code></pre>
+							</dd>
+						<dt>Vector3Array tween &#10152; SetOptions(bool snapping)</dt>
+							<dd>Sets specific options for the tween of a Vector3 array.
+							<br><span>snapping</span> If TRUE values will smoothly snap to integers (great for pixel perfect movement).
+							<pre><code>DOTween.ToArray(()=> myVector, x=> myVector = x, myEndValues, myDurations).SetOptions(true);</code></pre>
+							</dd>
+						<h5>DOPath Specific Options</h5>
+						<dt>Path tween &#10152; SetOptions(bool closePath, AxisConstraint lockPosition = AxisConstraint.None, AxisConstraint lockRotation = AxisConstraint.None)</dt>
+							<dd>Sets specific options for a path tween (created via the <a href="api:DOPath">DOPath</a> shortcut).
+							<br><span>closePath</span> If TRUE the path will be automatically closed.
+							<br><span>lockPosition</span> The eventual movement axis to lock. You can input multiple axis if you separate them like this:
+								<br><code>AxisConstrain.X | AxisConstraint.Y</code>.
+							<br><span>lockRotation</span> The eventual rotation axis to lock. You can input multiple axis if you separate them like this:
+								<br><code>AxisConstrain.X | AxisConstraint.Y</code>.
+							<pre><code>transform.DOPath(path, 4f).SetOptions(true, AxisConstraint.X);</code></pre>
+							</dd>
+						<dt>Path tween &#10152; SetLookAt(Vector3 lookAtPosition/lookAtTarget/lookAhead, Vector3 forwardDirection, Vector3 up = Vector3.up)</dt>
+							<dd>Additional LookAt options for Path tweens (created via the <a href="api:DOPath">DOPath</a> shortcut). Depending on the overload you choose, it either: a) orients the target towards the given position, b) orients the target towards the given transform, c) orients the target to the path with the given lookAhead.
+							<br><strong>Must be chained directly</strong> to the tween creation method or to a <code>SetOptions</code> method.
+							<br><span>lookAtPosition</span> The position to look at.
+							<br><span>lookAtTarget</span> The target to look at.
+							<br><span>lookAhead</span> The lookAhead percentage to use when orienting to the path (0 to 1).
+							<br><span>forwardDirection</span> The eventual direction to consider as "forward".
+								<br><strong>Default:</strong> the regular forward side of the transform.
+							<br><span>up</span> The vector that defines in which direction up is.
+								<br><strong>Default:</strong> Vector3.up
+							<pre><code>transform.DOPath(path, 4f).SetLookAt(new Vector3(2,1,3));
+							transform.DOPath(path, 4f).SetLookAt(someOtherTransform);
+							transform.DOPath(path, 4f).SetLookAt(0.01f);</code></pre>
+							</dd>
+					</dl>
+
+					<h3 id="tweenParams">TweenParams</h3>
+					<p>If you used HOTween previously, you will know TweenParms (now called TweenParams): they're <strong>used to store settings that you can then apply to multiple tweens</strong>. The difference from HOTween is that <strong>they're not necessary at all</strong>, since now settings chaining is done directly on a tween. Instead they're here only as an extra <strong>utility class</strong>.</p>
+					<p>To use it, create a new TweenParams instance or <code>Clear()</code> an existing one, then add settings like you do with regular tween chaining. To apply them to a tween you then use <code>SetAs</code>.</p>
+					<pre><code>// Store settings for an infinite looping tween with elastic ease
+					TweenParams tParms = new TweenParams().SetLoops(-1).SetEase(Ease.OutElastic);
+					// Apply them to a couple of tweens
+					transformA.DOMoveX(15, 1).SetAs(tParms);
+					transformB.DOMoveY(10, 1).SetAs(tParms);</code></pre>
+
+					<h3 id="moreOnChaining">More on chaining</h3>
+					<p>Just to be clear, you don't need to chain one thing at a time and you can do this instead:</p>
+					<pre><code>transform.DOMoveX(45, 1).SetDelay(2).SetEase(Ease.OutQuad).OnComplete(MyCallback);</code></pre>
+				</article>
+
+				<article>
+					<h2 id="controls">Controlling a tween</h2>
+					<p>You have 3 ways to manipulate a tween. <strong>All of them share the same method names, except for shortcut-enhanced ones</strong> which have an additional <code>DO</code> prefix.</p>
+					<h4>A. Via static methods and filters</h4>
+					<p>The DOTween class contains many static methods that allow you to control tweens.
+					<br>Each of them comes both in an "All" version (like <code>DOTween.KillAll</code>), which applies to all existing tweens, and a simple version (<code>DOTween.Kill(myTargetOrId)</code>) with a parameter that allows you to filter operations by a tween's id or target (id is set manually via <a href="api:SetId">SetId</a>, while target is set automatically when creating a tween via a <a href="#shortcuts">shortcut</a>).</p>
+					<p><strong>Static methods additionally return an int</strong>, which represents all the tweens that were actually able to perform the requested operation.</p>
+					<pre><code>// Pauses all tweens
+					DOTween.PauseAll();
+					// Pauses all tweens that have "badoom" as an id
+					DOTween.Pause("badoom");
+					// Pauses all tweens that have someTransform as a target
+					DOTween.Pause(someTransform);</code></pre>
+					
+					<h4>B. Directly from the tween</h4>
+					<p>instead of using static methods you can just call the same methods from your tween's reference.</p>
+					<pre><code>myTween.Pause();</code></pre>
+					
+					<h4>C. From a shortcut-enhanced reference</h4>
+					<p>Same as above, but you can call those same methods from a <a href="#shortcuts">shortcut-enhanced object</a>. Remember that in this case the method names have an additional <code>DO</code> prefix to distinguish them from the regular object methods.</p>
+					<pre><code>transform.DOPause();</code></pre>
+
+					<h3 id="controlMethods">Control methods</h3>
+					<p>Again, remember that all these method names are shared by all manipulation ways, but that in case of object shortcuts there's an additional <code>DO</code> prefix.</p>
+					<dl class="api">
+						<dt>CompleteAll/Complete(bool withCallbacks = false)</dt>
+							<dd>Sends a tween to its end position (has no effect with tweens that have infinite loops).
+							<br><span>withCallbacks</span> For Sequences only: if TRUE internal Sequence callbacks will be fired, otherwise they will be ignored.
+							</dd>
+						<dt>FlipAll/Flip()</dt>
+							<dd>Flips the direction of a tween (backwards if it was going forward or viceversa).</dd>
+						<dt>GotoAll/Goto(float to, bool andPlay = false)</dt>
+							<dd>Send the tween to the given position in time.
+							<br><span>to</span> Time position to reach (if higher than the whole tween duration the tween will simply reach its end).
+							<br><span>andPlay</span> If TRUE the tween will play after reaching the given position, otherwise it will be paused.
+							</dd>
+						<dt>KillAll/Kill(bool complete = true, params object[] idsOrTargetsToExclude)</dt>
+							<dd>Kills the tween.
+							<br>A tween is killed automatically when it reaches completion (unless you prevent it using <a href="api:SetAutoKill"><code>SetAutoKill(false)</code></a>), but you can use this method to kill it sooner if you don't need it anymore.
+							<br><span>complete</span> If TRUE instantly completes the tween before killing it.
+							<br><span>idsOrTargetsToExclude</span> <code>KillAll</code> only > Eventual targets or ids to exclude from the operation.
+							</dd>
+						<dt>PauseAll/Pause()</dt>
+							<dd>Pauses the tween.</dd>
+						<dt>PlayAll/Play()</dt>
+							<dd>Plays the tween.</dd>
+						<dt>PlayBackwardsAll/PlayBackwards()</dt>
+							<dd>Plays the tween backwards.</dd>
+						<dt>PlayForwardAll/PlayForward()</dt>
+							<dd>Plays the tween forward.</dd>
+						<dt>RestartAll/Restart(bool includeDelay = true)</dt>
+							<dd>Restarts the tween.
+							<br><span>includeDelay</span> If TRUE includes the eventual tween delay, otherwise skips it.
+							</dd>
+						<dt>RewindAll/Rewind(bool includeDelay = true)</dt>
+							<dd>Rewinds and pauses the tween.
+							<br><span>includeDelay</span> If TRUE includes the eventual tween delay, otherwise skips it.
+							</dd>
+						<dt>SmoothRewindAll/SmoothRewind()</dt>
+							<dd>Smoothly rewinds the tween (delays excluded).
+							<br>A "smooth rewind" animates the tween to its start position (instead of jumping to it), skipping all elapsed loops (except in case of <code>LoopType.Incremental</code>) while keeping the animation fluent.
+							<br>If called on a tween who is still waiting for its delay to happen, it will simply set the delay to 0 and pause the tween.
+							<br><strong>NOTE:</strong> A tween that was smoothly rewinded will have its play direction flipped.
+							</dd>
+						<dt>TogglePauseAll/TogglePause()</dt>
+							<dd>Plays the tween if it was paused, pauses it if it was playing.</dd>
+					</dl>
+					<h3 id="specialControlMethods">Special control methods</h3>
+					<h4>Common for all tweens</h4>
+					<dl class="api">
+						<dt>ForceInit()</dt>
+							<dd>Works from <code>Tween</code>, <code>Tweener</code> or <code>Sequence</code> instances.
+							<br>Forces the tween to initialize its settings immediately.
+							<br>Useful in case you want to get data from a tween which isn't available until the tween is initialized (like <a href="api:PathLength">PathLength</a>)</dd>
+					</dl>
+					<h4>Type-specific</h4>
+					<p>These are special control methods that work only on some specific type of tweens</p>
+					<dl class="api">
+						<dt>GotoWaypoint(int waypointIndex, bool andPlay = false)</dt>
+							<dd><strong>Works only with paths tweens</strong> and from <code>Tween</code> or <code>Tweener</code> instances.
+							<br>Send a path tween to the given waypoint index.
+							<br><strong>BEWARE</strong> this is a special utility method: the lookAt direction might be wrong after calling this and might need to be set manually (because it relies on a smooth path movement and doesn't work well with jumps that encompass dramatic direction changes).
+							<br><span>waypointIndex</span> Waypoint index to reach (if higher than the max waypoint index the tween will simply go to the last one).
+							<br><span>andPlay</span> If TRUE the tween will play after reaching the given position, otherwise it will be paused.
+							<pre><code>myPathTween.GotoWaypoint(2);</code></pre>
+							</dd>
+					</dl>
+				</article>
+
+				<article>
+					<h2 id="gettingData">Getting data from tweens</h2>
+					<h4>Static methods <small>(DOTween)</small></h4>
+					<dl class="api">
+						<dt>static List&lt;Tween&gt; PausedTweens()</dt>
+							<dd>Returns a list of all active tweens in a paused state, or NULL if there are no active paused tweens.
+        					<br><strong>Beware:</strong> calling this method creates garbage allocation since a new List is generated with each call.
+							</dd>
+						<dt>static List&lt;Tween&gt; PlayingTweens()</dt>
+							<dd>Returns a list of all active tweens in a playing state, or NULL if there are no active playing tweens.
+        					<br><strong>Beware:</strong> calling this method creates garbage allocation since a new List is generated with each call.
+							</dd>
+						<dt>static List&lt;Tween&gt; TweensById(object id, bool playingOnly = false)</dt>
+							<dd>Returns a list of all active tweens with the given id, or NULL if there are no active tweens with the given id.
+        					<br><strong>Beware:</strong> calling this method creates garbage allocation since a new List is generated with each call.
+        					<br><span>playingOnly</span> If TRUE returns only the tweens with the given ID that are currently playing, otherwise all of them.
+							</dd>
+						<dt>static List&lt;Tween&gt; TweensByTarget(object target, bool playingOnly = false)</dt>
+							<dd>Returns a list of all active tweens with the given target, or NULL if there are no active tweens with the given target.
+							<br><strong>NOTE:</strong> a tween's target is set automatically when using shortcuts, not when using the generic way.
+							<br><strong>NOTE:</strong> the DOTweenAnimation Visual Editor will assign its gameObject as a target (instead than a transform, material, or whatever was the actual target of the shortcut), so use that if you want to grab visually created tweens.
+        					<br><strong>Beware:</strong> calling this method creates garbage allocation since a new List is generated with each call.
+        					<br><span>playingOnly</span> If TRUE returns only the tweens with the given ID that are currently playing, otherwise all of them.
+							</dd>
+						<dt>static bool IsTweening(object idOrTarget)</dt>
+							<dd>Returns TRUE if a tween with the given ID or target is active (regardless if it's playing or not).
+							<br>You can also use this to know if a shortcut tween is active on a target.
+							<pre><code>transform.DOMoveX(45, 1); // transform is automatically added as the tween target
+							DOTween.IsTweening(transform); // Returns TRUE</code></pre>
+							</dd>
+						<dt>static int TotalPlayingTweens()</dt>
+							<dd>Returns the total number of active and playing tweens. A tween is considered as playing even if its delay is actually playing.
+							<pre><code>int totalPlaying = DOTween.TotalPlayingTweens();</code></pre>
+							</dd>
+					</dl>
+					<h4>Instance methods <small>(Tween/Tweener/Sequence)</small></h4>
+					<dl class="api">
+						<dt>float fullPosition</dt>
+							<dd>Gets and sets the time position (loops included, delays excluded) of the tween.
+							</dd>
+						<dt>int CompletedLoops()</dt>
+							<dd>Returns the total number of loops completed by the tween.
+							<pre><code>int completedLoops = myTween.CompletedLoops();</code></pre>
+							</dd>
+						<dt>float Delay()</dt>
+							<dd>Returns the eventual delay set for the tween.
+							<pre><code>float eventualDelay = myTween.Delay();</code></pre>
+							</dd>
+						<dt>float Duration(bool includeLoops = true)</dt>
+							<dd>Returns the duration of the tween (delays excluded, loops included if <code>includeLoops</code> is TRUE).
+							<br><strong>NOTE: </strong> when using settings like SpeedBased, the duration will be recalculated when the tween starts.
+							<br><span>includeLoops</span> If TRUE returns the full duration loops included, otherwise the duration of a single loop cycle.
+							<pre><code>float loopCycleDuration = myTween.Duration(false);
+							float fullDuration = myTween.Duration();</code></pre>
+							</dd>
+						<dt>float Elapsed(bool includeLoops = true)</dt>
+							<dd>Returns the currently elapsed time for the tween (delays excluded, loops included if <code>includeLoops</code> is TRUE).
+							<br><span>includeLoops</span> If TRUE returns the full elapsed time since startup loops included, otherwise the elapsed time within the current loop cycle.
+							<pre><code>float loopCycleElapsed = myTween.Elapsed(false);
+							float fullElapsed = myTween.Elapsed();</code></pre>
+							</dd>
+						<dt>float ElapsedDirectionalPercentage()</dt>
+							<dd>Returns the elapsed percentage (0 to 1) of this tween (delays excluded), based on a single loop, and calculating eventual backwards Yoyo loops as 1 to 0 instead of 0 to 1.
+							</dd>
+						<dt>float ElapsedPercentage(bool includeLoops = true)</dt>
+							<dd>Returns the elapsed percentage (0 to 1) of this tween (delays excluded, loops included if <code>includeLoops</code> is TRUE).
+							<br><span>includeLoops</span> If TRUE returns the elapsed percentage since startup loops included, otherwise the elapsed percentage within the current loop cycle.
+							<pre><code>float loopCycleElapsedPerc = myTween.ElapsedPercentage(false);
+							float fullElapsedPerc = myTween.ElapsedPercentage();</code></pre>
+							</dd>
+						<dt>bool IsActive()</dt>
+							<dd>Returns FALSE if the tween has been killed.
+							<pre><code>bool isActive = myTween.IsActive();</code></pre>
+							</dd>
+						<dt>bool IsBackwards()</dt>
+							<dd>Returns TRUE if the tween was reversed and is set to go backwards.
+							<pre><code>bool isBackwards = myTween.IsBackwards();</code></pre>
+							</dd>
+						<dt>bool IsComplete()</dt>
+							<dd>Returns TRUE if the tween is complete (silently fails and returns FALSE if the tween has been killed).
+							<pre><code>bool isComplete = myTween.IsComplete();</code></pre>
+							</dd>
+						<dt>bool IsInitialized()</dt>
+							<dd>Returns TRUE if this tween has been initialized.
+							<pre><code>bool isInitialized = myTween.IsInitialized();</code></pre>
+							</dd>
+						<dt>bool IsPlaying()</dt>
+							<dd>Returns TRUE if the tween is playing.
+							<pre><code>bool isPlaying = myTween.IsPlaying();</code></pre>
+							</dd>
+						<dt>int Loops()</dt>
+							<dd>Returns the total number of loops assigned to the tween.
+							<pre><code>int totLoops = myTween.Loops();</code></pre>
+							</dd>
+					</dl>
+					<h4>Instance methods &#10152; Path tweens</h4>
+					<dl class="api">
+						<dt>Vector3 PathGetPoint(float pathPercentage)</dt>
+							<dd>Returns a point on a path based on the given path percentage (returns <code>Vector3.zero</code> if this is not a path tween, if the tween is invalid, or if the path is not yet initialized).
+							<br>A path is initialized after its tween starts, or immediately if the tween was created with the Path Editor (DOTween Pro feature).
+							<br>You can force a path to be initialized by calling <a href="api:ForceInit">ForceInit</a>.
+							<br><span>pathPercentage</span> Percentage of the path (0 to 1) on which to get the point.
+							<pre><code>Vector3 myPathMidPoint = myTween.PathGetPoint(0.5f);</code></pre>
+							</dd>
+						<dt>Vector3[] PathGetDrawPoints(int subdivisionsXSegment = 10)</dt>
+							<dd>Returns an array of points that can be used to draw the path (returns <code>NULL</code> if this is not a path tween, if the tween is invalid, or if the path is not yet initialized).
+							<br><strong>NOTE:</strong> This method generates allocations, because it creates a new array.
+							<br>A path is initialized after its tween starts, or immediately if the tween was created with the Path Editor (DOTween Pro feature).
+							<br>You can force a path to be initialized by calling <a href="api:ForceInit">ForceInit</a>.
+							<br><span>subdivisionsXSegment</span> How many points to create for each path segment (waypoint to waypoint). Only used in case of non-Linear paths
+							<pre><code>Vector3[] myPathDrawPoints = myTween.PathGetDrawPoints();</code></pre>
+							</dd>
+						<dt>float PathLength()</dt>
+							<dd>Returns the length of a path (returns -1 if this is not a path tween, if the tween is invalid, or if the path is not yet initialized).
+							<br>A path is initialized after its tween starts, or immediately if the tween was created with the Path Editor (DOTween Pro feature).
+							<br>You can force a path to be initialized by calling <a href="api:ForceInit">ForceInit</a>.
+							<pre><code>float myPathLength = myTween.PathLength();</code></pre>
+							</dd>
+					</dl>
+				</article>
+
+				<article>
+					<h2 id="coroutines">WaitFor coroutines</h2>
+					<p>Tweens come with a useful set of YieldInstructions which you can place inside your Coroutines, and that allow you to wait for something to happen.</p>
+					<dl class="api">
+						<dt>WaitForCompletion()</dt>
+							<dd>Creates a yield instruction that waits until the tween is killed or complete.
+							<pre><code>IEnumerator SomeCoroutine()
+							{
+							  Tween myTween = transform.DOMoveX(45, 1);
+							  yield return myTween.WaitForCompletion();
+							  // This log will happen after the tween has completed
+							  Debug.Log("Tween completed!");
+							}</code></pre>
+							</dd>
+						<dt>WaitForElapsedLoops(int elapsedLoops)</dt>
+							<dd>Creates a yield instruction that waits until the tween is killed or has gone through the given amount of loops.
+							<pre><code>IEnumerator SomeCoroutine()
+							{
+							  Tween myTween = transform.DOMoveX(45, 1).SetLoops(4);
+							  yield return myTween.WaitForElapsedLoops(2);
+							  // This log will happen after the 2nd loop has finished
+							  Debug.Log("Tween has looped twice!");
+							}</code></pre>
+							</dd>
+						<dt>WaitForKill()</dt>
+							<dd>Creates a yield instruction that waits until the tween is killed.
+							<pre><code>IEnumerator SomeCoroutine()
+							{
+							  Tween myTween = transform.DOMoveX(45, 1);
+							  yield return myTween.WaitForKill();
+							  // This log will happen after the tween has been killed
+							  Debug.Log("Tween killed!");
+							}</code></pre>
+							</dd>
+						<dt>WaitForPosition(float position)</dt>
+							<dd>Creates a yield instruction that waits until the tween is killed or has reached the given position (loops included, delays excluded).
+							<pre><code>IEnumerator SomeCoroutine()
+							{
+							  Tween myTween = transform.DOMoveX(45, 1);
+							  yield return myTween.WaitForPosition(0.3f);
+							  // This log will happen after the tween has played for 0.3 seconds
+							  Debug.Log("Tween has played for 0.3 seconds!");
+							}</code></pre>
+							</dd>
+						<dt>WaitForRewind()</dt>
+							<dd>Creates a yield instruction that waits until the tween is killed or rewinded.
+							<pre><code>IEnumerator SomeCoroutine()
+							{
+							  Tween myTween = transform.DOMoveX(45, 1).SetAutoKill(false).OnComplete(myTween.Rewind);
+							  yield return myTween.WaitForRewind();
+							  // This log will happen when the tween has been rewinded
+							  Debug.Log("Tween rewinded!");
+							}</code></pre>
+							</dd>
+						<dt>WaitForStart()</dt>
+							<dd>Creates a yield instruction that waits until the tween is killed or started (meaning when the tween is set in a playing state the first time, after any eventual delay).
+							<pre><code>IEnumerator SomeCoroutine()
+							{
+							  Tween myTween = transform.DOMoveX(45, 1);
+							  yield return myTween.WaitForStart();
+							  // This log will happen when the tween starts
+							  Debug.Log("Tween started!");
+							}</code></pre>
+							</dd>
+					</dl>
+				</article>
+
+				<article>
+					<h2 id="additionalMethods">Additional methods</h2>
+					<h4>Static methods (DOTween)</h4>
+					<dl class="api">
+						<dt>static DOTween.Clear(bool destroy = false)</dt>
+							<dd>Kills all tweens, clears all pools, resets the max Tweeners/Sequences capacities to the default values.
+							<br><span>destroy</span> If TRUE also destroys DOTween's gameObject and resets its initializiation, default settings and everything else (so that next time you use it it will need to be re-initialized).
+							</dd>
+						<dt>static DOTween.ClearCachedTweens()</dt>
+							<dd>Clears all cached tween pools.</dd>
+						<dt>static DOTween.Validate()</dt>
+							<dd>Validates all active tweens and removes eventually invalid ones (usually because their target was destroyed). This is a slightly expensive operation so use it with care. Also, no need to use it at all especially if <a href="api:DOTween.useSafeMode">safe mode</a> is ON.</dd>
+					</dl>
+					<h4>Instance methods (Tween/Tweener/Sequence)</h4>
+					<dl class="api">
+						<h5>Tweener</h5>
+						<dt>ChangeEndValue(newEndValue, float duration = -1, bool snapStartValue = false)</dt>
+							<dd>Changes the end value of a Tweener and rewinds it (without pausing it).
+							<br><strong>Has no effect with Tweeners that are inside Sequences.</strong>
+							<br><strong>NOTE:</strong> works on regular tweens, not on ones that do more than just animate one value from one point to another (like <code>DOLookAt</code>).
+							<br><span>newEndValue</span> New end value.
+							<br><span>duration</span> If bigger than 0 also changes the duration of the tween.
+							<br><span>snapStartValue</span> If TRUE the start value will become the current target's value, otherwise it will stay the same.
+							</dd>
+						<dt>ChangeStartValue(newStartValue, float duration = -1)</dt>
+							<dd>Changes the start value of a Tweener and rewinds it (without pausing it).
+							<br><strong>Has no effect with Tweeners that are inside Sequences.</strong>
+							<br><strong>NOTE:</strong> works on regular tweens, not on ones that do more than just animate one value from one point to another (like <code>DOLookAt</code>).
+							<br><span>newStartValue</span> New start value.
+							<br><span>duration</span> If bigger than 0 also changes the duration of the tween.
+							</dd>
+						<dt>ChangeValues(newStartValue, newEndValue, float duration = -1)</dt>
+							<dd>Changes the start and end values of a Tweener and rewinds it (without pausing it).
+							<br><strong>Has no effect with Tweeners that are inside Sequences.</strong>
+							<br><strong>NOTE:</strong> works on regular tweens, not on ones that do more than just animate one value from one point to another (like <code>DOLookAt</code>).
+							<br><span>newStartValue</span> New start value.
+							<br><span>newEndValue</span> New end value.
+							<br><span>duration</span> If bigger than 0 also changes the duration of the tween.
+							</dd>
+					</dl>
+				</article>
+
+				<article>
+					<h2 id="virtualTweens">Virtual methods</h2>
+					<p><strong>NOTE:</strong> virtual methods can't be placed inside Sequences.</p>
+					<dl class="api">
+						<dt>static Tweener DOVirtual.Float(float from, float to, float duration, TweenCallback&lt;float&gt; onVirtualUpdate)</dt>
+							<dd>Tweens a virtual float.
+							<br>You can add regular settings to the generated tween, but do not use <code>SetUpdate</code> or you will overwrite the onVirtualUpdate parameter.
+							<br><span>from</span> The value to start from.
+							<br><span>to</span> The value to tween to.
+							<br><span>duration</span> The duration of the tween.
+							<br><span>onVirtualUpdate</span> A callback which must accept a parameter of type float, called at each update.
+							</dd>
+						<dt>static float DOVirtual.EasedValue(float from, float to, float lifetimePercentage, Ease easeType \ AnimationCurve animCurve)</dt>
+							<dd>Returns a value based on the given ease and lifetime percentage (0 to 1).
+							<br>Comes with various overloads to allow an <code>AnimationCurve</code> ease or custom overshoot/period/amplitude.
+							<br><span>from</span> The value to start from when lifetimePercentage is 0.
+							<br><span>to</span> The value to reach when lifetimePercentage is 1.
+							<br><span>lifetimePercentage</span> The time percentage (0 to 1) at which the value should be taken.
+							<br><span>easeType</span> The type of ease.
+							</dd>
+						<dt>static Tween DOVirtual.DelayedCall(float delay, TweenCallback callback, bool ignoreTimeScale = true)</dt>
+							<dd>Fires the given callback after the given time.
+							<br>Returns a Tween so you can eventually store it and pause/kill/etc it.
+							<br><span>delay</span> Callback delay.
+							<br><span>callback</span> Callback to fire when the delay has expired.
+							<br><span>ignoreTimeScale</span> If TRUE (default) ignores Unity's timeScale.
+							<pre><code>// Example 1: calling another method after 1 second
+								DOVirtual.DelayedCall(1, MyOtherMethodName);
+								// Example 2: using a lambda to throw a log after 1 second
+								DOVirtual.DelayedCall(1, ()=> Debug.Log("Hello world"));</code></pre>
+							</dd>
+					</dl>
+				</article>
+
+				<article>
+					<h2 id="customPlugins">Creating custom plugins</h2>
+					<p>Coming soon.
+					<br><small>(I'm still changing the internal plugins implementation to optimize and enhance it)</small></p>
+				</article>
+
+			</section>
+			<section id="sidebar">
+	<!-- <article class="plain">
+		<h2>Normal stuff</h2>
+		<div class="content">
+			<p>Get all blahblah blahblah blahblah blahblah blahblah blahblah blahblah</p>
+		</div>
+	</article> -->
+
+			<article>
+			<h2>Support DOTween</h2>
+			<div class="content cntr">
+				<p>A lot of work went into DOTween and a lot more is to come. If you use it, like it, and want to support it, press this button to read more</p>
+				<a class="bt" href="supportdotween.php">Support DOTween</a>
+			</div>
+		</article>
+		
+	<h2 class="dividerh">Friend Assets</h2>
+	<div id="friendAssets">
+		<ul class="bjqs">
+			<li><a href="http://sprocket.ro/#!/content/products"><img src="http://dotween.demigiant.com/_imgs/friends/sprockettools.png"></a></li>
+			<li><a href="http://blog.codestage.ru/unity-plugins/act/"><img src="http://dotween.demigiant.com/_imgs/friends/act.png"></a></li>
+			<li><a href="http://www.rebound-games.com/?page_id=39"><img src="http://dotween.demigiant.com/_imgs/friends/sws.png"></a></li>
+			<li><a href="https://www.assetstore.unity3d.com/en/#!/content/17662"><img src="http://dotween.demigiant.com/_imgs/friends/tmp.png"></a></li>
+			<li><a href="https://www.assetstore.unity3d.com/en/#!/content/28691"><img src="http://dotween.demigiant.com/_imgs/friends/reuniter.png"></a>
+		</ul>
+	</div>
+
+	<!-- <article>
+		<h2>Something else</h2>
+		<div class="content">
+			<p>Get all blahblah blahblah blahblah blahblah blahblah blahblah blahblah</p>
+		</div>
+	</article> -->
+</section>
+<div class="clear"></div>		</div>
+
+	</div>
+	<footer>
+	<div id="footerContent">
+		DOTween is copyright (c) 2014 Daniele Giardini - <a href="http://www.demigiant.com">DEMIGIANT</a> | <a href="http://blog.demigiant.com/">BLOG</a> | <a href="http://dotween.demigiant.com/license.php">DOTween Licenses</a> | <a href="http://dotween.demigiant.com/supportdotween.php">Support DOTween</a>
+	</div>
+</footer></body>
+</html>

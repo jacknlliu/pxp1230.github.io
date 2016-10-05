@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>恒定电流 - </title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  </style>
+  
+  
+  <meta charset="UTF-8"/>
+  <meta name="author" content="潘霄鹏 - weibo.com/pxp1230">
+  <meta name="keywords" content="潘霄鹏笔记">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath:[['$','$']],processEscapes:true}
+  });
+  </script>
+  <script type="text/javascript" src="file:///storage/emulated/0/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///C:/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///C:/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/pxp1230.github.io.js"></script>
+  <script type="text/javascript" src="file:///C:/pxp1230.github.io.js"></script>
+  <script type="text/javascript">
+  if(window.location.protocol!="file:"){var d=document,s=d.createElement('script');s.src='/pxp1230.github.io.js';d.head.appendChild(s);}
+  </script>
+</head>
+<body>
+<h1>恒定电流</h1>
+<p>电导：电阻的倒数叫做电导，用G表示，G=1/R，电导的单位叫做西门子（S），它等于${\Omega ^{ - 1}}$.</p>
+<p>电阻率：单位是Ω·m；导线截面S、电阻率ρ、导线长度l<br />
+$$R = \int {\frac{{\rho dl}}{S}} $$</p>
+<p>电导率：电阻率的导数，用σ表示，单位是S/m</p>
+<p>欧姆定律的积分形式：导体中的场强E、电流密度j、截面S<br />
+$$U = \int {\vec E \cdot d\vec l} $$<br />
+$$I = \iint_S {\vec j \cdot d\vec S}$$</p>
+<p>欧姆定律的微分形式：导体中的场强E、电流密度j、电导率σ<br />
+$$\vec j = \sigma \vec E$$</p>
+<p>电功率：电场在单位时间内所做的功<br />
+$$P=UI$$</p>
+<p>电动势总是和非静电力的功联系在一起的，而电势是和静电力的功联系在一起的。</p>
+<p>电动势是电源本身的性质，而与外电路无关，但电路中的电势的分布则和外电路的情况有关。</p>
+<p>电流密度：方向为正电荷运动方向，$dI = \vec J \cdot d\vec S$，$\vec J = {q_\text{载流子}}n\vec v$，n表示单位体积内载流子的数目。<br />
+$$I = \int_S {\vec J \cdot d\vec S} $$</p>
+<h1>电流连续性方程</h1>
+<p>J：电流密度，单位面积（垂直于电流方向的横截面元）的电流<br />
+S：闭合曲面</p>
+<p>$$\mathop{{\int!!!!!\int}\mkern-21mu \bigcirc}\nolimits_S {\overrightarrow J \cdot d\overrightarrow S } = - \iiint_V {\frac{{\partial \rho }}{{\partial t}}dV}$$</p>
+<p>$$\mathop{{\int!!!!!\int}\mkern-21mu \bigcirc}\nolimits_S {\overrightarrow J \cdot d\overrightarrow S } = \iiint_V {\nabla \cdot \overrightarrow J dV}$$</p>
+<p>由以上两式得出：<br />
+$$\nabla \cdot \overrightarrow J + \frac{{\partial \rho }}{{\partial t}} = 0$$</p>
+<p>特殊情况——恒定电流：<br />
+$$\nabla \cdot \overrightarrow J = 0$$</p>
+</body>
+</html>

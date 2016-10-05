@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>XMLFormat - </title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-top:1px dashed #0CF;border-width:0;margin:10px;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  </style>
+  
+  
+  <meta charset="UTF-8"/>
+  <meta name="author" content="潘霄鹏 - weibo.com/pxp1230">
+  <meta name="keywords" content="潘霄鹏笔记">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath:[['$','$']],processEscapes:true}
+  });
+  </script>
+  <script type="text/javascript" src="file:///storage/emulated/0/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///C:/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///C:/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/pxp1230.github.io.js"></script>
+  <script type="text/javascript" src="file:///C:/pxp1230.github.io.js"></script>
+  <script type="text/javascript">
+  if(window.location.protocol!="file:"){var d=document,s=d.createElement('script');s.src='/pxp1230.github.io.js';d.head.appendChild(s);}
+  </script>
+</head>
+<body>
+<h1 id="dotween-assembly">dotween-assembly元素</h1>
+<p>XML的根节点为dotween-assembly元素，该元素的属性为一些文件描述信息：</p>
+<ul>
+<li>file_name：文件名，如“as1-ac-214.asmb”</li>
+<li>time_stamp：文件创建时间戳，如“1999-09-09T14:22:00+00:00”</li>
+<li>author：作者</li>
+<li>organization：作者所属机构</li>
+<li>generator：创建该文件所使用的工具，如“ASMB Editor v0.1”</li>
+</ul>
+<h1 id="product">product元素</h1>
+<p>product元素描述了模型的装配树状结构（assembly tree of the model），该元素的属性有：</p>
+<ul>
+<li>id：该编组的id</li>
+<li>name：该编组的名称</li>
+<li>shape：该编组对应零件的id</li>
+<li>local_position：该编组的局部坐标位置</li>
+<li>local_rotation：该编组的局部旋转四元数</li>
+<li>type：该编组所属的类型，如“工具”</li>
+</ul>
+<h2 id="producthint">product/hint</h2>
+<p>提示信息</p>
+<ul>
+<li>id：hint元素id</li>
+</ul>
+<h2 id="productproduct">product/product</h2>
+<p>同product元素</p>
+<h1 id="shape">shape元素</h1>
+<p>shape元素描述了单个零件（动态加载的AssetBundle），shape元素的属性有：</p>
+<ul>
+<li>id：该零件的id</li>
+<li>name：该零件的名称（同文件名，名字唯一）</li>
+<li>file_path：AssetBundle文件所在路径（缺省时根据name查找该文件）</li>
+</ul>
+<h2 id="shapehint">shape/hint</h2>
+<p>提示信息</p>
+<ul>
+<li>id：hint元素id</li>
+</ul>
+<h1 id="tween">tween元素</h1>
+<p>tween元素描述了product元素或shape元素的拆装动画信息，该元素的属性有：</p>
+<ul>
+<li>product_id：动画所属的编组</li>
+<li>shape_name：动画所属零件或子零件的名称（如&quot;SL0017&quot;、&quot;SL0017/Arm/Hand&quot;；缺省时代表该动画属于product元素）</li>
+<li>method：动画类型，如“DOMove”</li>
+<li>start：动画计时（可选），什么时候应播放动画，允许的值有&quot;follow&quot;（上一动画之后，默认值）、&quot;together&quot;（与上一动画同时）、&quot;auto&quot;（从一开始时）</li>
+<li>hint：hint元素id</li>
+</ul>
+<h2 id="tweenparameter-info">tween/parameter-info</h2>
+<p>parameter-info元素为tween元素的子元素，描述了对应动画类型的相关参数，该元素的属性有：</p>
+<ul>
+<li>name：参数名称，如“endValue”</li>
+<li>parameter_type：参数类型，如“System.Single”</li>
+<li>value：该参数的数值</li>
+</ul>
+<h2 id="tweentween-setting">tween/tween-setting</h2>
+<p>tween-setting元素为tween元素的子元素，描述了该动画的相关设置信息，该元素的属性有：</p>
+<ul>
+<li>method：设置类型，如“SetEase”</li>
+</ul>
+<h3 id="tweentween-settingparameter-info">tween/tween-setting/parameter-info</h3>
+<p>同tween/parameter-info</p>
+<h1>范例</h1>
+<div class="sourceCode"><pre class="sourceCode xml"><code class="sourceCode xml"><span class="kw">&lt;dotween-assembly</span><span class="ot"> file_name=</span><span class="st">&quot;new.asmb&quot;</span><span class="ot"> time_stamp=</span><span class="st">&quot;3/16/2016 5:55:30 PM&quot;</span><span class="ot"> author=</span><span class="st">&quot;马小明&quot;</span><span class="ot"> organization=</span><span class="st">&quot;江南造船厂&quot;</span><span class="ot"> generator=</span><span class="st">&quot;ASMB Editor v0.1&quot;</span><span class="kw">&gt;</span>
+  <span class="kw">&lt;product</span><span class="ot"> id=</span><span class="st">&quot;0&quot;</span><span class="ot"> name=</span><span class="st">&quot;底边舱分段&quot;</span><span class="ot"> local_position=</span><span class="st">&quot;0 0 0&quot;</span><span class="ot"> local_rotation=</span><span class="st">&quot;0 0 0 1&quot;</span><span class="ot"> shape=</span><span class="st">&quot;1&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;hint</span><span class="ot"> id=</span><span class="st">&quot;30&quot;</span><span class="kw">&gt;</span>[这里输入提示信息]<span class="kw">&lt;/hint&gt;</span>
+    <span class="kw">&lt;product</span><span class="ot"> id=</span><span class="st">&quot;2&quot;</span><span class="ot"> name=</span><span class="st">&quot;钢板1&quot;</span><span class="ot"> local_position=</span><span class="st">&quot;-1 1 0&quot;</span><span class="ot"> local_rotation=</span><span class="st">&quot;0 0 0 1&quot;</span><span class="ot"> shape=</span><span class="st">&quot;3&quot;</span> <span class="kw">/&gt;</span>
+    <span class="kw">&lt;product</span><span class="ot"> id=</span><span class="st">&quot;4&quot;</span><span class="ot"> name=</span><span class="st">&quot;钢板2&quot;</span><span class="ot"> local_position=</span><span class="st">&quot;1 0.6788976 0&quot;</span><span class="ot"> local_rotation=</span><span class="st">&quot;0 0 0 1&quot;</span><span class="ot"> shape=</span><span class="st">&quot;3&quot;</span> <span class="kw">/&gt;</span>
+  <span class="kw">&lt;/product&gt;</span>
+  <span class="kw">&lt;product</span><span class="ot"> id=</span><span class="st">&quot;5&quot;</span><span class="ot"> name=</span><span class="st">&quot;钢板1&quot;</span><span class="ot"> local_position=</span><span class="st">&quot;-1 -1 0&quot;</span><span class="ot"> local_rotation=</span><span class="st">&quot;0 0 0 1&quot;</span><span class="ot"> shape=</span><span class="st">&quot;3&quot;</span> <span class="kw">/&gt;</span>
+  <span class="kw">&lt;product</span><span class="ot"> id=</span><span class="st">&quot;6&quot;</span><span class="ot"> name=</span><span class="st">&quot;钢板2&quot;</span><span class="ot"> local_position=</span><span class="st">&quot;1 -1 0&quot;</span><span class="ot"> local_rotation=</span><span class="st">&quot;0 0 0 1&quot;</span><span class="ot"> shape=</span><span class="st">&quot;3&quot;</span> <span class="kw">/&gt;</span>
+  <span class="kw">&lt;shape</span><span class="ot"> id=</span><span class="st">&quot;1&quot;</span><span class="ot"> name=</span><span class="st">&quot;PrimitiveType.Capsule&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;hint</span><span class="ot"> id=</span><span class="st">&quot;31&quot;</span><span class="kw">&gt;</span>[这里输入提示信息]<span class="kw">&lt;/hint&gt;</span>
+  <span class="kw">&lt;/shape&gt;</span>
+  <span class="kw">&lt;shape</span><span class="ot"> id=</span><span class="st">&quot;3&quot;</span><span class="ot"> name=</span><span class="st">&quot;PrimitiveType.Cube&quot;</span> <span class="kw">/&gt;</span>
+  <span class="kw">&lt;tween</span><span class="ot"> product_id=</span><span class="st">&quot;2&quot;</span><span class="ot"> method=</span><span class="st">&quot;DOLocalMoveY&quot;</span><span class="ot"> start=</span><span class="st">&quot;click&quot;</span><span class="ot"> hint=</span><span class="st">&quot;30&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;parameter-info</span><span class="ot"> name=</span><span class="st">&quot;endValue&quot;</span><span class="ot"> parameter_type=</span><span class="st">&quot;System.Single&quot;</span><span class="ot"> value=</span><span class="st">&quot;1&quot;</span> <span class="kw">/&gt;</span>
+    <span class="kw">&lt;parameter-info</span><span class="ot"> name=</span><span class="st">&quot;duration&quot;</span><span class="ot"> parameter_type=</span><span class="st">&quot;System.Single&quot;</span><span class="ot"> value=</span><span class="st">&quot;2&quot;</span> <span class="kw">/&gt;</span>
+    <span class="kw">&lt;parameter-info</span><span class="ot"> name=</span><span class="st">&quot;snapping&quot;</span><span class="ot"> parameter_type=</span><span class="st">&quot;System.Boolean&quot;</span> <span class="kw">/&gt;</span>
+    <span class="kw">&lt;tween-setting</span><span class="ot"> method=</span><span class="st">&quot;Play&quot;</span> <span class="kw">/&gt;</span>
+  <span class="kw">&lt;/tween&gt;</span>
+  <span class="kw">&lt;tween</span><span class="ot"> product_id=</span><span class="st">&quot;4&quot;</span><span class="ot"> method=</span><span class="st">&quot;DOLocalMoveY&quot;</span><span class="ot"> start=</span><span class="st">&quot;follow&quot;</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;parameter-info</span><span class="ot"> name=</span><span class="st">&quot;endValue&quot;</span><span class="ot"> parameter_type=</span><span class="st">&quot;System.Single&quot;</span><span class="ot"> value=</span><span class="st">&quot;1&quot;</span> <span class="kw">/&gt;</span>
+    <span class="kw">&lt;parameter-info</span><span class="ot"> name=</span><span class="st">&quot;duration&quot;</span><span class="ot"> parameter_type=</span><span class="st">&quot;System.Single&quot;</span><span class="ot"> value=</span><span class="st">&quot;2&quot;</span> <span class="kw">/&gt;</span>
+    <span class="kw">&lt;parameter-info</span><span class="ot"> name=</span><span class="st">&quot;snapping&quot;</span><span class="ot"> parameter_type=</span><span class="st">&quot;System.Boolean&quot;</span> <span class="kw">/&gt;</span>
+    <span class="kw">&lt;tween-setting</span><span class="ot"> method=</span><span class="st">&quot;SetLoops&quot;</span><span class="kw">&gt;</span>
+      <span class="kw">&lt;parameter-info</span><span class="ot"> name=</span><span class="st">&quot;loops&quot;</span><span class="ot"> parameter_type=</span><span class="st">&quot;System.Int32&quot;</span><span class="ot"> value=</span><span class="st">&quot;-1&quot;</span> <span class="kw">/&gt;</span>
+    <span class="kw">&lt;/tween-setting&gt;</span>
+  <span class="kw">&lt;/tween&gt;</span>
+<span class="kw">&lt;/dotween-assembly&gt;</span></code></pre></div>
+</body>
+</html>

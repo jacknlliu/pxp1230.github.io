@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Math.NET综合介绍 - </title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-top:1px dashed #0CF;border-width:0;margin:10px;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  </style>
+  
+  
+  <meta charset="UTF-8"/>
+  <meta name="author" content="潘霄鹏 - weibo.com/pxp1230">
+  <meta name="keywords" content="潘霄鹏笔记">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath:[['$','$']],processEscapes:true}
+  });
+  </script>
+  <script type="text/javascript" src="file:///storage/emulated/0/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///C:/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <link rel="stylesheet" href="file:///storage/emulated/0/highlight/styles/pojoaque.css">
+  <script type="text/javascript" src="file:///storage/emulated/0/highlight/highlight.pack.js"></script>
+  <link rel="stylesheet" href="file:///C:/highlight/styles/pojoaque.css">
+  <script type="text/javascript" src="file:///C:/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/pxp1230.github.io.js"></script>
+  <script type="text/javascript" src="file:///C:/pxp1230.github.io.js"></script>
+  <script type="text/javascript">
+  if(window.location.protocol!="file:"){var d=document,s=d.createElement('script');s.src='/pxp1230.github.io.js';d.head.appendChild(s);}
+  </script>
+</head>
+<body>
+<h1>前言</h1>
+<p>　　几年前接触这个组件的时候，只需要在.NET平台进行一些常规的微积分计算，功能还比较少，只限于常规的数值计算，现在已经功能越来越多了，应该是目前最好的替代Matlab进行数值计算的.NET组件。本文及接下来的几篇文章将详细的对该组件进行介绍。还有在.NET平台使用相关Matlab混编进行数值计算的朋友该好好了解了解并学习下了。当然这个基础组件的功能很广泛，应该很多都比较喜欢吧。</p>
+<p>如果本文章资源下载不了，或者文章显示有问题，请参考 本文原文地址：<a href="http://www.cnblogs.com/asxinyu/p/4264638.html" class="uri">http://www.cnblogs.com/asxinyu/p/4264638.html</a></p>
+<h1 id="math.net">1.Math.NET基本介绍</h1>
+<p>Math.NET官方网站：<a href="http://www.mathdotnet.com/" class="uri">http://www.mathdotnet.com/</a></p>
+<p>　　Math.NET初衷是开源建立一个稳定并持续维护的先进的基础数学工具箱，以满足.NET开发者的日常需求。目前该组件主要分为以下几个子项目，该组件同时也支持Mono，而且支持的平台也非常广泛(PCL Portable Profile 47: Windows 8, Silverlight 5,Xamarin: Android, iOS)。<br />
+　　</p>
+<h1 id="math.net-numerics">2.Math.NET Numerics</h1>
+<p>　　Math.NET Numerics是核心功能是数值计算。主要是提供日常科学工程计算相关的算法，包括一些特殊函数，线性代数，概率论，随机函数，微积分，插值，最优化等相关计算功能。它是在 Math.NET Iridium和dnAnalytics 的基础上合并而来。该组件里面包括了一个读取Matlab数据格式的功能，我们将在后几篇博客中加以介绍。其主要特征有：<a href="http://en.wikipedia.org/wiki/Math.NET_Numerics" class="uri">http://en.wikipedia.org/wiki/Math.NET_Numerics</a></p>
+<p>　　支持概率分布:离散型、连续型和多元</p>
+<p>　　伪随机数生成器</p>
+<p>　　支持稀疏矩阵和向量的复杂的线性代数解决方法</p>
+<p>　　LU, QR, SVD, EVD,Cholesky分解</p>
+<p>　　矩阵读写功能，支持Matlab和一些分开的文件</p>
+<p>　　复数计算</p>
+<p>　　特殊函数： Gamma, Beta, Erf,Bessel,Struve 等等</p>
+<p>　　插值，线性回归，曲线拟合</p>
+<p>　　数值积分，方程求解</p>
+<p>　　描述性统计、统计直方图,皮尔森相关系数</p>
+<p>　　马尔可夫链蒙特卡罗抽样</p>
+<p>　　基本的财务统计数据</p>
+<p>　　傅里叶变换(FFT)</p>
+<p>　　重载的数学操作符来简化复杂的表达式</p>
+<p>　　Mono平台支持，可选支持英特尔数学内核库(Microsoft Windows和Linux)</p>
+<p>　　可选更多的的F#扩展用法</p>
+<p>　　该子项目的主页：<a href="https://github.com/mathnet/mathnet-numerics" class="uri">https://github.com/mathnet/mathnet-numerics</a><br />
+　　<br />
+　　</p>
+<h1 id="math.net-symbolics">3.Math.NET Symbolics</h1>
+<p>　　Math.NET Symbolics是一个Math.NET下一个基础的代数计算项目，该项目的最终目的并不是要成为如Maple,Mathematica那样一个完善的计算机代数计算系统。以前在做Matlab.NET混合编程的时候，经常就有人问为什么混合编程的符号计算用不了，其实就是用不了，官方不支持，那怎么办，其实简单的功能，就可以使用这个项目来完成。详细的使用可以参考项目主页的帮助文档，接下来的文章也会加以介绍。</p>
+<p>　　项目主页：<a href="https://github.com/mathnet/mathnet-symbolics" class="uri">https://github.com/mathnet/mathnet-symbolics</a><br />
+　　<br />
+　　</p>
+<h1 id="math.net-filtering">4.Math.NET Filtering</h1>
+<p>　　Math.NET Filtering是一个数字信号处理工具箱，提供了数字滤波器的基础功能，以及滤波器应用到数字信号处理和数据流转换的相关功能。</p>
+<p>　　项目主页：<a href="https://github.com/mathnet/mathnet-filtering" class="uri">https://github.com/mathnet/mathnet-filtering</a><br />
+　　<br />
+　　</p>
+<h1 id="math.net-spatial">5.Math.NET Spatial</h1>
+<p>　　是Math.NET下的一个几何处理工具箱。</p>
+<p>　　项目主页：<a href="https://github.com/mathnet/mathnet-spatial" class="uri">https://github.com/mathnet/mathnet-spatial</a><br />
+　　<br />
+　　<br />
+　　</p>
+<h1>6.其他</h1>
+<p>　　Math.NET在发展过程中的一些其他项目如Math.NET Iridium ，Math.NET Classic， Math.NET Linq Algebra， Math.NET Yttrium等都是历史（有一些是实验性的），现在都已经合并到上述几个子项目中。</p>
+<p>　　相关源码在本系列文章下载完成后统一发布，敬请关注。基本资料可以去官网下载。</p>
+<p>　　如果本文章资源或者显示有问题，请参考本文原文地址：<a href="http://www.cnblogs.com/asxinyu/p/4264638.html" class="uri">http://www.cnblogs.com/asxinyu/p/4264638.html</a></p>
+<p><br/><br/><br/><br/><br/><br/></p>
+<hr />
+<p>如果您觉得阅读本文对您有帮助，请点一下“<strong>推荐</strong>”按钮，您的“<strong>推荐</strong>”将是我最大的写作动力！欢迎各位转载，但是未经作者本人同意，转载文章之后<strong>必须在文章页面明显位置给出作者和原文连接</strong>，否则保留追究法律责任的权利。</p>
+<p>.NET数据挖掘与机器学习，作者博客:<br />
+<a href="http://www.cnblogs.com/asxinyu" class="uri">http://www.cnblogs.com/asxinyu</a></p>
+<p>E-mail:<script type="text/javascript">
+<!--
+h='&#x71;&#x71;&#46;&#x63;&#x6f;&#x6d;';a='&#64;';n='&#x31;&#50;&#56;&#x37;&#50;&#54;&#x33;&#x37;&#48;&#x33;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#x31;&#50;&#56;&#x37;&#50;&#54;&#x33;&#x37;&#48;&#x33;&#32;&#x61;&#116;&#32;&#x71;&#x71;&#32;&#100;&#x6f;&#116;&#32;&#x63;&#x6f;&#x6d;</noscript></p>
+<p><a href="http://www.cnblogs.com/asxinyu/p/Bolg_Category_For_MathNet.html">【目录】开源Math.NET基础数学类库使用总目录</a><br />
+　　<br />
+　　<br />
+　　<br />
+　　</p>
+</body>
+</html>

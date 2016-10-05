@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>描述性统计学 Descriptive Statistics - </title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-top:1px dashed #0CF;border-width:0;margin:10px;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  </style>
+  
+  
+  <meta charset="UTF-8"/>
+  <meta name="author" content="潘霄鹏 - weibo.com/pxp1230">
+  <meta name="keywords" content="潘霄鹏笔记">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath:[['$','$']],processEscapes:true}
+  });
+  </script>
+  <script type="text/javascript" src="file:///storage/emulated/0/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///C:/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <link rel="stylesheet" href="file:///storage/emulated/0/highlight/styles/pojoaque.css">
+  <script type="text/javascript" src="file:///storage/emulated/0/highlight/highlight.pack.js"></script>
+  <link rel="stylesheet" href="file:///C:/highlight/styles/pojoaque.css">
+  <script type="text/javascript" src="file:///C:/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/pxp1230.github.io.js"></script>
+  <script type="text/javascript" src="file:///C:/pxp1230.github.io.js"></script>
+  <script type="text/javascript">
+  if(window.location.protocol!="file:"){var d=document,s=d.createElement('script');s.src='/pxp1230.github.io.js';d.head.appendChild(s);}
+  </script>
+</head>
+<body>
+<h1 id="-descriptive-statistics">描述性统计学 Descriptive Statistics</h1>
+<h2>初始化</h2>
+<p>使用统计学命名空间：</p>
+<pre><code>using MathNet.Numerics.Statistics;</code></pre>
+<h2 id="-univariate-statistical-analysis">单变元统计 Univariate Statistical Analysis</h2>
+<ol>
+<li><p>Statistics类，基础的数据集统计，如最小值，最大值，平均值，总体方差，标准差等等。为静态类，扩展了很多IEnumerable<double>方法，注意Statistics是一个总体的统计类，其很多函数的调用都是根据数据集的类型分开调用StreamingStatistics和ArrayStatistics；</p>
+<pre><code>//先生成数据集合
+var chiSquare = new ChiSquared(5);
+Console.WriteLine(@&quot;2. Generate 1000 samples of the ChiSquare(5) distribution&quot;);
+var data = new double[1000];
+for (var i = 0; i &lt; data.Length; i++)
+{
+    data[i] = chiSquare.Sample();
+}
+
+//使用扩展方法进行相关计算
+Console.WriteLine(@&quot;3.使用扩展方法获取生成数据的基本统计结果&quot;);
+Console.WriteLine(@&quot;{0} - 最大值&quot;, data.Maximum().ToString(&quot; #0.00000;-#0.00000&quot;));
+Console.WriteLine(@&quot;{0} - 最小值&quot;, data.Minimum().ToString(&quot; #0.00000;-#0.00000&quot;));
+Console.WriteLine(@&quot;{0} - 均值&quot;, data.Mean().ToString(&quot; #0.00000;-#0.00000&quot;));
+Console.WriteLine(@&quot;{0} - 中间值&quot;, data.Median().ToString(&quot; #0.00000;-#0.00000&quot;));
+Console.WriteLine(@&quot;{0} - 有偏方差&quot;, data.PopulationVariance().ToString(&quot; #0.00000;-#0.00000&quot;));
+Console.WriteLine(@&quot;{0} - 无偏方差&quot;, data.Variance().ToString(&quot; #0.00000;-#0.00000&quot;));
+Console.WriteLine(@&quot;{0} - 标准偏差&quot;, data.StandardDeviation().ToString(&quot; #0.00000;-#0.00000&quot;));
+Console.WriteLine(@&quot;{0} - 标准有偏偏差&quot;, data.PopulationStandardDeviation().ToString(&quot; #0.00000;-#0.00000&quot;));
+Console.WriteLine();</code></pre></li>
+<li>ArrayStatistics，静态类，是普通的未排序数组数据集的统计，一次性都加载在内存，因此计算比较方便；</li>
+<li>SortedArrayStatistics，静态类，是排序数组数据集的统计；</li>
+<li>StreamingStatistics，静态类，是流数据集的统计，适合于一些大数据集，不能一次性读入内存的情况；</li>
+<li><p>DescriptiveStatistics，非静态类，与Statistics类的功能类似，但不一样的是Statistics是静态方法，一一计算，而该类是初始化的时候，可以一次性计算所有的指标，直接通过属性进行获取。</p>
+<pre><code>var samples = new ChiSquare(5).Samples().Take(1000);
+var statistics = new DescriptiveStatistics(samples); //使用数据进行类型的初始化
+
+//直接使用属性获取结果
+var largestElement = statistics.Maximum;
+var smallestElement = statistics.Minimum;
+var median = statistics.Median;
+
+var mean = statistics.Mean;
+var variance = statistics.Variance;
+var stdDev = statistics.StandardDeviation;
+
+var kurtosis = statistics.Kurtosis;
+var skewness = statistics.Skewness;</code></pre></li>
+<li><p>RunningStatistics，非静态类，和Statistics类功能差不多，但允许动态更新数据，进行再次计算；</p></li>
+</ol>
+<h1 id="arraystatistics">ArrayStatistics类原型和注释</h1>
+<p>　　上述有多个统计类，但核心的代码不多。上述多个实现，也只是为了满足多种不同的需求。我们一起看一个基本实现：ArrayStatistics类，类的核心实现，代码过多，只列举了代码原型，和注释：</p>
+<pre><code>/// &lt;summary&gt;
+/// 对未排序的数组进行统计操作  警告: Methods with the Inplace-suffix may modify the data array by reordering its entries.
+/// &lt;/summary&gt;
+public static class ArrayStatistics
+{
+    /// &lt;summary&gt;返回未排序数组的最小值,如果数据为空或者元素为NaN，则返回NaN.&lt;/summary&gt;
+    /// &lt;param name=&quot;data&quot;&gt;简单的未排序数组.&lt;/param&gt;
+    public static double Minimum(double[] data) 
+
+    /// &lt;summary&gt;返回未排序数组的最小值,如果数据为空或者元素为NaN，则返回NaN.&lt;/summary&gt;
+    /// &lt;param name=&quot;data&quot;&gt;简单的未排序数组.&lt;/param&gt;
+    public static float Minimum(float[] data) ;
+
+    /// &lt;summary&gt;返回未排序数组的最大值,如果数据为空或者元素为NaN，则返回NaN.&lt;/summary&gt;
+    /// &lt;param name=&quot;data&quot;&gt;简单的未排序数组.&lt;/param&gt;
+    public static double Maximum(double[] data) ;
+
+    /// &lt;summary&gt;返回未排序数组的最大值,如果数据为空或者元素为NaN，则返回NaN.&lt;/summary&gt;
+    /// &lt;param name=&quot;data&quot;&gt;简单的未排序数组.&lt;/param&gt;
+    public static float Maximum(float[] data);
+
+    /// &lt;summary&gt;计算未排序数组的算术平均值，如果数据是空的或者元素为NaN&lt;/summary&gt;
+    /// &lt;param name=&quot;data&quot;&gt;简单的未排序数组.&lt;/param&gt;
+    public static double Mean(double[] data) ;
+
+    /// &lt;summary&gt;
+    /// 计算未排序数组的无偏总体方差：对大小为N的数据集，使用N-1进行标准化.
+    ///  (Bessel&#39;s correction). 贝塞尔（无偏估计）校正系数
+    /// 如果数据连小于2，或者数据为NaN，则返回NaN
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;samples&quot;&gt;简单的未排序数组.&lt;/param&gt;
+    public static double Variance(double[] samples) ;
+    
+    /// &lt;summary&gt;
+    /// 计算为排序数组的总体方差.对大小为N的数据集，使用N进行标准化.因此是有偏差的
+    /// 如果数据为NaN，则返回NaN
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;population&quot;&gt;简单的未排序数组.&lt;/param&gt;
+    public static double PopulationVariance(double[] population) ;
+
+    /// &lt;summary&gt;
+    /// 计算无偏总体标准差：对大小为N的数据集，使用N-1进行标准化.
+    /// 如果数据连小于2，或者数据为NaN，则返回NaN
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;samples&quot;&gt;简单的未排序数组.&lt;/param&gt;
+    public static double StandardDeviation(double[] samples)
+    {
+        return Math.Sqrt(Variance(samples));
+    }
+
+    /// &lt;summary&gt;
+    /// 计算总体标准差：对大小为N的数据集，使用N进行标准化.
+    /// 如果数据为NaN，则返回NaN.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;population&quot;&gt;简单的未排序数组.&lt;/param&gt;
+    public static double PopulationStandardDeviation(double[] population)
+    {
+        return Math.Sqrt(PopulationVariance(population));
+    }
+
+    /// &lt;summary&gt;计算算术平均值和无偏总体偏差，是2个方法的综合&lt;/summary&gt;
+    /// &lt;param name=&quot;samples&quot;&gt;简单的未排序数组.&lt;/param&gt;
+    public static Tuple&lt;double, double&gt; MeanVariance(double[] samples)
+    {
+        return new Tuple&lt;double, double&gt;(Mean(samples), Variance(samples));
+    }
+
+    /// &lt;summary&gt;计算算术平均值和无偏总体标准差，是2个方法的综合&lt;/summary&gt;
+    /// &lt;param name=&quot;samples&quot;&gt;简单的未排序数组.&lt;/param&gt;
+    public static Tuple&lt;double, double&gt; MeanStandardDeviation(double[] samples)
+    {
+        return new Tuple&lt;double, double&gt;(Mean(samples), StandardDeviation(samples));
+    }
+
+    /// &lt;summary&gt;计算2个数组的无偏协方差：对大小为N的数据集，使用N-1进行标准化.&lt;/summary&gt;
+    /// &lt;param name=&quot;samples1&quot;&gt;第一个数组.&lt;/param&gt;
+    /// &lt;param name=&quot;samples2&quot;&gt;第二个数组.&lt;/param&gt;
+    public static double Covariance(double[] samples1, double[] samples2) ;
+
+    /// &lt;summary&gt;计算2个数组的总体协方差：对大小为N的数据集，使用N进行标准化.&lt;/summary&gt;
+    /// &lt;param name=&quot;population1&quot;&gt;第一个数组.&lt;/param&gt;
+    /// &lt;param name=&quot;population2&quot;&gt;第二个数组.&lt;/param&gt;
+    public static double PopulationCovariance(double[] population1, double[] population2) ;
+
+    /// &lt;summary&gt;计算数组的均方根误差(RMS).&lt;/summary&gt;
+    /// &lt;param name=&quot;data&quot;&gt;简单的未排序数组.&lt;/param&gt;
+    public static double RootMeanSquare(double[] data) ;
+
+    /// &lt;summary&gt;计算未排序数组的 顺序统计量(1..N). 注意:会导致data数组的值会重新排序.&lt;/summary&gt;
+    /// &lt;param name=&quot;data&quot;&gt;数组，未排序，计算过程会被排序.&lt;/param&gt;
+    /// &lt;param name=&quot;order&quot;&gt;从1开始的顺序统计，1 - N 之间.&lt;/param&gt;
+    public static double OrderStatisticInplace(double[] data, int order) ;
+
+    /// &lt;summary&gt;计算未排序数组的中位数：data数组会被重新排序.&lt;/summary&gt;
+    /// &lt;param name=&quot;data&quot;&gt;数组，未排序，计算过程会被排序.&lt;/param&gt;
+    public static double MedianInplace(double[] data)
+    {
+        var k = data.Length/2;
+        return data.Length.IsOdd()
+            ? SelectInplace(data, k)
+            : (SelectInplace(data, k - 1) + SelectInplace(data, k))/2.0;
+    }
+
+    /// &lt;summary&gt;
+    /// 计算未排序数组的p百分位数：如果需要非整数百分比，使用分位数替代.  
+    /// Approximately median-unbiased regardless of the sample distribution (R8).
+    /// WARNING: 计算过程会对data排序.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;data&quot;&gt;数组，未排序，计算过程会被排序.&lt;/param&gt;
+    /// &lt;param name=&quot;p&quot;&gt;p分为点，0 - 100 之间.&lt;/param&gt;
+    public static double PercentileInplace(double[] data, int p)
+    {
+        return QuantileInplace(data, p/100d);
+    }
+
+    /// &lt;summary&gt;
+    /// 计算未排序数组的第一个四分位数的值
+    /// Approximately median-unbiased regardless of the sample distribution (R8).
+    /// WARNING: 计算过程会对data排序.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;data&quot;&gt;数组,未排序，计算过程会被排序.&lt;/param&gt;
+    public static double LowerQuartileInplace(double[] data)
+    {
+        return QuantileInplace(data, 0.25d);
+    }
+
+    /// &lt;summary&gt;
+    /// 计算未排序数组的第三个四分位数的值
+    /// Approximately median-unbiased regardless of the sample distribution (R8).
+    /// WARNING: 计算过程会对data排序.
+    /// &lt;/summary&gt;
+    /// &lt;param name=&quot;data&quot;&gt;数组,未排序，计算过程会被排序.&lt;/param&gt;
+    public static double UpperQuartileInplace(double[] data)
+    {
+        return QuantileInplace(data, 0.75d);
+    }</code></pre>
+</body>
+</html>

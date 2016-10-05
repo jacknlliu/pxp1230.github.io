@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>雅可比矩阵+雅可比行列式 - </title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  </style>
+  
+  
+  <meta charset="UTF-8"/>
+  <meta name="author" content="潘霄鹏 - weibo.com/pxp1230">
+  <meta name="keywords" content="潘霄鹏笔记">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath:[['$','$']],processEscapes:true}
+  });
+  </script>
+  <script type="text/javascript" src="file:///storage/emulated/0/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///C:/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///C:/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/pxp1230.github.io.js"></script>
+  <script type="text/javascript" src="file:///C:/pxp1230.github.io.js"></script>
+  <script type="text/javascript">
+  if(window.location.protocol!="file:"){var d=document,s=d.createElement('script');s.src='/pxp1230.github.io.js';d.head.appendChild(s);}
+  </script>
+</head>
+<body>
+<h1>求由一个方程确定的函数的偏导数</h1>
+<p>设方程 $F\left( {x,y,f\left( {x,y} \right)} \right) \equiv 0$，则其偏导数推导如下：<br />
+在方程两边分别对x和y求偏导，故得<br />
+$${F_x} + {F_z}\frac{{\partial z}}{{\partial x}} = 0,\;{F_y} + {F_z}\frac{{\partial z}}{{\partial y}} = 0$$<br />
+$$\frac{{\partial z}}{{\partial x}} = - \frac{{{F_x}}}{{{F_z}}},\;\frac{{\partial z}}{{\partial y}} = - \frac{{{F_y}}}{{{F_z}}}$$</p>
+<h1>求由一个方程组确定的函数的偏导数</h1>
+<p>设方程组<br />
+$$\left\{ {\begin{array}{*{20}{c}}<br />
+ {F\left( {x,y,u\left( {x,y} \right),v\left( {x,y} \right)} \right) \equiv 0} \\<br />
+ {G\left( {x,y,u\left( {x,y} \right),v\left( {x,y} \right)} \right) \equiv 0}<br />
+\end{array}} \right.$$<br />
+则其偏导数推导如下：<br />
+在方程组两边对x求偏导，故得<br />
+$$\left\{ {\begin{array}{*{20}{c}}<br />
+ {{F_x} + {F_u}\frac{{\partial u}}{{\partial x}} + {F_v}\frac{{\partial v}}{{\partial x}} = 0} \\<br />
+ {{G_x} + {G_u}\frac{{\partial u}}{{\partial x}} + {G_v}\frac{{\partial v}}{{\partial x}} = 0}<br />
+\end{array}} \right.$$<br />
+这是关于${\frac{{\partial u}}{{\partial x}}}$、${\frac{{\partial v}}{{\partial x}}}$的线性方程组，用线性代数的知识可以解出</p>
+<p>$$\left( {\begin{array}{*{20}{c}}<br />
+ {{F_u}}&amp;{{F_v}} \\<br />
+ {{G_u}}&amp;{{G_v}}<br />
+\end{array}} \right)\left( {\begin{array}{*{20}{c}}<br />
+ {\frac{{\partial u}}{{\partial x}}} \\<br />
+ {\frac{{\partial v}}{{\partial x}}}<br />
+\end{array}} \right) = \left( {\begin{array}{*{20}{c}}<br />
+ { - {F_x}} \\<br />
+ { - {G_x}}<br />
+\end{array}} \right)$$</p>
+<p>得</p>
+<p>$$\begin{aligned}<br />
+ \left( {\begin{array}{*{20}{c}}<br />
+ {\frac{{\partial u}}{{\partial x}}} \\<br />
+ {\frac{{\partial v}}{{\partial x}}}<br />
+\end{array}} \right) &amp; = {\left( {\begin{array}{*{20}{c}}<br />
+ {{F_u}}&amp;{{F_v}} \\<br />
+ {{G_u}}&amp;{{G_v}}<br />
+\end{array}} \right)^{ - 1}}\left( {\begin{array}{*{20}{c}}<br />
+ { - {F_x}} \\<br />
+ { - {G_x}}<br />
+\end{array}} \right) \\<br />
+ &amp; = \frac{{{{\left( {\begin{array}{*{20}{c}}<br />
+ {{F_u}}&amp;{{F_v}} \\<br />
+ {{G_u}}&amp;{{G_v}}<br />
+\end{array}} \right)}^*}}}{{\left| {\begin{array}{*{20}{c}}<br />
+ {{F_u}}&amp;{{F_v}} \\<br />
+ {{G_u}}&amp;{{G_v}}<br />
+\end{array}} \right|}}\left( {\begin{array}{*{20}{c}}<br />
+ { - {F_x}} \\<br />
+ { - {G_x}}<br />
+\end{array}} \right) \\<br />
+ &amp; = - \frac{1}{{\left| {\begin{array}{*{20}{c}}<br />
+ {{F_u}}&amp;{{F_v}} \\<br />
+ {{G_u}}&amp;{{G_v}}<br />
+\end{array}} \right|}}{\left( {\begin{array}{*{20}{c}}<br />
+ {{F_u}}&amp;{{F_v}} \\<br />
+ {{G_u}}&amp;{{G_v}}<br />
+\end{array}} \right)^*}\left( {\begin{array}{*{20}{c}}<br />
+ {{F_x}} \\<br />
+ {{G_x}}<br />
+\end{array}} \right) \\<br />
+ &amp; = - \frac{1}{{\left| {\begin{array}{*{20}{c}}<br />
+ {{F_u}}&amp;{{F_v}} \\<br />
+ {{G_u}}&amp;{{G_v}}<br />
+\end{array}} \right|}}\left( {\begin{array}{*{20}{c}}<br />
+ {{G_v}}&amp;{ - {F_v}} \\<br />
+ { - {G_u}}&amp;{{F_u}}<br />
+\end{array}} \right)\left( {\begin{array}{*{20}{c}}<br />
+ {{F_x}} \\<br />
+ {{G_x}}<br />
+\end{array}} \right) \\<br />
+ &amp; = - \frac{1}{{\left| {\begin{array}{*{20}{c}}<br />
+ {{F_u}}&amp;{{F_v}} \\<br />
+ {{G_u}}&amp;{{G_v}}<br />
+\end{array}} \right|}}\left( {\begin{array}{*{20}{c}}<br />
+ {{F_x}{G_v} - {F_v}{G_x}} \\<br />
+ {{F_u}{G_x} - {F_x}{G_u}}<br />
+\end{array}} \right) \\<br />
+ &amp; = - \frac{1}{{\left| {\begin{array}{*{20}{c}}<br />
+ {{F_u}}&amp;{{F_v}} \\<br />
+ {{G_u}}&amp;{{G_v}}<br />
+\end{array}} \right|}}\left( {\begin{array}{*{20}{c}}<br />
+ {\left| {\begin{array}{*{20}{c}}<br />
+ {{F_x}}&amp;{{F_v}} \\<br />
+ {{G_x}}&amp;{{G_v}}<br />
+\end{array}} \right|} \\<br />
+ {\left| {\begin{array}{*{20}{c}}<br />
+ {{F_u}}&amp;{{F_x}} \\<br />
+ {{G_u}}&amp;{{G_x}}<br />
+\end{array}} \right|}<br />
+\end{array}} \right) \\<br />
+\end{aligned} $$</p>
+<p>同理，可得</p>
+<p>$$\left( {\begin{array}{*{20}{c}}<br />
+ {\frac{{\partial u}}{{\partial y}}} \\<br />
+ {\frac{{\partial v}}{{\partial y}}}<br />
+\end{array}} \right) = - \frac{1}{{\left| {\begin{array}{*{20}{c}}<br />
+ {{F_u}}&amp;{{F_v}} \\<br />
+ {{G_u}}&amp;{{G_v}}<br />
+\end{array}} \right|}}\left( {\begin{array}{*{20}{c}}<br />
+ {\left| {\begin{array}{*{20}{c}}<br />
+ {{F_y}}&amp;{{F_v}} \\<br />
+ {{G_y}}&amp;{{G_v}}<br />
+\end{array}} \right|} \\<br />
+ {\left| {\begin{array}{*{20}{c}}<br />
+ {{F_u}}&amp;{{F_y}} \\<br />
+ {{G_u}}&amp;{{G_y}}<br />
+\end{array}} \right|}<br />
+\end{array}} \right)$$</p>
+<h1>雅可比矩阵</h1>
+<ul>
+<li>在向量分析中，雅可比矩阵是一阶偏导数以一定方式排列成的矩阵，雅可比矩阵不一定为方矩阵，若为方矩阵其行列式称为<strong>雅可比行列式</strong>。</li>
+<li>类似于导数的连锁法则，偏导数的连锁法则也有类似的公式，这常用于重积分的计算中。</li>
+<li>假设 $F:{R^n} \to {R^m}$ 是一个从n维欧氏空间转换到m维欧氏空间的函数，F可表示成一个方程组${u_i} = {u_i}\left( {{x_1},{x_2}, \cdots ,{x_n}} \right)\quad \left( {i = 1,2, \cdots ,m} \right)$，F的雅可比矩阵为<br />
+$$J = \frac{{\partial \left( {{u_1},{u_2}, \cdots ,{u_m}} \right)}}{{\partial \left( {{x_1},{x_2}, \cdots ,{x_n}} \right)}} = \left( {\begin{array}{*{20}{c}} {\frac{{\partial {u_1}}}{{\partial {x_1}}}}&amp; \cdots &amp;{\frac{{\partial {u_1}}}{{\partial {x_n}}}} \\ \vdots &amp; \ddots &amp; \vdots \\ {\frac{{\partial {u_m}}}{{\partial {x_1}}}}&amp; \cdots &amp;{\frac{{\partial {u_m}}}{{\partial {x_n}}}} \end{array}} \right)$$</li>
+</ul>
+<h1>雅可比行列式</h1>
+<p>由偏导数组成的函数行列式称为雅可比行列式<br />
+（承接上文）<br />
+$$J = \frac{{\partial \left( {F,G} \right)}}{{\partial \left( {u,v} \right)}} = \left| {\begin{array}{*{20}{c}}<br />
+ {{F_u}}&amp;{{F_v}} \\<br />
+ {{G_u}}&amp;{{G_v}}<br />
+\end{array}} \right|$$</p>
+<p>三重积分的一般换元公式：<br />
+$$\iiint\limits_\Omega {f\left( {{u_1},{u_2},{u_3}} \right)d{u_1}d{u_2}d{u_3}} = \iiint\limits_\Omega {F\left( {{x_1},{x_2},{x_3}} \right)\left| {\frac{{\partial \left( {{u_1},{u_2},{u_3}} \right)}}{{\partial \left( {{x_1},{x_2},{x_3}} \right)}}} \right|d{x_1}d{x_2}d{x_3}}$$</p>
+<h1>雅可比行列式的性质</h1>
+<p>$$\frac{{\partial \left( {F,G} \right)}}{{\partial \left( {u,v} \right)}}\frac{{\partial \left( {u,v} \right)}}{{\partial \left( {F,G} \right)}} = 1$$</p>
+<h1>雅可比行列式的应用</h1>
+<p>对一个二重积分应用一个坐标变换函数$\left\{ {\begin{array}{*{20}{c}}<br />
+ {x = x\left( {u,v} \right)} \\<br />
+ {y = y\left( {u,v} \right)}<br />
+\end{array}} \right.$，则有二重积分的一般换元公式<br />
+$$\iint\limits_D {f\left( {x,y} \right)d\sigma } = \iint\limits_D {f\left( {x\left( {u,v} \right),y\left( {u,v} \right)} \right)\left| {\frac{{\partial \left( {x,y} \right)}}{{\partial \left( {u,v} \right)}}} \right|dudv}$$</p>
+<h2>直角坐标系到球面坐标系的转化</h2>
+<ul>
+<li><p>$F:R \times \left[ {0,\pi } \right] \times \left[ {0,2\pi } \right] \to {R^3}$ 的方程组为<br />
+$$\left\{ \begin{aligned}<br />
+ {u_1}\left( {r,\varphi ,\theta } \right) &amp; = r\sin \varphi \cos \theta \\<br />
+ {u_2}\left( {r,\varphi ,\theta } \right) &amp; = r\sin \varphi \sin \theta \\<br />
+ {u_3}\left( {r,\varphi ,\theta } \right) &amp; = r\cos \varphi \\<br />
+\end{aligned} \right.$$</p></li>
+<li><p>此坐标变换的雅可比矩阵是<br />
+$$J = \left( {\begin{array}{*{20}{c}} {\frac{{\partial {u_1}}}{{\partial r}}}&amp;{\frac{{\partial {u_1}}}{{\partial \varphi }}}&amp;{\frac{{\partial {u_1}}}{{\partial \theta }}} \\ {\frac{{\partial {u_2}}}{{\partial r}}}&amp;{\frac{{\partial {u_2}}}{{\partial \varphi }}}&amp;{\frac{{\partial {u_2}}}{{\partial \theta }}} \\ {\frac{{\partial {u_3}}}{{\partial r}}}&amp;{\frac{{\partial {u_3}}}{{\partial \varphi }}}&amp;{\frac{{\partial {u_3}}}{{\partial \theta }}} \end{array}} \right) = \left( {\begin{array}{*{20}{c}} {\sin \varphi \cos \theta }&amp;{r\cos \varphi \cos \theta }&amp;{ - r\sin \varphi \sin \theta } \\ {\sin \varphi \sin \theta }&amp;{r\cos \varphi \sin \theta }&amp;{r\sin \varphi \cos \theta } \\ {\cos \varphi }&amp;{ - r\sin \varphi }&amp;0 \end{array}} \right)$$</p></li>
+<li><p>三重积分换元（直角坐标系→球面坐标系）：<br />
+$$\begin{equation} \begin{split} \iiint\limits_\Omega {f\left( {{u_1},{u_2},{u_3}} \right)d{u_1}d{u_2}d{u_3}} &amp;= \iiint\limits_\Omega {F\left( {r,\varphi ,\theta } \right)\left| {\frac{{\partial \left( {{u_1},{u_2},{u_3}} \right)}}{{\partial \left( {r,\varphi ,\theta } \right)}}} \right|drd\varphi d\theta } \\ &amp;= \iiint\limits_\Omega {F\left( {r,\varphi ,\theta } \right)\left| {\begin{array}{*{20}{c}} {\sin \varphi \cos \theta }&amp;{r\cos \varphi \cos \theta }&amp;{ - r\sin \varphi \sin \theta } \\ {\sin \varphi \sin \theta }&amp;{r\cos \varphi \sin \theta }&amp;{r\sin \varphi \cos \theta } \\ {\cos \varphi }&amp;{ - r\sin \varphi }&amp;0 \end{array}} \right|drd\varphi d\theta } \\ &amp;= \iiint\limits_\Omega {F\left( {r,\varphi ,\theta } \right){r^2}\sin \varphi drd\varphi d\theta } \\ \end{split} \end{equation} $$</p></li>
+</ul>
+</body>
+</html>

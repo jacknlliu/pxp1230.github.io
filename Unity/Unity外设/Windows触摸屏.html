@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Windows触摸屏 - </title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-top:1px dashed #0CF;border-width:0;margin:10px;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  </style>
+  
+  
+  <meta charset="UTF-8"/>
+  <meta name="author" content="潘霄鹏 - weibo.com/pxp1230">
+  <meta name="keywords" content="潘霄鹏笔记">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath:[['$','$']],processEscapes:true}
+  });
+  </script>
+  <script type="text/javascript" src="file:///storage/emulated/0/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///C:/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <link rel="stylesheet" href="file:///storage/emulated/0/highlight/styles/pojoaque.css">
+  <script type="text/javascript" src="file:///storage/emulated/0/highlight/highlight.pack.js"></script>
+  <link rel="stylesheet" href="file:///C:/highlight/styles/pojoaque.css">
+  <script type="text/javascript" src="file:///C:/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/pxp1230.github.io.js"></script>
+  <script type="text/javascript" src="file:///C:/pxp1230.github.io.js"></script>
+  <script type="text/javascript">
+  if(window.location.protocol!="file:"){var d=document,s=d.createElement('script');s.src='/pxp1230.github.io.js';d.head.appendChild(s);}
+  </script>
+</head>
+<body>
+<h1>设置指定屏幕对应的触摸屏</h1>
+<p>控制面板-tablet PC<br />
+3D Vision无效时，重新拔插多余的触摸屏(USB)即可恢复</p>
+<h1 id="windows">Windows触摸屏特点</h1>
+<p>外挂式触摸屏只支持两点触摸，两点单击等于鼠标右键<br />
+两点触摸精度很差，只用一点触摸就够了</p>
+<p>3D场景拖拽代码示例：</p>
+<pre><code>// 记录一个手指的移动
+Vector2 mov0 = new Vector2();
+Vector2 touchPositionLatest = new Vector2();
+void LateUpdate()
+{
+    if (Input.GetMouseButtonDown(0))
+    {
+        touchPositionLatest = Input.mousePosition;
+    }
+    else if (Input.GetMouseButton(0))
+    {
+        mov0 = Input.mousePosition - (Vector3)touchPositionLatest;
+        touchPositionLatest = Input.mousePosition;
+        xDeg += mov0.x / 8;
+        yDeg -= mov0.y / 8;
+    }
+    else
+    {
+        mov0 = Vector2.zero;
+    }
+}</code></pre>
+<p>UGUI拖拽代码示例：</p>
+<pre><code>using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
+using UnityEngine.EventSystems;
+public class WindowsTouchDrag : MonoBehaviour, IDragHandler
+{
+    RectTransform rect;
+    // Use this for initialization
+    void Start()
+    {
+        rect = GetComponent&lt;RectTransform&gt;();
+    }
+    public void OnDrag(PointerEventData eventData)
+    {
+        rect.anchoredPosition += eventData.delta;
+    }
+}</code></pre>
+<h1 id="windows">*Windows多点触摸实现</h1>
+<p>Windows多点触摸实现原理：利用DLL读取当前所有手指触摸信息</p>
+<p>DLL源文件：<br />
+<a href="Windows触摸屏_files/DLLMain.cpp">DLLMain.cpp</a></p>
+<p>已经编译好的DLL：<br />
+<a href="Windows触摸屏_files/Plugins.rar">Plugins.rar</a></p>
+<p>实时检查触摸状态代码示例：<br />
+<a href="Windows触摸屏_files/TouchInput.cs">TouchInput.cs</a></p>
+<p>读取所有手指触摸信息代码示例：<br />
+<a href="Windows触摸屏_files/Check1.cs">Check1.cs</a></p>
+</body>
+</html>

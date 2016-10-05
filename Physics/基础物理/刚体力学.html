@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>刚体力学 - </title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-top:1px dashed #0CF;border-width:0;margin:10px;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  </style>
+  
+  
+  <meta charset="UTF-8"/>
+  <meta name="author" content="潘霄鹏 - weibo.com/pxp1230">
+  <meta name="keywords" content="潘霄鹏笔记">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath:[['$','$']],processEscapes:true}
+  });
+  </script>
+  <script type="text/javascript" src="file:///storage/emulated/0/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///C:/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <link rel="stylesheet" href="file:///storage/emulated/0/highlight/styles/pojoaque.css">
+  <script type="text/javascript" src="file:///storage/emulated/0/highlight/highlight.pack.js"></script>
+  <link rel="stylesheet" href="file:///C:/highlight/styles/pojoaque.css">
+  <script type="text/javascript" src="file:///C:/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/pxp1230.github.io.js"></script>
+  <script type="text/javascript" src="file:///C:/pxp1230.github.io.js"></script>
+  <script type="text/javascript">
+  if(window.location.protocol!="file:"){var d=document,s=d.createElement('script');s.src='/pxp1230.github.io.js';d.head.appendChild(s);}
+  </script>
+</head>
+<body>
+<h1>刚体力学</h1>
+<ul>
+<li>刚体（rigid body）</li>
+<li>刚体运动：平动（translation）、转动（rotation）</li>
+<li>圆周运动 circular motion</li>
+<li>角位移 angular displacement 单位（弧度rad）</li>
+<li>角速度 angular velocity 矢量，方向沿转轴向上或向下，由右手螺旋法则确定；用 $\vec \omega $ 表示，单位（$rad \cdot {s^{ - 1}}$）</li>
+<li>$\vec v = \vec \omega \times \vec r$</li>
+<li>角加速度（angular acceleration）：$\vec \alpha = \frac{{d\vec \omega }}{{dt}}$<br />
+<img src="刚体力学_files/4151607.png" alt="" /></li>
+<li>质元（element of mass）：dm</li>
+<li>转动惯量（moment of inertia）J：标量，类似于质量，是刚体转动惯性的量度；单位（$kg \cdot {m^2}$）；r为质元dm至转轴的距离<br />
+<img src="刚体力学_files/37491845.png" alt="" /></li>
+<li>回旋半径（radius of gyroration）${r_G}$：又称惯性半径，将刚体全部质元集中于某一等效点（非质心），该点到转轴的距离<br />
+$J = mr_G^2$</li>
+<li>平行轴定理（parallel axis theorem）：如果刚体对通过其质心的某一转轴的转动惯量为 ${J_C}$，则该轴平移一段距离d后，转动惯量变为$J = {J_C} + m{d^2}$（可数学推导）</li>
+<li>刚体定轴转动时的角动量（${\vec \omega }$方向必须与轴一致）：$\overrightarrow L = J\vec \omega $</li>
+<li>力矩做功：力矩的空间积累效应<br />
+$W = \int_0^\theta {Md\theta }$<br />
+$P = M\omega$</li>
+<li>刚体定轴转动动能：<br />
+${E_k} = \frac{1}{2}J{\omega ^2}$</li>
+<li>刚体绕定轴转动的动能定理：刚体转动动能的增量 = 合外力矩对刚体所做的功</li>
+<li><strong>刚体定点转动：绕固定点转动的刚体只有一点不动，而其余各点则分别在以该固定点为中心的同心球面上运动。</strong>
+<ul>
+<li>瞬时角速度：定点转动刚体的任何有限位移可用绕某轴的一次转动来实现，该轴通过刚体的固定点。假设该瞬时轴为OP，在短暂的时间间隔$\Delta t$内，刚体绕轴OP转过一微小角度$\Delta \theta $，称为角位移，它具有矢量的性质，可按平行四边形规则相加。$\Delta t$趋向于零时，$\Delta \theta $趋于一个极限方向，$\Delta \theta $与$\Delta t$之比也趋于一个极限值${\vec \omega }$。矢量${\vec \omega }$称为刚体在瞬时t的角速度。</li>
+<li>瞬轴锥面：随着时间的推移，刚体的瞬时轴要改变位置，它在固定空间描出一个锥面，称定瞬轴锥面（即空间极锥的锥面）；同时在刚体内部也描出一个锥面，称为动瞬轴锥面（即本体极锥的锥面）。由此可得潘索定理：刚体定点转动可用动瞬轴锥面在定瞬轴锥面上的纯滚动来代替。</li>
+<li>角加速度：作定点转动的刚体角速度${\vec \omega }$通常是变量。角速度变化$\Delta \vec \omega $与对应时间间隔$\Delta t$的比值，当Δt→0时所趋至的极限值称为刚体在瞬时t的角加速度。</li>
+</ul></li>
+<li>刚体定点转动时的角动量（${\vec \omega }$为瞬时角速度，方向会随时间改变，得出的角动量方向一般不同于${\vec \omega }$）：
+<ul>
+<li>$\overrightarrow L = \sum {{m_i}\overrightarrow {{r_i}} \times \left( {\overrightarrow \omega \times \overrightarrow {{r_i}} } \right)} $<br />
+<img src="刚体力学_files/d9cdf770-51b4-4ef9-9f6f-59178857086b.png" alt="" /></li>
+<li>$\overrightarrow L = I\overrightarrow \omega $，I就是惯性张量（三阶矩阵）</li>
+<li>惯性张量（inertia tensor）I：是种三阶矩阵，类似于质量m（平动惯性的量值），从整体的角度来看惯性张量I表示刚体绕定点转动惯性的量值，而转动惯量J表示绕定轴转动惯性的量值，即I与J都是表示刚体转动惯性的大小，详见<a href="http://zh.wikipedia.org/wiki/%E6%85%A3%E6%80%A7%E5%BC%B5%E9%87%8F#.E6.85.A3.E6.80.A7.E5.BC.B5.E9.87.8F">维基百科</a></li>
+<li>I和J相互转化：
+<ul>
+<li>设原点为O，OM为转轴，$\overrightarrow {{e_{OM}}} $ 为转轴单位向量，瞬时角速度 ${\vec \omega }$ 同定轴转动角速度，定轴转动角动量 ${\overrightarrow {{L_{OM}}} }$ 就是定点转动角动量L在OM上的投影：<br />
+$$\left\| {\overrightarrow {{L_{OM}}} } \right\| = \overrightarrow {{e_{OM}}} \cdot \vec L = \overrightarrow {{e_{OM}}} \cdot \left( {I\vec \omega } \right) = \left[ {\overrightarrow {{e_{OM}}} \cdot \left( {I\overrightarrow {{e_{OM}}} } \right)} \right]\left\| {\vec \omega } \right\|$$<br />
+等价于<br />
+$$\overrightarrow {{L_{OM}}} = \left[ {\overrightarrow {{e_{OM}}} \cdot \left( {I\overrightarrow {{e_{OM}}} } \right)} \right]\vec \omega = J\vec \omega $$<br />
+$$J = \overrightarrow {{e_{OM}}} \cdot \left( {I\overrightarrow {{e_{OM}}} } \right) = \left( {\begin{array}{*{20}{c}}<br />
+ \alpha &amp;\beta &amp;\gamma<br />
+\end{array}} \right)\left( {\begin{array}{*{20}{c}}<br />
+ {{I_{xx}}}&amp;{{I_{xy}}}&amp;{{I_{xz}}} \\<br />
+ {{I_{yx}}}&amp;{{I_{yy}}}&amp;{{I_{yz}}} \\<br />
+ {{I_{zx}}}&amp;{{I_{zy}}}&amp;{{I_{zz}}}<br />
+\end{array}} \right)\left( {\begin{array}{*{20}{c}}<br />
+ \alpha \\<br />
+ \beta \\<br />
+ \gamma<br />
+\end{array}} \right)$$</li>
+</ul></li>
+</ul></li>
+<li>刚体绕定点转动的动能 ${E_k}$：（以单一质点为例）<br />
+$$\begin{split}<br />
+ {E_k} &amp;= \frac{1}{2}m\left( {\vec v \cdot \vec v} \right) \\<br />
+ &amp;= \frac{1}{2}m\vec v \cdot \left( {\vec \omega \times \vec r} \right) \\<br />
+ &amp;= \frac{1}{2}m\vec \omega \cdot \left( {\vec r \times \vec v} \right) \\<br />
+ &amp;= \frac{1}{2}\vec \omega \cdot \vec L \\<br />
+ &amp;= \frac{1}{2}\vec \omega \cdot \left( {I\vec \omega } \right) \\<br />
+\end{split} $$</li>
+</ul>
+</body>
+</html>

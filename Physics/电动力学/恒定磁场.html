@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>恒定磁场 - </title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  </style>
+  
+  
+  <meta charset="UTF-8"/>
+  <meta name="author" content="潘霄鹏 - weibo.com/pxp1230">
+  <meta name="keywords" content="潘霄鹏笔记">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath:[['$','$']],processEscapes:true}
+  });
+  </script>
+  <script type="text/javascript" src="file:///storage/emulated/0/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///C:/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///C:/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/pxp1230.github.io.js"></script>
+  <script type="text/javascript" src="file:///C:/pxp1230.github.io.js"></script>
+  <script type="text/javascript">
+  if(window.location.protocol!="file:"){var d=document,s=d.createElement('script');s.src='/pxp1230.github.io.js';d.head.appendChild(s);}
+  </script>
+</head>
+<body>
+<h1>安培定律（安培力）</h1>
+<ul>
+<li>安培力：电流元在外磁场B中所受的力</li>
+<li>$I_2 d\overrightarrow {{l_2}}$：试探电流元</li>
+<li>$L_1$：激发磁场的电流回路</li>
+<li>$dF_{12}$：电流元1给电流元2的作用力</li>
+<li>$d\overrightarrow l $：电流元的线元</li>
+<li>$\overrightarrow {{r_{12}}} $：从电流元1到电流元2的径矢</li>
+<li>$\overrightarrow {{B_{12}}} $：电流元1在电流元2所在点激发的磁场强度</li>
+</ul>
+<p>$$\begin{aligned}<br />
+ d{F_{12}} &amp; = \frac{{{\mu _0}}}{{4\pi }}\frac{{{I_2}d\overrightarrow {{l_2}} \times \left( {{I_1}d\overrightarrow {{l_1}} \times \widehat {{r_{12}}}} \right)}}{{{r_{12}}^2}} \\<br />
+ &amp; = {I_2}d\overrightarrow {{l_2}} \times \left( {\frac{{{\mu _0}}}{{4\pi }}\frac{{{I_1}d\overrightarrow {{l_1}} \times \widehat {{r_{12}}}}}{{{r_{12}}^2}}} \right) \\<br />
+\end{aligned} $$</p>
+<p>定义磁感应强度$\vec B$：<br />
+$$d\overrightarrow {{B_{12}}} = \frac{{{\mu _0}}}{{4\pi }}\frac{{{I_1}d\overrightarrow {{l_1}} \times \widehat {{r_{12}}}}}{{{r_{12}}^2}}$$</p>
+<p>得</p>
+<p>$$d\overrightarrow F = Id\overrightarrow l \times d\overrightarrow B $$</p>
+<blockquote>
+<p>上式表明电流元之间的相互作用力不一定满足牛顿第三定律，但是实际中不存在孤立的恒定电流元，它们总是闭合回路的一部分，若将上式沿闭合回路积分，得到的合成作用力总是满足牛顿第三定律的。</p>
+</blockquote>
+<p>进一步</p>
+<p>$$\overrightarrow {{B}} = \oint_{{L_1}} {\left( {\frac{{{\mu _0}}}{{4\pi }}\frac{{{I_1}d\overrightarrow {{l_1}} \times \widehat {{r_{12}}}}}{{{r_{12}}^2}}} \right)} $$</p>
+<p>$$\begin{aligned}<br />
+ d{F_2} &amp; = \frac{{{\mu _0}}}{{4\pi }}\oint_{{L_1}} {\frac{{{I_2}d\overrightarrow {{l_2}} \times \left( {{I_1}d\overrightarrow {{l_1}} \times \widehat {{r_{12}}}} \right)}}{{{r_{12}}^2}}} \\<br />
+ &amp; = {I_2}d\overrightarrow {{l_2}} \times \oint_{{L_1}} {\left( {\frac{{{\mu _0}}}{{4\pi }}\frac{{{I_1}d\overrightarrow {{l_1}} \times \widehat {{r_{12}}}}}{{{r_{12}}^2}}} \right)} \\<br />
+ &amp; = {I_2}d\overrightarrow {{l_2}} \times \overrightarrow {{B}} \\<br />
+\end{aligned} $$</p>
+<h1>洛伦兹力公式</h1>
+<p>$$\overrightarrow F = q\overrightarrow v \times \overrightarrow B $$</p>
+<h1 id="vec-b">$\vec B$的通量</h1>
+<ul>
+<li>磁通量：磁感应强度的通量，通过任一曲面的磁感线条数，$d{\Phi _B} = \overrightarrow B \cdot d\overrightarrow {{S_ \bot }} $，若为封闭曲面，规定自内向外为正方向</li>
+<li>S：闭合曲面，习惯上叫做高斯面</li>
+<li>磁通量${\Phi _B}$（$\vec B$的通量）的高斯定理：</li>
+</ul>
+<p>$${\Phi _B} = \iint_S {\vec B \cdot d\vec S}$$</p>
+<h1 id="vec-b">$\vec B$的环量</h1>
+<ul>
+<li>恒定电流穿过以该闭合路径为边的任意形状的曲面，电流(变化电场也看成电流)必须是闭合的，无限长直电流可以认为是在无限远处闭合</li>
+<li>L：闭合曲线</li>
+<li>S：L所围任意形状的曲面</li>
+<li>$I_\text{in}$：穿过S的电流强度
+<ul>
+<li>其中电流I的正负规定如下，当穿过环路L的电流方向与环路L的环绕方向服从右手法则时，I&gt;0，反之，I&lt;0</li>
+</ul></li>
+<li>在无限长载流长直导线的磁场中，通过求$\vec B$的环量可导出安培环路定理（L为任意形状的回路，电流在回路之内）：</li>
+</ul>
+<p>$$\begin{aligned}<br />
+ \oint_L {\overrightarrow B \cdot d\overrightarrow l } &amp; = \oint_L {\frac{{{\mu _0}{I_{{\text{in}}}}}}{{2\pi r}}} dl \\<br />
+ &amp; = \frac{{{\mu _0}{I_{{\text{in}}}}}}{{2\pi }}\oint_L {\frac{1}{r}} dr\theta \\<br />
+ &amp; = \frac{{{\mu _0}{I_{{\text{in}}}}}}{{2\pi }}\int_0^{2\pi } {d\theta } \\<br />
+ &amp; = {\mu _0}{I_{{\text{in}}}} \\<br />
+\end{aligned} $$</p>
+<ul>
+<li>环路定理（$\vec B$的环量）：</li>
+</ul>
+<p>$$\begin{aligned}<br />
+ \oint_L {\overrightarrow B \cdot d\overrightarrow l } &amp; = {\mu _0}\sum {{I_\text{in}}} \\<br />
+ &amp; = {\mu _0}\frac{{dq}}{{dt}} \\<br />
+ &amp; = {\mu _0}\frac{{d\left( {{\varepsilon _0}{\Phi _E}} \right)}}{{dt}} \\<br />
+ &amp; = {\mu _0}{\varepsilon _0}\frac{d}{{dt}}\oint_S {\overrightarrow E \cdot d\overrightarrow S } \\<br />
+\end{aligned} $$</p>
+<ul>
+<li>推广了的安培环路定理：</li>
+</ul>
+<p>$$\oint_L {\overrightarrow B \cdot d\overrightarrow r } = {\mu _0}\left( {{I_\text{in}} + {\varepsilon _0}\frac{d}{{dt}}\oint_S {\overrightarrow E \cdot d\overrightarrow {{S_ \bot }} } } \right)$$</p>
+<h1 id="vec-b">$\vec B$的旋度</h1>
+<ul>
+<li>当电流呈体分布时，闭合曲线包围的电流为电流密度沿所包围的曲面的积分，下式为安培环路定理的微分形式</li>
+<li>J：电流密度，单位面积（垂直于电流方向的横截面元）的电流强度<br />
+$$\nabla \times \overrightarrow B = {\mu _0}\overrightarrow J $$</li>
+</ul>
+<h1 id="vec-b">$\vec B$的散度</h1>
+<p>$$\nabla \cdot \overrightarrow B = 0$$</p>
+</body>
+</html>

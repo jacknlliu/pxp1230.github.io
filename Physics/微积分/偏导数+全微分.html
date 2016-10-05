@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>偏导数+全微分 - </title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  </style>
+  
+  
+  <meta charset="UTF-8"/>
+  <meta name="author" content="潘霄鹏 - weibo.com/pxp1230">
+  <meta name="keywords" content="潘霄鹏笔记">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath:[['$','$']],processEscapes:true}
+  });
+  </script>
+  <script type="text/javascript" src="file:///storage/emulated/0/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///C:/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///C:/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/pxp1230.github.io.js"></script>
+  <script type="text/javascript" src="file:///C:/pxp1230.github.io.js"></script>
+  <script type="text/javascript">
+  if(window.location.protocol!="file:"){var d=document,s=d.createElement('script');s.src='/pxp1230.github.io.js';d.head.appendChild(s);}
+  </script>
+</head>
+<body>
+<h1>偏导数</h1>
+<ul>
+<li><p>偏导数的定义：<br />
+$$\begin{gathered} {f_x}\left( {{x_0},{y_0}} \right) = {\left. {\frac{{\partial f\left( {x,y} \right)}}{{\partial x}}} \right|_{\left( {{x_0},{y_0}} \right)}} = {\left. {\frac{{df\left( {x,{y_0}} \right)}}{{dx}}} \right|_{x = {x_0}}} \\ {f_y}\left( {{x_0},{y_0}} \right) = {\left. {\frac{{\partial f\left( {x,y} \right)}}{{\partial y}}} \right|_{\left( {{x_0},{y_0}} \right)}} = {\left. {\frac{{df\left( {{x_0},y} \right)}}{{dy}}} \right|_{y = {y_0}}} \\ \end{gathered}$$</p></li>
+<li><p>四种二阶偏导数：（二阶及以上的偏导数称为<strong>高阶偏导数</strong>）<br />
+$$\left\{ \begin{aligned}<br />
+ \frac{\partial }{{\partial x}}\left( {\frac{{\partial z}}{{\partial x}}} \right) &amp; = \frac{{{\partial ^2}z}}{{\partial {x^2}}} = {f_{xx}}\left( {x,y} \right) \\<br />
+ \frac{\partial }{{\partial y}}\left( {\frac{{\partial z}}{{\partial x}}} \right) &amp; = \frac{\partial }{{\partial x}}\left( {\frac{{\partial z}}{{\partial y}}} \right) = \frac{{{\partial ^2}z}}{{\partial x\partial y}} = {f_{xy}}\left( {x,y} \right) \\<br />
+ \frac{\partial }{{\partial y}}\left( {\frac{{\partial z}}{{\partial y}}} \right) &amp; = \frac{{{\partial ^2}z}}{{\partial {y^2}}} = {f_{yy}}\left( {x,y} \right) \\<br />
+\end{aligned} \right.$$</p></li>
+</ul>
+<h1>全微分</h1>
+<ul>
+<li><p>全微分的概念（二元函数为例）：<br />
+$$\Delta z = A\Delta x + B\Delta y + o\left( \rho \right) = dz + o\left( \rho \right) = \frac{{\partial z}}{{\partial x}}\Delta x + \frac{{\partial z}}{{\partial y}}\Delta y + o\left( {\sqrt {{{\left( {\Delta x} \right)}^2} + {{\left( {\Delta y} \right)}^2}} } \right)$$</p></li>
+<li><p>三元函数 $u = f\left( {x,y,z} \right)$ 的全微分可表示为<br />
+$$du = \frac{{\partial u}}{{\partial x}}dx + \frac{{\partial u}}{{\partial y}}dy + \frac{{\partial u}}{{\partial z}}dz$$</p></li>
+<li>二阶及以上的微分称为<strong>高阶微分</strong></li>
+<li><p>二阶微分：${d^2}z = d\left( {dz} \right) = {\left( {dx\frac{\partial }{{\partial x}} + dy\frac{\partial }{{\partial y}}} \right)^2}z$，对自变量x,y有<br />
+$${d^2}x = d\left( {dx} \right) = 0,\;{d^2}y = d\left( {dy} \right) = 0$$</p></li>
+</ul>
+</body>
+</html>

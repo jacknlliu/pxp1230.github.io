@@ -36,9 +36,21 @@
 <body>
 <h1>格林公式</h1>
 <p>格林公式是二重积分与其边界积分之间的关系。<br />
-设闭区域D由曲线L围成，我们假定L的正向如下：当观察者沿着L的这个方向行走时，D内在他附近的部分总在他的左边。<br />
-函数P(x,y)及Q(x,y)在D上具有一阶连续偏导数，则有<br />
- $$\iint\limits_D {\left( {\frac{{\partial Q}}{{\partial x}} - \frac{{\partial P}}{{\partial y}}} \right)dxdy} = \oint_L {Pdx + Qdy} $$</p>
+设平面闭区域D由曲线L围成，我们假定L的正向如下：当观察者沿着L的这个方向行走时，D内在他附近的部分总在他的左边。<br />
+函数P(x,y)及Q(x,y)在D上具有一阶连续偏导数，则有</p>
+<p>$$\begin{aligned}<br />
+ &amp; \iint\limits_D {\left( {\frac{{\partial Q}}{{\partial x}} - \frac{{\partial P}}{{\partial y}}} \right)dxdy} \\<br />
+ = &amp; \iint\limits_D {\left| {\begin{array}{*{20}{c}}<br />
+ {\frac{\partial }{{\partial x}}}&amp;{\frac{\partial }{{\partial y}}} \\<br />
+ P&amp;Q<br />
+\end{array}} \right|dxdy} \\<br />
+ = &amp; \iint\limits_D {\left| {\begin{array}{*{20}{c}}<br />
+ 0&amp;0&amp;{dxdy} \\<br />
+ {\frac{\partial }{{\partial x}}}&amp;{\frac{\partial }{{\partial y}}}&amp;0 \\<br />
+ P&amp;Q&amp;0<br />
+\end{array}} \right|} \\<br />
+ = &amp; \oint_L {Pdx + Qdy} \\<br />
+\end{aligned} $$</p>
 <h1>推导过程</h1>
 <p>$$\begin{aligned}<br />
  \iint\limits_D {\frac{{\partial P}}{{\partial y}}dxdy} &amp; = \int_a^b {\left\{ {\int_{{\varphi _1}\left( x \right)}^{{\varphi _2}\left( x \right)} {\frac{{\partial P\left( {x,y} \right)}}{{\partial y}}dy} } \right\}dx} \\<br />

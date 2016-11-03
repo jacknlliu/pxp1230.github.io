@@ -94,6 +94,8 @@ http://pxp1230.github.io/Physics/统计物理学/经典热力学/热力学术语
 http://pxp1230.github.io/Physics/统计物理学/经典热力学/热力学第一定律.html
 http://pxp1230.github.io/Physics/统计物理学/经典热力学/理想气体状态方程.html
 http://pxp1230.github.io/Project Management/index.html
+http://pxp1230.github.io/Project Management/从git中获取log信息写周报月报.html
+http://pxp1230.github.io/Project Management/打开发送到文件夹.html
 http://pxp1230.github.io/Project Management/项目管理常用图表.html
 http://pxp1230.github.io/Project Management/删除空文件夹.html
 http://pxp1230.github.io/Project Management/使修改后的.gitignore生效.html

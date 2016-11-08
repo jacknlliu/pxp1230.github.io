@@ -36,11 +36,6 @@ nav.innerHTML="<div class=\"m-nav\">"+
 		"<a href=\"/README.html\">关于</a>"+
 		"<a href=\""+hhh+"\" onclick=\"load_disqus()\">评论</a>"+
 	"</div>";
-if(isIndex||a=="readme"){
-	img = d.createElement("img");
-	img.id = "logo";
-	img.src = "/pxp1230.github.io.png";
-}
 if(isIndex){
 	surrounderEnable = false;
 	var pathname=window.location.pathname;
@@ -84,7 +79,10 @@ window.onload = function() {
 	d.head.appendChild(highlight_style);
 	JSLoader.load('//cdn.bootcss.com/highlight.js/9.3.0/highlight.min.js',function(){hljs.initHighlighting();});
 	d.body.insertBefore(nav,d.body.firstChild);
-	if(a==""||a=="index"||a=="about"||a=="readme"){
+	if(a==""||a=="index"||a=="readme"){
+		var img = d.createElement("img");
+		img.id = "logo";
+		img.src = "/pxp1230.github.io.png";
 		d.body.insertBefore(img,nav);
 	}else{
 		var cc=d.createElement("p");

@@ -34,11 +34,76 @@
   </script>
 </head>
 <body>
+<h1>入门</h1>
 <p>获取一周的提交：</p>
 <pre><code>git log --pretty=format:&quot;%an: %s&quot; --since=1.weeks</code></pre>
 <blockquote>
 <p>参考来源：<br />
 <a href="https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2">https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2</a></p>
 </blockquote>
+<h1>实战</h1>
+<p>print git log.bat</p>
+<pre><code>@echo off
+cd /d F:\pxp1230.github.io\.git
+setlocal
+PATH=&quot;C:\Program Files (x86)\Git\cmd&quot;
+set PATH&gt;nul
+git --no-pager log --pretty=format:&quot;%%s %%an    %%ad&quot; --date=short --since=1.weeks
+::git --no-pager log：不加--no-pager参数的话，必须按Q才能退出
+::转义符号：如果要显示%本身时，需要在前面用%来转义
+::%s：提交信息
+::%an：作者
+::%ad：提交日期</code></pre>
+<p>Program.cs</p>
+<pre><code>using System;
+using System.Collections.Generic;
+using System.Text;
+using System.IO;
+using System.Diagnostics;
+using System.Windows.Forms;
+
+class Program
+{
+    [STAThread]
+    static void Main(string[] args)
+    {
+        DirectoryInfo di = new DirectoryInfo(Environment.CurrentDirectory);
+        FileInfo[] files = di.GetFiles(&quot;*.bat&quot;);
+        if (files.Length == 1)
+        {
+            Process p = new Process();
+            p.StartInfo.FileName = files[0].FullName;
+            p.StartInfo.CreateNoWindow = true;
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.RedirectStandardInput = true;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.StandardOutputEncoding = Encoding.UTF8;
+            p.Start();
+            string output = p.StandardOutput.ReadToEnd();
+            p.WaitForExit();
+            p.Close();
+            StringBuilder sb = new StringBuilder();
+            string[] lines = output.Split(&#39;\n&#39;);
+            for (int i = 0; i &lt; lines.Length; i++)
+            {
+                string[] cells = lines[i].Split(&#39;\t&#39;);
+                if (!cells[0].StartsWith(&quot;no message&quot;) &amp;&amp; !cells[0].StartsWith(&quot;Merge branch&quot;))
+                {
+                    string newLine = &quot;&quot;;
+                    DateTime dt = new DateTime();
+                    if (DateTime.TryParse(cells[2], out dt))
+                    {
+                        newLine += dt.ToString(&quot;yyyy/MM/dd&quot;) + &quot;\t&quot; + cells[1] + &quot;\t&quot; + cells[0];
+                        sb.AppendLine(newLine);
+                    }
+                }
+            }
+            if (sb.Length &gt; 0)
+                Clipboard.SetText(sb.ToString());
+            else
+                Clipboard.SetText(&quot;没有记录！&quot;);
+        }
+    }
+}</code></pre>
 </body>
 </html>

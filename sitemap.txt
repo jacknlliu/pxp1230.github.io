@@ -42,7 +42,6 @@ http://pxp1230.github.io/Physics/基础物理/国际单位制.html
 http://pxp1230.github.io/Physics/基础物理/经典动力学.html
 http://pxp1230.github.io/Physics/基础物理/刚体力学.html
 http://pxp1230.github.io/Physics/基础物理/物理常数.html
-http://pxp1230.github.io/Physics/基础物理/几个有趣的尖端放电实验.html
 http://pxp1230.github.io/Physics/复变函数/index.html
 http://pxp1230.github.io/Physics/复变函数/初等函数.html
 http://pxp1230.github.io/Physics/复变函数/欧拉公式.html
@@ -94,6 +93,7 @@ http://pxp1230.github.io/Physics/统计物理学/经典热力学/热力学术语
 http://pxp1230.github.io/Physics/统计物理学/经典热力学/热力学第一定律.html
 http://pxp1230.github.io/Physics/统计物理学/经典热力学/理想气体状态方程.html
 http://pxp1230.github.io/Project Management/index.html
+http://pxp1230.github.io/Project Management/内网穿透.html
 http://pxp1230.github.io/Project Management/从git中获取log信息写周报月报.html
 http://pxp1230.github.io/Project Management/打开发送到文件夹.html
 http://pxp1230.github.io/Project Management/项目管理常用图表.html
@@ -163,20 +163,20 @@ http://pxp1230.github.io/Unity/Unity实用技巧/Layers习惯设置.html
 http://pxp1230.github.io/Unity/UniVRPNity 中文指南/index.html
 http://pxp1230.github.io/Unity/UniVRPNity 中文指南/编程.html
 http://pxp1230.github.io/Unity/UniVRPNity 中文指南/入门.html
-http://pxp1230.github.io/VR/index.html
-http://pxp1230.github.io/VR/3D Vision/index.html
-http://pxp1230.github.io/VR/3D Vision/3D VISION立体显示器+立体眼镜.html
-http://pxp1230.github.io/VR/3D Vision/原生Stereoscopic Rendering.html
-http://pxp1230.github.io/VR/Kinect/index.html
-http://pxp1230.github.io/VR/Kinect/关于Kinect SDK v1.8.html
-http://pxp1230.github.io/VR/Kinect/Kinect结合Unity开发.html
-http://pxp1230.github.io/VR/MiddleVR/index.html
-http://pxp1230.github.io/VR/MiddleVR/Unity插件中需要修改的部位.html
-http://pxp1230.github.io/VR/MiddleVR/MiddleVRInput.cs.html
-http://pxp1230.github.io/VR/MiddleVR/主动立体(OpenGL Quad-Buffer)配置.html
-http://pxp1230.github.io/VR/MiddleVR/invert eyes at runtime.html
-http://pxp1230.github.io/VR/Multi-display/index.html
-http://pxp1230.github.io/VR/Multi-display/入门.html
-http://pxp1230.github.io/VR/Oculus/index.html
-http://pxp1230.github.io/VR/Oculus/空中滑翔Camera脚本.html
-http://pxp1230.github.io/VR/Oculus/UGUI在OculusVR中的使用.html
+http://pxp1230.github.io/VR Devices/index.html
+http://pxp1230.github.io/VR Devices/3D Vision/index.html
+http://pxp1230.github.io/VR Devices/3D Vision/3D VISION立体显示器+立体眼镜.html
+http://pxp1230.github.io/VR Devices/3D Vision/原生Stereoscopic Rendering.html
+http://pxp1230.github.io/VR Devices/Kinect/index.html
+http://pxp1230.github.io/VR Devices/Kinect/关于Kinect SDK v1.8.html
+http://pxp1230.github.io/VR Devices/Kinect/Kinect结合Unity开发.html
+http://pxp1230.github.io/VR Devices/MiddleVR/index.html
+http://pxp1230.github.io/VR Devices/MiddleVR/Unity插件中需要修改的部位.html
+http://pxp1230.github.io/VR Devices/MiddleVR/MiddleVRInput.cs.html
+http://pxp1230.github.io/VR Devices/MiddleVR/主动立体(OpenGL Quad-Buffer)配置.html
+http://pxp1230.github.io/VR Devices/MiddleVR/invert eyes at runtime.html
+http://pxp1230.github.io/VR Devices/Multi-display/index.html
+http://pxp1230.github.io/VR Devices/Multi-display/入门.html
+http://pxp1230.github.io/VR Devices/Oculus/index.html
+http://pxp1230.github.io/VR Devices/Oculus/空中滑翔Camera脚本.html
+http://pxp1230.github.io/VR Devices/Oculus/UGUI在OculusVR中的使用.html

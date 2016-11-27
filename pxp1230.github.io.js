@@ -66,28 +66,30 @@ busuanzi.id="busuanzi";
 var year = new Date().getFullYear();
 busuanzi.innerHTML = "<span class='no-break-span'>© 2015"+(year==2015?"":"－"+year)+" 潘霄鹏</span><span id='busuanzi_container_page_pv' class='no-break-span'>本页已被阅读 <span id='busuanzi_value_page_pv'>-</span> 次</span><span id='busuanzi_container_site_uv' class='no-break-span'>博客已被 <span id='busuanzi_value_site_uv'>-</span> 人访问</span>";
 //添加所有元素
-window.onload = function() {
-	if(surrounderEnable){
-		var surrounder = d.createElement("div");
-		surrounder.id="surrounder";
-		while(d.body.hasChildNodes())
-			surrounder.appendChild(d.body.firstChild);
-		d.body.appendChild(surrounder);
-	}
-	d.head.appendChild(c);
-	//https://highlightjs.org/
-	d.head.appendChild(highlight_style);
-	JSLoader.load('//cdn.bootcss.com/highlight.js/9.3.0/highlight.min.js',function(){hljs.initHighlighting();});
-	d.body.insertBefore(nav,d.body.firstChild);
-	if(a==""||a=="index"||a=="readme"){
-		var img = d.createElement("img");
-		img.id = "logo";
-		img.src = "/pxp1230.github.io.png";
-		d.body.insertBefore(img,nav);
+if(surrounderEnable){
+	surrounder = d.createElement("div");
+	surrounder.id="surrounder";
+	while(d.body.hasChildNodes())
+		surrounder.appendChild(d.body.firstChild);
+	d.body.appendChild(surrounder);
+}
+d.head.appendChild(c);
+d.body.insertBefore(nav,d.body.firstChild);
+	if(isIndex||a=="readme"){
+		var logo = d.createElement("img");
+		logo.id = "logo";
+		d.body.insertBefore(logo,nav);
 	}else{
 		var cc=d.createElement("p");
 		cc.innerHTML="<br><br><br><br><strong>✲</strong> <em>版权声明：转载时请以超链接形式标明 <a href='"+window.location.href+"'>文章原始出处</a> 和 <a href='http://pxp1230.github.io/README.html'>作者信息</a> 及 <a href='http://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh'>本声明</a></em><br><strong>✲</strong> <em>署名-非商业性使用-禁止演绎 4.0 国际</em><br><strong>✲</strong> <em>Attribution-NonCommercial-NoDerivatives 4.0 International (<a href='http://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh'>CC BY-NC-ND 4.0</a>)</em>";
 		surrounder.appendChild(cc);
+	}
+window.onload = function() {
+	//https://highlightjs.org/
+	d.head.appendChild(highlight_style);
+	JSLoader.load('//cdn.bootcss.com/highlight.js/9.3.0/highlight.min.js',function(){hljs.initHighlighting();});
+	if(isIndex||a=="readme"){
+		logo.src = "/pxp1230.github.io.png";
 	}
 	(d.head || d.body).appendChild(mathjax);
 	d.body.appendChild(disqus);

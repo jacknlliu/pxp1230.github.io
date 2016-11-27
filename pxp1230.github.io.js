@@ -25,7 +25,7 @@ if(!isIndex){
 //创建首部元素
 c = d.createElement('style');
 c.type = "text/css";
-var css = "#navbar{background:#333;background:-webkit-gradient(linear,0% 0%,0% 100%,from(#333),to(#232323));margin:0 0 20px;border:none;box-shadow:4px 8px 20px #000;border-radius:2px;height:35px;}#navbar .m-nav{margin:0 auto;text-align:center;}#navbar a{display:inline-table;vertical-align:middle;text-align:center;color:#666;font:bold 15px 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',tahoma,arial,simsun,'宋体';width:16%;min-width:80px;max-width:250px;height:35px;line-height:35px;text-decoration:none;}#navbar a:hover{color:#669;background:#282828;background:-webkit-gradient(linear,0% 0%,0% 100%,from(#333),to(#00C));box-shadow:0px 0px 4px #111;}#logo{display:block;margin:-10px auto 0;width:40%;min-width:320px;max-width:640px;z-index:-1;position:relative;}#busuanzi{width:100%;text-align:center;color:rgba(73,73,73,0.7);font:bold 12px 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',tahoma,arial,simsun,'宋体';margin:20px auto 16px;line-height:1.6;}#busuanzi .no-break-span{display:inline-block !important;margin:0 10px;}";
+var css = "#navbar{background:#333;background:-webkit-gradient(linear,0% 0%,0% 100%,from(#333),to(#232323));margin:20px 0;border:none;box-shadow:4px 8px 20px #000;border-radius:2px;height:35px;}#navbar .m-nav{margin:0 auto;text-align:center;}#navbar a{display:inline-table;vertical-align:middle;text-align:center;color:#666;font:bold 15px 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',tahoma,arial,simsun,'宋体';width:16%;min-width:80px;max-width:250px;height:35px;line-height:35px;text-decoration:none;}#navbar a:hover{color:#669;background:#282828;background:-webkit-gradient(linear,0% 0%,0% 100%,from(#333),to(#00C));box-shadow:0px 0px 4px #111;}#logo{display:block;margin:20px auto;width:40%;min-width:320px;max-width:640px;z-index:-1;position:relative;}#busuanzi{width:100%;text-align:center;color:rgba(73,73,73,0.7);font:bold 12px 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',tahoma,arial,simsun,'宋体';margin:20px auto 16px;line-height:1.6;}#busuanzi .no-break-span{display:inline-block !important;margin:0 10px;}";
 nav = d.createElement("div");
 nav.id="navbar";
 var iii=window.location.href.indexOf("#");
@@ -75,39 +75,38 @@ if(surrounderEnable){
 }
 d.head.appendChild(c);
 d.body.insertBefore(nav,d.body.firstChild);
-	if(isIndex||a=="readme"){
-		var logo = d.createElement("img");
-		logo.id = "logo";
-		d.body.insertBefore(logo,nav);
-	}else{
-		var cc=d.createElement("p");
-		cc.innerHTML="<br><br><br><br><strong>✲</strong> <em>版权声明：转载时请以超链接形式标明 <a href='"+window.location.href+"'>文章原始出处</a> 和 <a href='http://pxp1230.github.io/README.html'>作者信息</a> 及 <a href='http://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh'>本声明</a></em><br><strong>✲</strong> <em>署名-非商业性使用-禁止演绎 4.0 国际</em><br><strong>✲</strong> <em>Attribution-NonCommercial-NoDerivatives 4.0 International (<a href='http://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh'>CC BY-NC-ND 4.0</a>)</em>";
-		surrounder.appendChild(cc);
-	}
+if(!isIndex && a!="readme"){
+	var cc=d.createElement("p");
+	cc.innerHTML="<br><br><br><br><strong>✲</strong> <em>版权声明：转载时请以超链接形式标明 <a href='"+window.location.href+"'>文章原始出处</a> 和 <a href='http://pxp1230.github.io/README.html'>作者信息</a> 及 <a href='http://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh'>本声明</a></em><br><strong>✲</strong> <em>署名-非商业性使用-禁止演绎 4.0 国际</em><br><strong>✲</strong> <em>Attribution-NonCommercial-NoDerivatives 4.0 International (<a href='http://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh'>CC BY-NC-ND 4.0</a>)</em>";
+	surrounder.appendChild(cc);
+}
+d.body.appendChild(disqus);
+d.body.appendChild(busuanzi);
 window.onload = function() {
 	//https://highlightjs.org/
 	d.head.appendChild(highlight_style);
 	JSLoader.load('//cdn.bootcss.com/highlight.js/9.3.0/highlight.min.js',function(){hljs.initHighlighting();});
-	if(isIndex||a=="readme"){
-		logo.src = "/pxp1230.github.io.png";
-	}
 	(d.head || d.body).appendChild(mathjax);
-	d.body.appendChild(disqus);
-	d.body.appendChild(busuanzi);
-    (function() {
-        var s2 = d.createElement('script');
+	(function() {
+		//http://ibruce.info/
+		var s1 = d.createElement('script');
+		s1.src = '//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js';
+		s1.async = true;
+		d.body.appendChild(s1);
+		//https://disqus.com/
+		var s2 = d.createElement('script');
 		s2.id = 'dsq-count-scr';
 		s2.src = '//pxp1230.disqus.com/count.js';
 		s2.async = true;
 		(d.head || d.body).appendChild(s2);
-		//http://ibruce.info/
-		var s3 = d.createElement('script');
-		s3.src = '//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js';
-		s3.async = true;
-		d.body.appendChild(s3);
-    })();
+	})();
+	if(isIndex||a=="readme"){
+		var logo = d.createElement("img");
+		logo.id = "logo";
+		logo.src = "http://i1.piimg.com/4851/cb50add873bb1012.png";
+		d.body.insertBefore(logo,nav);
+	}
 };
-//https://disqus.com/
 function load_disqus(){
 	if(typeof(disableListenKeyDownEvent)!='undefined')return;
 	disableListenKeyDownEvent = true;

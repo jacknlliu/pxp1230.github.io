@@ -103,7 +103,7 @@ window.onload = function() {
 	if(isIndex||a=="readme"){
 		var logo = d.createElement("img");
 		logo.id = "logo";
-		logo.src = "http://i1.piimg.com/4851/cb50add873bb1012.png";
+		logo.src = "//i1.piimg.com/4851/cb50add873bb1012.png";
 		d.body.insertBefore(logo,nav);
 	}
 };

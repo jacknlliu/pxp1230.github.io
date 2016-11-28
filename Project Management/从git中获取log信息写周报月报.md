@@ -4,6 +4,14 @@
 ```
 git log --pretty=format:"%an: %s" --since=1.weeks
 ```
+获取具体某一天开始的提交：
+```
+git log --pretty=format:"%an: %s" --since="2008-10-01"
+```
+获取具体某一天开始到某一天结束的提交：
+```
+git log --pretty=format:"%an: %s" --since="2008-10-01" --before="2008-11-01"
+```
 
 > 参考来源：
 > https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2
@@ -72,6 +80,7 @@ class Program
                     }
                 }
             }
+            Clipboard.Clear(); //用前用后记得清除剪贴板
             if (sb.Length > 0)
                 Clipboard.SetText(sb.ToString());
             else

@@ -37,6 +37,10 @@
 <h1>入门</h1>
 <p>获取一周的提交：</p>
 <pre><code>git log --pretty=format:&quot;%an: %s&quot; --since=1.weeks</code></pre>
+<p>获取具体某一天开始的提交：</p>
+<pre><code>git log --pretty=format:&quot;%an: %s&quot; --since=&quot;2008-10-01&quot;</code></pre>
+<p>获取具体某一天开始到某一天结束的提交：</p>
+<pre><code>git log --pretty=format:&quot;%an: %s&quot; --since=&quot;2008-10-01&quot; --before=&quot;2008-11-01&quot;</code></pre>
 <blockquote>
 <p>参考来源：<br />
 <a href="https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2">https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2</a></p>
@@ -98,6 +102,7 @@ class Program
                     }
                 }
             }
+            Clipboard.Clear(); //用前用后记得清除剪贴板
             if (sb.Length &gt; 0)
                 Clipboard.SetText(sb.ToString());
             else

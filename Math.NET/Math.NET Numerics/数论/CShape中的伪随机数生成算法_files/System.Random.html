@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+</head>
+<body>
+<input type="password" id="seed1" />
+<input type="button" value="10位" onclick="Func1()" />
+<div id="result1"></div>
+<script type="text/javascript">
+var MBIG = 2147483647;
+var MSEED = 161803398;
+var MZ = 0;
+var inext;
+var inextp;
+var SeedArray = new Array(56);
+function Func1(){
+	var Seed=parseInt(document.getElementById("seed1").value);
+	if(isNaN(Seed)){
+		document.getElementById('result1').innerHTML = "出错！";
+	}else{
+		Random(Seed);
+		document.getElementById('result1').innerHTML = Next(10000000000);
+	}
+}
+function Random(Seed)
+{
+	var num = (Seed == -2147483648) ? 2147483647 : Math.abs(Seed);
+	var num2 = 161803398 - num;
+	SeedArray[55] = num2;
+	var num3 = 1;
+	for (var i = 1; i < 55; i++)
+	{
+		var num4 = 21 * i % 55;
+		SeedArray[num4] = num3;
+		num3 = num2 - num3;
+		if (num3 < 0)
+		{
+			num3 += 2147483647;
+		}
+		num2 = SeedArray[num4];
+	}
+	for (var j = 1; j < 5; j++)
+	{
+		for (var k = 1; k < 56; k++)
+		{
+			SeedArray[k] -= SeedArray[1 + (k + 30) % 55];
+			if (SeedArray[k] < 0)
+			{
+				SeedArray[k] += 2147483647;
+			}
+		}
+	}
+	inext = 0;
+	inextp = 21;
+	Seed = 1;
+}
+function InternalSample()
+{
+	var num = inext;
+	var num2 = inextp;
+	if (++num >= 56)
+	{
+		num = 1;
+	}
+	if (++num2 >= 56)
+	{
+		num2 = 1;
+	}
+	var num3 = SeedArray[num] - SeedArray[num2];
+	if (num3 == 2147483647)
+	{
+		num3--;
+	}
+	if (num3 < 0)
+	{
+		num3 += 2147483647;
+	}
+	SeedArray[num] = num3;
+	inext = num;
+	inextp = num2;
+	return num3;
+}
+function Sample()
+{
+	return InternalSample() * 4.6566128752457969E-10;
+}
+function Next(maxValue)
+{
+	return parseInt(Sample() * maxValue);
+}
+</script>
+</body>
+</html>

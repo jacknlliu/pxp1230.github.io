@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>内网穿透 - </title>
+  <title>安装Apache服务器 - </title>
   <style type="text/css">code{white-space: pre;}</style>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
@@ -34,17 +34,19 @@
   </script>
 </head>
 <body>
-<p>官网：<a href="https://www.ngrok.cc/" class="uri">https://www.ngrok.cc/</a><br />
-平台登陆地址：<a href="http://www.ngrok.cc/login" class="uri">http://www.ngrok.cc/login</a></p>
-<p>示例：<br />
-原始仓库地址：<a href="ssh://ZJZY@192.168.0.123/" class="uri">ssh://ZJZY@192.168.0.123/</a><br />
-内网穿透仓库地址：<a href="ssh://ZJZY@server.ngrok.cc:12345/" class="uri">ssh://ZJZY@server.ngrok.cc:12345/</a></p>
-<p>修改的Sunny-Ngrok启动工具.bat：</p>
-<pre><code>@echo OFF
-color 0a
-Title Sunny-Ngrok启动工具 by pxp1230.github.io
-Mode con cols=109 lines=30
-set clientid=0e1291441d17cb73
-sunny.exe clientid %clientid%</code></pre>
+<h1 id="apache">安装Apache服务器</h1>
+<p>下载地址：<a href="http://httpd.apache.org/download.cgi" class="uri">http://httpd.apache.org/download.cgi</a><br />
+选择 Stable Release - Latest Version 进行下载，点击 Files for Microsoft Windows，点击 ApacheHaus，最后点击相应的发布版本进行下载。</p>
+<p>解压之后，修改D:\application_software\Apache24\conf\httpd.conf文件中的ServerRoot参数为</p>
+<pre><code>Define SRVROOT &quot;D:/application_software/Apache24&quot;
+ServerRoot &quot;${SRVROOT}&quot;</code></pre>
+<p>安装服务：</p>
+<pre><code>httpd.exe -k install -n apache</code></pre>
+<p>卸载服务：</p>
+<pre><code>sc delete apache</code></pre>
+<p>修改HTTP根目录：<br />
+修改D:\application_software\Apache24\conf\httpd.conf文件中的DocumentRoot参数为</p>
+<pre><code>DocumentRoot &quot;F:/手机备忘录&quot;
+&lt;Directory &quot;F:/手机备忘录&quot;&gt;</code></pre>
 </body>
 </html>

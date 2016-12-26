@@ -10,7 +10,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
   <style type="text/css">
-  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:10px 0;padding:0;}p{margin:20px 0 10px;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:10px auto}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:50px 0 10px;}h1{margin-top:100px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
   </style>
   
   
@@ -36,5 +36,59 @@
 <body>
 <h1 id="git">安装Git</h1>
 <p>官网：<a href="https://git-scm.com/download/" class="uri">https://git-scm.com/download/</a></p>
+<h1 id="git">Git入门</h1>
+<p>官方教程：<a href="http://git-scm.com/book/zh/v2" class="uri">http://git-scm.com/book/zh/v2</a><br />
+可以下载下来离线阅读：Git官方文档中文版v2.zip</p>
+<p>因为Git是分布式版本控制系统，所以需要填写用户名和邮箱作为一个标识。</p>
+<p>所有的版本控制系统，只能跟踪文本文件的改动，比如txt文件，网页，所有程序的代码等，Git也不列外，版本控制系统可以告诉你每次的改动，但是图片，视频这些二进制文件，虽能也能由版本控制系统管理，但没法跟踪文件的变化。</p>
+<p>工作区：比如目录下Git_TEST里的文件(.git隐藏目录除外)。</p>
+<p>仓库/版本库(Repository)：工作区有一个隐藏目录.git，这个不属于工作区，这是仓库/版本库。其中仓库/版本库里面存了很多东西，其中最重要的就是Stage(暂存区)，还有Git为我们自动创建了第一个分支master，以及指向master的一个指针HEAD。</p>
+<p>使用Git提交文件到仓库有两步：</p>
+<ul>
+<li>第一步：是使用 git add 把文件添加进去，实际上就是把文件添加到Stage(暂存区)。</li>
+<li>第二步：使用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支上。</li>
+</ul>
+<p>裸仓库/裸版本库：一个不包含当前工作目录的仓库，它作为唯一 <strong>server仓库</strong> 。</p>
+<h1>如何导出一个裸仓库/裸版本库</h1>
+<p><strong>方法一：命令行方式</strong><br />
+通过克隆你的仓库来创建一个新的裸仓库，你需要在克隆命令后加上 --bare选项 按照惯例，裸仓库目录名以 .git 结尾，就像这样：</p>
+<pre><code>$ git clone --bare my_project my_project.git</code></pre>
+<p>现在，你的 my_project.git 目录中应该有 Git 目录的副本了。</p>
+<p><strong>方法二：文件拷贝方式（推荐）</strong><br />
+这种方式相当于将“my_project/.git”目录复制到“my_project.git”目录，并修改“config”配置文件。<br />
+它只取出 Git 仓库自身，不要工作目录，然后特别为它单独创建一个目录。<br />
+如果push时提示“refusing to update checked out branch:refs/heads/master”，说明远程仓库创建时没有使用--bare选项。<br />
+server端拒绝push操作可以用以下方法解决：<br />
+解决这个冲突需要远程仓库管理员将远程仓库当前分支切换到其他分支（如谁也不会使用的分支），或者修改.git/config添加如下代码：</p>
+<pre><code>   [receive]
+   denyCurrentBranch = ignore</code></pre>
+<p>或执行：git config receive.denyCurrentBranch ignore 达到相同作用。</p>
+<p>在初始化 <strong>server仓库</strong> 时最好使用 git --bare init 而不要使用：git init</p>
+<h1>将普通仓库作为远程仓库（容易造成混乱，不推荐）</h1>
+<p>这种方式无需创建裸仓库，只需要将普通仓库作为远程仓库共享给对方。<br />
+server端没有显示push后的文件可以用以下方法解决：<br />
+如果使用了git init初始化，则远程仓库的目录下，也包含worktree(工作目录)，当对方仓库向远程仓库push时，如果远程仓库正在push的分支上 <strong>（如果当时不在push的分支，就没有问题）</strong> , 那么push后的结果不会反应在worktree(工作目录)上，也即在远程仓库的目录下对应的文件还是之前的内容，必须得使用git reset --hard才能看到push后的内容。</p>
+<h1>获取和拉取的区别</h1>
+<p>当 git fetch (获取)命令从服务器上抓取本地没有的数据时，它并不会修改工作目录中的内容。 它只会获取数据然后让你自己合并。 然而，有一个命令叫作 git pull (拉取)在大多数情况下它的含义是一个 git fetch (获取)紧接着一个 git merge (合并)命令。<br />
+如果有一个设置好的跟踪分支，不管它是显式地设置还是通过 clone 或 checkout 命令为你创建的，git pull 都会查找 <strong>当前分支</strong> 所跟踪的服务器分支，从服务器上抓取数据然后尝试合并入那个远程分支。<br />
+由于 git pull (拉取)的魔法经常令人困惑所以通常单独显式地使用 fetch (获取)与 merge (合并)命令会更好一些。</p>
+<h1>[重要]变基操作注意事项</h1>
+<p>总的原则是，只对尚未推送或分享给别人的本地修改执行变基操作清理历史，从不对已推送至别处的提交执行变基操作，这样，你才能享受到两种方式带来的便利。</p>
+<h1>谁动了我的代码？</h1>
+<p>git blame：这个命令告诉你文件里的每一行的作者是谁，最后改动那一行的提交，以及提交的时间戳。<br />
+格式：</p>
+<pre><code>git blame [file_name]</code></pre>
+<h1>利用变基操作提取在其他分支中引入的补丁和修改</h1>
+<p>“变基”内部原理：</p>
+<ul>
+<li>1）首先找到当前分支(补丁分支)和起点分支的 <strong>最近共同祖先(补丁起点)</strong></li>
+<li>2）提取最近共同祖先到当前分支(补丁分支)的历次修改(称为补丁)</li>
+<li>3）将补丁分支重新指向为变基操作(应用补丁)的目标分支</li>
+<li>4）对补丁分支应用补丁(称为重演)，并提交，此时补丁分支的 <strong>基(补丁起点)</strong> 就完成了改变<br />
+<br></li>
+<li>起点分支可以指定，不指定时默认是变基操作(应用补丁)的目标分支</li>
+<li>变基操作完成后，一般会切换到目标分支，将目标分支快进到补丁分支</li>
+<li>SourceTree中的变基操作： <strong>进入补丁分支</strong> ，选中其他 <strong>分支</strong> (将作为补丁分支的新基)，右键选择变基(使用默认值变基)或交互式变基</li>
+</ul>
 </body>
 </html>

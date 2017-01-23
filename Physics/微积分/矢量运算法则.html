@@ -10,7 +10,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
   <style type="text/css">
-  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:10px 0;padding:0;}p{margin:20px 0 10px;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:10px auto}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:50px 0 10px;}h1{margin-top:100px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
   </style>
   
   
@@ -73,9 +73,30 @@
 \end{array}} \right)$$</p>
 <h1>方向角的方向余弦</h1>
 <p>$$\left( {\cos \alpha ,\cos \beta ,\cos \gamma } \right) = \left( {\frac{x}{{\left| {\vec r} \right|}},\frac{y}{{\left| {\vec r} \right|}},\frac{z}{{\left| {\vec r} \right|}}} \right) = \frac{{\vec r}}{{\left| {\vec r} \right|}} = \widehat {{r}}$$</p>
-<h1>向量的混合积</h1>
-<p>$$\left[ {\begin{array}{*{20}{c}} {\vec a}&amp;{\vec b}&amp;{\vec c} \end{array}} \right] = \vec a \times \vec b \cdot \vec c = \left| {\begin{array}{*{20}{c}} {{a_x}}&amp;{{a_y}}&amp;{{a_z}} \\ {{b_x}}&amp;{{b_y}}&amp;{{b_z}} \\ {{c_x}}&amp;{{c_y}}&amp;{{c_z}} \end{array}} \right|$$</p>
-<p>向量的混合积的几何意义：以向量a,b,c为棱的平行六面体体积是混合积[a b c]的绝对值。</p>
+<h1>三重积</h1>
+<p><strong>标量三重积</strong></p>
+<p>$$\left( {\vec a \times \vec b} \right) \cdot \vec c = \vec c \cdot \left( {\vec a \times \vec b} \right) = \left| {\begin{array}{*{20}{c}}<br />
+ {{a_x}}&amp;{{a_y}}&amp;{{a_z}} \\<br />
+ {{b_x}}&amp;{{b_y}}&amp;{{b_z}} \\<br />
+ {{c_x}}&amp;{{c_y}}&amp;{{c_z}}<br />
+\end{array}} \right|$$</p>
+<p>上式的几何意义：以向量a,b,c为棱的平行六面体体积是标量三重积的绝对值：</p>
+<p>$$V = \left\| {\begin{array}{*{20}{c}}<br />
+ {{a_x}}&amp;{{a_y}}&amp;{{a_z}} \\<br />
+ {{b_x}}&amp;{{b_y}}&amp;{{b_z}} \\<br />
+ {{c_x}}&amp;{{c_y}}&amp;{{c_z}}<br />
+\end{array}} \right\|$$</p>
+<p>利用行列式的特性可得：</p>
+<p>$$\overrightarrow a \cdot \left( {\overrightarrow b \times \overrightarrow c } \right) = \overrightarrow b \cdot \left( {\overrightarrow c \times \overrightarrow a } \right) = \overrightarrow c \cdot \left( {\overrightarrow a \times \overrightarrow b } \right)$$</p>
+<p>$$\overrightarrow a \cdot \left( {\overrightarrow b \times \overrightarrow c } \right) = - \overrightarrow a \cdot \left( {\overrightarrow c \times \overrightarrow b } \right)$$</p>
+<p>$$\overrightarrow a \cdot \left( {\overrightarrow b \times \overrightarrow c } \right) = - \overrightarrow b \cdot \left( {\overrightarrow a \times \overrightarrow c } \right)$$</p>
+<p>$$\overrightarrow a \cdot \left( {\overrightarrow b \times \overrightarrow c } \right) = - \overrightarrow c \cdot \left( {\overrightarrow b \times \overrightarrow a } \right)$$</p>
+<p><strong>向量三重积</strong></p>
+<p>$$\overrightarrow a \times \left( {\overrightarrow b \times \overrightarrow c } \right) = \overrightarrow b \left( {\overrightarrow a \cdot \overrightarrow c } \right) - \overrightarrow c \left( {\overrightarrow a \cdot \overrightarrow b } \right)$$</p>
+<p>$$ \Downarrow $$</p>
+<p>$$\left( {\overrightarrow a \times \overrightarrow b } \right) \times \overrightarrow c = \overrightarrow a \times \left( {\overrightarrow b \times \overrightarrow c } \right) - \overrightarrow b \times \left( {\overrightarrow a \times \overrightarrow c } \right)$$</p>
+<p>$$\overrightarrow a \times \left( {\overrightarrow b \times \overrightarrow c } \right) + \overrightarrow b \times \left( {\overrightarrow c \times \overrightarrow a } \right) + \overrightarrow c \times \left( {\overrightarrow a \times \overrightarrow b } \right) = 0$$</p>
+<p>$$\nabla \times \left( {\nabla \times f} \right) = \nabla \left( {\nabla \cdot f} \right) - \left( {\nabla \cdot \nabla } \right)f$$</p>
 <h1>导数与积分</h1>
 <p>设矢量函数 $\overrightarrow A = \overrightarrow A \left( t \right)$，$\overrightarrow B = \overrightarrow B \left( t \right)$</p>
 <p>$$\frac{{d\overrightarrow A }}{{dt}} = \frac{{d{A_x}}}{{dt}}\overrightarrow i + \frac{{d{A_y}}}{{dt}}\overrightarrow j + \frac{{d{A_z}}}{{dt}}\overrightarrow k $$</p>

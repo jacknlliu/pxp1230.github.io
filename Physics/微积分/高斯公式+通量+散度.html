@@ -10,7 +10,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
   <style type="text/css">
-  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:10px 0;padding:0;}p{margin:20px 0 10px;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:10px auto}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:50px 0 10px;}h1{margin-top:100px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
   </style>
   
   
@@ -70,6 +70,9 @@
 <p>$$\iiint\limits_\Omega {\nabla \cdot \overrightarrow A dv} = \iint\limits_\sum {\overrightarrow A \cdot d\overrightarrow S }$$</p>
 <p>或</p>
 <p>$$\int\limits_\Omega {\nabla \cdot \overrightarrow A dv} = \oint\limits_\sum {\overrightarrow A \cdot d\overrightarrow S } $$</p>
+<p>$$ \Downarrow $$</p>
+<p>$$\iiint\limits_\Omega {\nabla udv} = \iint\limits_\Sigma {ud\overrightarrow S }$$</p>
+<p>$$\iiint\limits_\Omega {\nabla \times \overrightarrow A dv} = - \iint\limits_\Sigma {\overrightarrow A \times d\overrightarrow S }$$</p>
 <h2>物理意义</h2>
 <p>散度的定义：通过这个无限小闭区域的闭合曲面流出的通量与闭合曲面所包围的体积之比，即这一点单位体积通过闭合曲面的通量。<br />
 向量场的散度是一个标量，其物理本质就是描述场点激发场的能力。<br />
@@ -77,5 +80,16 @@
 当散度&gt;0，表示该点有散发通量的正源；<br />
 当散度&lt;0，表示该点有吸收通量的负源；<br />
 当散度=0，表示该点为无源场。</p>
+<h1>散度的运算法则</h1>
+<p>$$\nabla \cdot \overrightarrow C = 0\quad {\text{（C为常矢量）}}$$</p>
+<p>$$\nabla \cdot \left( {\overrightarrow A \pm \overrightarrow B } \right) = \nabla \cdot \overrightarrow A \pm \nabla \cdot \overrightarrow B $$</p>
+<p>$$\nabla \cdot \left( {u\overrightarrow A } \right) = u\nabla \cdot \overrightarrow A + \nabla u \cdot \overrightarrow A $$</p>
+<p>$$\nabla \cdot \left( {\overrightarrow A \times \overrightarrow B } \right) = \left( {\nabla \times \overrightarrow A } \right) \cdot \overrightarrow B - \overrightarrow A \cdot \left( {\nabla \times \overrightarrow B } \right)$$</p>
+<p>$$\nabla \cdot \left( {\nabla u} \right) = {\nabla ^2}u$$</p>
+<p>$${\nabla ^2}\overrightarrow A = \left( {\begin{array}{*{20}{c}}<br />
+ {{\nabla ^2}{A_x}}&amp;{{\nabla ^2}{A_y}}&amp;{{\nabla ^2}{A_z}}<br />
+\end{array}} \right)$$</p>
+<p>$$\nabla \cdot \left( {\nabla \times \overrightarrow A } \right) = 0$$</p>
+<p>$$\nabla \times \left( {\nabla \times \overrightarrow A } \right) = \nabla \left( {\nabla \cdot \overrightarrow A } \right) - {\nabla ^2}\overrightarrow A $$</p>
 </body>
 </html>

@@ -10,7 +10,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
   <style type="text/css">
-  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:10px 0;padding:0;}p{margin:20px 0 10px;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:10px auto}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:50px 0 10px;}h1{margin-top:100px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
   </style>
   
   
@@ -91,11 +91,21 @@
 \end{array}} \right|$$</p>
 <p>由此得到斯托克斯公式的另一形式：</p>
 <p>$$\iint\limits_\Sigma {\nabla \times \vec A \cdot d\vec S} = \oint_\Gamma {\vec A \cdot d\vec l} $$</p>
+<p>$$ \Downarrow $$</p>
+<p>$$\iint\limits_\Sigma {\nabla u \times d\vec S} = - \oint\limits_\Gamma {ud\overrightarrow l } $$</p>
 <h1>物理意义</h1>
 <p>在数学上，将矢量场 $\overrightarrow A $ 沿一条有向闭合曲线Γ（即取定了正线方向的闭合曲线）的线积分称为沿该曲线Γ的环量（环流强弱的程度）。</p>
 <p>旋度的定义：旋度就是单位面积平均环流的极限，它与闭合曲线的形状无关，但显然依赖于以闭合曲线为界的面积法线方向 $\hat n$ ，且有向闭合曲线Γ的正方向与 $\hat n$ 满足右手螺旋法则，为此定义</p>
 <p>$${\text{rot}}\overrightarrow A = \mathop {\lim }\limits_{\Delta s \to 0} \frac{{\oint_\Gamma {\overrightarrow A \cdot d\vec l} }}{{\Delta s}}\hat n$$</p>
 <p>称为矢量场 $\overrightarrow A $ 的旋度（rot是rotation缩写）。</p>
 <p>旋度的重要性在于，可用以表征矢量在某点附近各方向上环流强弱的程度，如果场中处处 $\text{rot} \overrightarrow A = 0$ 称为无旋场。</p>
+<h1>旋度的运算法则</h1>
+<p>$$\nabla \times \overrightarrow C = 0\quad {\text{（C为常矢量）}}$$</p>
+<p>$$\nabla \times \left( {\overrightarrow A \pm \overrightarrow B } \right) = \nabla \times \overrightarrow A \pm \nabla \times \overrightarrow B $$</p>
+<p>$$\nabla \times \left( {u\overrightarrow A } \right) = u\nabla \times \overrightarrow A + \nabla u \times \overrightarrow A $$</p>
+<p>$$\nabla \cdot \left( {\overrightarrow A \times \overrightarrow B } \right) = \left( {\nabla \times \overrightarrow A } \right) \cdot \overrightarrow B - \overrightarrow A \cdot \left( {\nabla \times \overrightarrow B } \right)$$</p>
+<p>$$\nabla \times \left( {\nabla u} \right) = 0$$</p>
+<p>$$\nabla \cdot \left( {\nabla \times \overrightarrow A } \right) = 0$$</p>
+<p>$$\nabla \times \left( {\nabla \times \overrightarrow A } \right) = \nabla \left( {\nabla \cdot \overrightarrow A } \right) - {\nabla ^2}\overrightarrow A $$</p>
 </body>
 </html>

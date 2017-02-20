@@ -10,7 +10,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
   <style type="text/css">
-  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:10px 0;padding:0;}p{margin:20px 0 10px;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:10px auto}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:50px 0 10px;}h1{margin-top:100px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
   </style>
   
   
@@ -48,5 +48,52 @@ ServerRoot &quot;${SRVROOT}&quot;</code></pre>
 修改D:\application_software\Apache24\conf\httpd.conf文件中的DocumentRoot参数为</p>
 <pre><code>DocumentRoot &quot;F:/手机备忘录&quot;
 &lt;Directory &quot;F:/手机备忘录&quot;&gt;</code></pre>
+<h1 id="apache">Apache为本地主机配置多个网站根目录</h1>
+<p>在httpd.conf文件末尾添加：</p>
+<pre><code>Listen 81
+NameVirtualHost *:81
+&lt;VirtualHost *:81&gt;
+DocumentRoot &quot;F:/项目管理/项目管理培训/自动发送邮件_files&quot;
+&lt;Directory &quot;F:/项目管理/项目管理培训/自动发送邮件_files&quot;&gt;
+    Options Indexes FollowSymLinks
+    AllowOverride None
+    Require all granted
+&lt;/Directory&gt;
+&lt;/VirtualHost&gt;</code></pre>
+<p>参考自：<br />
+<a href="http://blog.csdn.net/killerlegend/article/details/27195445" class="uri">http://blog.csdn.net/killerlegend/article/details/27195445</a></p>
+<h1 id="apache">Apache下实现禁止目录浏览</h1>
+<p>在Options Indexes FollowSymLinks在Indexes前面加上 - 符号<br />
+即： Options -Indexes FollowSymLinks</p>
+<p>备注：在Indexes前，加 + 代表允许目录浏览；加 - 代表禁止目录浏览。</p>
+<p>注意：虚拟主机中，要把上面的 Options Indexes FollowSymLinks 注释掉，虚拟主机才起作用</p>
+<pre><code>Listen 81
+NameVirtualHost *:81
+&lt;VirtualHost *:81&gt;
+DocumentRoot &quot;F:/AGY/UDP+TCP+WebSocket+HTTP服务器程序/AdapterCode/ConsoleApplication1/bin/Debug/库&quot;
+&lt;Directory &quot;F:/AGY/UDP+TCP+WebSocket+HTTP服务器程序/AdapterCode/ConsoleApplication1/bin/Debug/库&quot;&gt;
+#   Options Indexes FollowSymLinks
+    AllowOverride None
+    Require all granted
+&lt;/Directory&gt;
+&lt;/VirtualHost&gt;</code></pre>
+<p>参考自：<br />
+<a href="http://blog.163.com/pqilai77@126/blog/static/491548842012111510637532/" class="uri">http://blog.163.com/pqilai77@126/blog/static/491548842012111510637532/</a></p>
+<h1>禁止访问某些文件/目录</h1>
+<p><Files>：提供基于文件名的访问控制，类似于<Directory>和<Location>指令。<br />
+语法：<Files filename> ... </Files></p>
+<p>filename参数应当是一个文件名或是一个包含通配符的字符串，其中&quot;?&quot;匹配任何单个字符，&quot;*&quot;匹配任何字符串序列。在&quot;~&quot;字符之后可以使用正则表达式。</p>
+<p>在此配置段中定义的指令将作用于其基本名称(不是完整的路径)与指定的文件名相符的对象。<Files>段将根据它们在配置文件中出现的顺序被处理：在<Directory>段和.htaccess</p>
+<p>文件被处理之后，但在<Location>段之前。<Files>能嵌入到<Directory>段中以限制它们作用的文件系统范围，也可用于.htaccess文件当中，以允许用户在文件层面上控制对它们自己文件的访问。</p>
+<p>增加Files选项来控制，比如要不允许访问 .inc 扩展名的文件，保护php类库：</p>
+<pre><code>&lt;Files ~ &quot;.inc$&quot;&gt;
+    Require all denied
+&lt;/Files&gt;</code></pre>
+<p>禁止访问config.xml文件：</p>
+<pre><code>&lt;Files &quot;config.xml&quot;&gt;
+    Require all denied
+&lt;/Files&gt;</code></pre>
+<p>参考自：<br />
+<a href="http://blog.csdn.net/sinat_25306771/article/details/52192357" class="uri">http://blog.csdn.net/sinat_25306771/article/details/52192357</a></p>
 </body>
 </html>

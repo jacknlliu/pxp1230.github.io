@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Windows下使用git hook向服务器推送消息 - </title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:10px 0;padding:0;}p{margin:20px 0 10px;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:10px auto}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:50px 0 10px;}h1{margin-top:100px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  </style>
+  
+  
+  <meta charset="UTF-8"/>
+  <meta name="author" content="潘霄鹏 - weibo.com/pxp1230">
+  <meta name="keywords" content="潘霄鹏笔记">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath:[['$','$']],processEscapes:true}
+  });
+  </script>
+  <script type="text/javascript" src="file:///storage/emulated/0/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///C:/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///C:/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/pxp1230.github.io.js"></script>
+  <script type="text/javascript" src="file:///C:/pxp1230.github.io.js"></script>
+  <script type="text/javascript">
+  if(window.location.protocol!="file:"){var d=document,s=d.createElement('script');s.src='/pxp1230.github.io.js';d.head.appendChild(s);}
+  </script>
+</head>
+<body>
+<h1 id="git-">Git 钩子</h1>
+<p>git hook 是 git 提供的事件钩子，能被特定的事件触发后调用。简单点来说，当你执行 pull 或 push 命令时，git hook 就会同时自动执行你所预定的脚本。</p>
+<p>钩子都被存储在 Git 目录下的 hooks 子目录中。 也即绝大部分项目中的 .git/hooks 。 当你用 git init 初始化一个新版本库时，Git 默认会在这个目录中放置一些示例脚本。这些脚本除了本身可以被调用外，它们还透露了被触发时所传入的参数。这些示例的名字都是以 .sample 结尾，如果你想启用它们，得先移除这个后缀。</p>
+<p>把一个正确命名且可执行的文件放入 Git 目录下的 hooks 子目录中，即可激活该钩子脚本。 这样一来，它就能被 Git 调用。</p>
+<p>参考资料：<br />
+<a href="https://git-scm.com/book/zh/v2/%E8%87%AA%E5%AE%9A%E4%B9%89-Git-Git-%E9%92%A9%E5%AD%90">https://git-scm.com/book/zh/v2/%E8%87%AA%E5%AE%9A%E4%B9%89-Git-Git-%E9%92%A9%E5%AD%90</a></p>
+<h1 id="post-receive">post-receive示例</h1>
+<p>post-receive</p>
+<pre><code>#!/bin/sh
+echo &quot;executing post-receive&quot;
+hooks/post-receive.exe</code></pre>
+<p>post-receive.bat</p>
+<pre><code>@echo off
+git --no-pager log --pretty=format:&quot;%%an    %%ae    %%s&quot; -1</code></pre>
+<p>post-receive.exe</p>
+<pre><code>using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        /// &lt;summary&gt;
+        /// 
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;args&quot;&gt;名字 邮箱 评论&lt;/param&gt;
+        static void Main(string[] args)
+        {
+            FileInfo file = new FileInfo(Process.GetCurrentProcess().MainModule.FileName);
+            file = new FileInfo(file.Directory.FullName + &quot;\\post-receive.bat&quot;);
+            if (file.Exists)
+            {
+                Process p = new Process();
+                p.StartInfo.FileName = file.FullName;
+                p.StartInfo.CreateNoWindow = true;
+                p.StartInfo.UseShellExecute = false;
+                p.StartInfo.RedirectStandardInput = true;
+                p.StartInfo.RedirectStandardOutput = true;
+                p.StartInfo.StandardOutputEncoding = Encoding.UTF8;
+                p.Start();
+                string output = p.StandardOutput.ReadToEnd();
+                p.WaitForExit();
+                p.Close();
+                string[] lines = output.Split(&#39;\n&#39;);
+                for (int i = 0; i &lt; lines.Length; i++)
+                {
+                    string[] cells = lines[i].Split(&#39;\t&#39;);
+                    if (cells.Length == 3)
+                    {
+                        if (!cells[2].StartsWith(&quot;no message&quot;) &amp;&amp; !cells[2].StartsWith(&quot;Merge branch&quot;))
+                        {
+                            HttpClientDoGet(cells[0], cells[1], cells[2]);
+                            Console.ReadKey();
+                        }
+                    }
+                    break;
+                }
+            }
+
+
+        }
+        public static async void HttpClientDoGet(string name, string email, string text)
+        {
+            if (!text.StartsWith(&quot;no message&quot;) &amp;&amp; !text.StartsWith(&quot;Merge branch&quot;))
+            {
+                var uri = &quot;http://1993.tunnel.qydev.com/git?text=&quot; + System.Web.HttpUtility.UrlEncode(name + &quot;\t&quot; + email + &quot;\t&quot; + text);
+                using (var httpclient = new HttpClient())
+                {
+                    httpclient.Timeout = new TimeSpan(0, 0, 2);
+                    try
+                    {
+                        HttpResponseMessage response = await httpclient.GetAsync(uri);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            string responseString = await response.Content.ReadAsStringAsync();
+                            Console.WriteLine(responseString);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+            }
+            Process.GetCurrentProcess().Kill();
+        }
+    }
+}</code></pre>
+</body>
+</html>

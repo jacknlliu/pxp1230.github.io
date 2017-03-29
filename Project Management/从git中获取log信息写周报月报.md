@@ -35,6 +35,13 @@ git --no-pager log --pretty=format:"%%s	%%an	%%ad" --date=short --since=1.weeks
 ::%ad：提交日期
 ```
 
+获取最近一周的提交报告.bat
+```
+@echo off
+cd 获取最近一周的提交报告
+WeekReport>..\获取最近一周的提交报告.txt
+```
+
 Program.cs
 ```
 using System;

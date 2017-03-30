@@ -21,6 +21,16 @@ git fetch origin
 git log origin --pretty=format:"%an: %s"
 ```
 
+过滤merge commit：
+默认情况下git log会输出merge commit.  你可以通过--no-merges标记来过滤掉merge commit:
+```
+git log --no-merges
+```
+如果你只对merge commit感兴趣可以使用--merges:
+```
+git log --merges
+```
+
 
 > 参考来源：
 > https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2

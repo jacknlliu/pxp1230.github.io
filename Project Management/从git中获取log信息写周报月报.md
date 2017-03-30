@@ -4,39 +4,51 @@
 ```
 git log --pretty=format:"%an: %s" --since=1.weeks
 ```
+
 获取具体某一天开始的提交：
 ```
 git log --pretty=format:"%an: %s" --since="2008-10-01"
 ```
+
 获取具体某一天开始到某一天结束的提交：
 ```
 git log --pretty=format:"%an: %s" --since="2008-10-01" --before="2008-11-01"
 ```
 
+从远程仓库抓取最新数据，并查看远程仓库的日志：
+```
+git fetch origin
+git log origin --pretty=format:"%an: %s"
+```
+
+
 > 参考来源：
 > https://git-scm.com/book/zh/v1/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2
+> http://git.oschina.net/progit/2-Git-%E5%9F%BA%E7%A1%80.html
 
 
 
 
-# 表格列出一些 format 支援的選項
+# 表格列出一些 format 支持的选项
 
-選項	選項的說明
-%H	該更新的SHA1雜湊值
-%h	該更新的簡短SHA1雜湊值
-%T	存放該更新的根目錄的Tree物件的SHA1雜湊值
-%t	存放該更新的根目錄的Tree物件的簡短SHA1雜湊值
-%P	該更新的父更新的SHA1雜湊值
-%p	該更新的父更新的簡短SHA1雜湊值
-%an	作者名字
-%ae	作者電子郵件
-%ad	作者的日期 (格式依據 date 選項而不同)
-%ar	相對於目前時間的作者的日期
-%cn	提交者的名字
-%ce	提交者的電子郵件
-%cd	提交的日期
-%cr	相對於目前時間的提交的日期
-%s	提交信息
+```
+选项 说明
+    %H 提交对象（commit）的完整哈希字串
+    %h 提交对象的简短哈希字串
+    %T 树对象（tree）的完整哈希字串
+    %t 树对象的简短哈希字串
+    %P 父对象（parent）的完整哈希字串
+    %p 父对象的简短哈希字串
+    %an 作者（author）的名字
+    %ae 作者的电子邮件地址
+    %ad 作者修订日期（可以用 -date= 选项定制格式）
+    %ar 作者修订日期，按多久以前的方式显示
+    %cn 提交者(committer)的名字
+    %ce 提交者的电子邮件地址
+    %cd 提交日期
+    %cr 提交日期，按多久以前的方式显示
+    %s 提交说明
+```
 
 
 
@@ -49,7 +61,8 @@ cd /d F:\pxp1230.github.io\.git
 setlocal
 PATH="C:\Program Files (x86)\Git\cmd"
 set PATH>nul
-git --no-pager log --pretty=format:"%%s	%%an	%%ad" --date=short --since=1.weeks
+git fetch origin
+git --no-pager log origin --pretty=format:"%%s	%%an	%%ad" --date=short --since=1.weeks
 ::git --no-pager log：不加--no-pager参数的话，必须按Q才能退出
 ::转义符号：如果要显示%本身时，需要在前面用%来转义
 ::%s：提交信息

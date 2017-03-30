@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>内网穿透 - </title>
+  <title>Ngrok国内 - </title>
   <style type="text/css">code{white-space: pre;}</style>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
@@ -34,12 +34,46 @@
   </script>
 </head>
 <body>
-<h1 id="ngrok">Ngrok国内免费服务器——糖果科技（稳定）</h1>
+<h1 id="natapp">NATAPP（稳定，随机域名）</h1>
+<p>官网：<a href="https://natapp.cn/" class="uri">https://natapp.cn/</a><br />
+免费隧道(注册用户)：<br />
+一个注册用户可免费拥有2条不同协议的隧道<br />
+随机域名/TCP端口<br />
+不定时强制更换域名/端口</p>
+<p><strong>config.ini方式 (推荐)</strong><br />
+根据操作系统下载不同的<a href="https://natapp.cn/article/config_ini">config.ini文件</a>到刚才下载的natapp.exe同级目录<br />
+将购买隧道得到的authtoken填进去 (其他地方都不填),然后保存<br />
+<img src="Ngrok国内_files/0.jpg" alt="" /><br />
+windows下,直接双击natapp.exe 即可</p>
+<p><strong>cmd -authtoken= 参数方式运行</strong><br />
+windows ,点击开始-&gt;运行-&gt;命令行提示符 后进入 natapp.exe的目录<br />
+运行：</p>
+<pre><code>natapp -authtoken=9ab6b9040a624f40</code></pre>
+<h1 id="ittun">ITTUN</h1>
+<p>官网：<a href="http://www.ittun.com/" class="uri">http://www.ittun.com/</a></p>
+<p>示例.bat</p>
+<pre><code>@echo on
+cd %cd%
+#ngrok -proto=tcp 22
+#ngrok start web
+#ngrok -subdomain test1 8080
+ngrok 80</code></pre>
+<h1 id="yeti">Yeti</h1>
+<p>官网：<a href="http://fix-cn.com/" class="uri">http://fix-cn.com/</a></p>
+<p>ngrok.bat</p>
+<pre><code>start ngrok -config=ngrok.cfg -subdomain simtop 80
+start ngrok -config=ngrok.cfg -subdomain 1993 1993</code></pre>
+<h1>动酷网络科技</h1>
+<p>官网：<a href="http://ngrok.2bdata.com/" class="uri">http://ngrok.2bdata.com/</a></p>
+<p>ngrok.bat</p>
+<pre><code>start ngrok -config=ngrok.cfg -subdomain simtop 80
+start ngrok -config=ngrok.cfg -subdomain 1993 1993</code></pre>
+<h1>糖果科技（较稳定）</h1>
 <p>官网：<a href="http://qydev.com/" class="uri">http://qydev.com/</a></p>
 <p>ngrok.bat</p>
 <pre><code>start ngrok -config=ngrok.cfg -subdomain simtop 80
 start ngrok -config=ngrok.cfg -subdomain 1993 1993</code></pre>
-<h1 id="sunny-ngrok">Sunny-Ngrok内网穿透服务（不稳定）</h1>
+<h1 id="sunny-ngrok">Sunny-Ngrok内网转发（不稳定）</h1>
 <p>官网：<a href="https://www.ngrok.cc/" class="uri">https://www.ngrok.cc/</a><br />
 平台登陆地址：<a href="http://www.ngrok.cc/login" class="uri">http://www.ngrok.cc/login</a></p>
 <p>示例：<br />
@@ -52,10 +86,5 @@ Title Sunny-Ngrok启动工具 by pxp1230.github.io
 Mode con cols=109 lines=30
 set clientid=0e1291441d17cb73
 sunny.exe clientid %clientid%</code></pre>
-<h1 id="nat123">nat123（稳定）</h1>
-<p>官网：<a href="http://www.nat123.com/" class="uri">http://www.nat123.com/</a></p>
-<p>双方都需要下载软件<br />
-服务端启动nat123，添加全端口映射（仅p2p）<br />
-访问端启动nat123P2P访问者</p>
 </body>
 </html>

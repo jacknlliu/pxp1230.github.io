@@ -23,6 +23,7 @@ hooks/post-receive.exe
 post-receive.bat
 ```
 @echo off
+echo AGY
 git --no-pager log --pretty=format:"%%an	%%ae	%%s" -1
 ```
 
@@ -33,6 +34,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,10 +43,6 @@ namespace ConsoleApplication1
 {
     class Program
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="args">名字 邮箱 评论</param>
         static void Main(string[] args)
         {
             FileInfo file = new FileInfo(Process.GetCurrentProcess().MainModule.FileName);
@@ -63,33 +61,48 @@ namespace ConsoleApplication1
                 p.WaitForExit();
                 p.Close();
                 string[] lines = output.Split('\n');
-                for (int i = 0; i < lines.Length; i++)
+                string arg0, arg1, arg2, arg3;
+                arg0 = arg1 = arg2 = arg3 = "";
+                if (lines.Length >= 1)
                 {
-                    string[] cells = lines[i].Split('\t');
+                    arg0 = lines[0].Trim();
+                }
+                if (lines.Length >= 2)
+                {
+                    string[] cells = lines[1].Trim().Split('\t');
                     if (cells.Length == 3)
                     {
                         if (!cells[2].StartsWith("no message") && !cells[2].StartsWith("Merge branch"))
                         {
-                            HttpClientDoGet(cells[0], cells[1], cells[2]);
-                            Console.ReadKey();
+                            arg1 = cells[0];
+                            arg2 = cells[1];
+                            arg3 = cells[2];
                         }
                     }
-                    break;
+                }
+                if (lines.Length >= 1)
+                {
+                    Dns.BeginGetHostEntry("1993.fg0hsj43.gq", (ar) =>
+                    {
+                        IPHostEntry hostinfo = Dns.EndGetHostEntry(ar);
+                        HttpClientDoGet(hostinfo.HostName, arg0, arg1, arg2, arg3);
+                    }, null);
+                    Console.ReadKey();
                 }
             }
-
-
         }
-        public static async void HttpClientDoGet(string name, string email, string text)
+        public static async void HttpClientDoGet(string hostName, string project, string name, string email, string text)
         {
-            if (!text.StartsWith("no message") && !text.StartsWith("Merge branch"))
+            if (!string.IsNullOrEmpty(hostName) && !text.StartsWith("no message") && !text.StartsWith("Merge branch"))
             {
-                var uri = "http://1993.tunnel.qydev.com/git?text=" + System.Web.HttpUtility.UrlEncode(name + "\t" + email + "\t" + text);
+                Console.WriteLine("project: " + project);
+                string uri = "http://" + hostName + "/git?text=" + System.Web.HttpUtility.UrlEncode(project + "\t" + name + "\t" + email + "\t" + text);
                 using (var httpclient = new HttpClient())
                 {
-                    httpclient.Timeout = new TimeSpan(0, 0, 2);
+                    httpclient.Timeout = new TimeSpan(0, 0, 4);
                     try
                     {
+                        Console.WriteLine("GET " + uri);
                         HttpResponseMessage response = await httpclient.GetAsync(uri);
                         if (response.IsSuccessStatusCode)
                         {

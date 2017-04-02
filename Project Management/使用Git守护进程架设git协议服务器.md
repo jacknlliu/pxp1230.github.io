@@ -25,6 +25,7 @@ git://192.168.0.116/test.git
 
 参考文献：
 https://git-scm.com/book/zh/v2/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84-Git-Git-%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B
+[用GIT DAEMON搭建GIT REPOSITOY（搭建GIT服务器）](http://smilejay.com/2011/12/git-daemon/)
 
 
 

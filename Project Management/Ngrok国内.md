@@ -48,6 +48,9 @@ ngrok.bat
 start ngrok -config=ngrok.cfg -subdomain simtop 80
 start ngrok -config=ngrok.cfg -subdomain 1993 1993
 ```
+```
+ngrok -config=ngrok.cfg -hostname="simtop.fg0hsj43.gq" 80
+```
 
 
 # 动酷网络科技

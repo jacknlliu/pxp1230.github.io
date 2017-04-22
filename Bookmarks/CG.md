@@ -1,5 +1,8 @@
 # CG
 
+Autodesk FBX 浏览器
+备注：已放到百度网盘
+
 CrazyBump - 超级法线凹凸生成软件
 http://www.crazybump.com/
 

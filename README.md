@@ -9,7 +9,8 @@ class Human
     string company = "Shanghai Simtop Ltd.";
     string wechat = "GhostCTO";
     string weibo = "@恶灵CTO";
-    string blog = "http://pxp1230.github.io/";
+    string blog = "https://pxp1230.github.io/";
+    string webStation = "http://qq2423200363.github.io/";
     string[] professionalFields = {
                              "Physics",
                              "Mathematics",

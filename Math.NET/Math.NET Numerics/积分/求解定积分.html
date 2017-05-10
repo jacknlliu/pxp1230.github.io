@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>求解定积分 - </title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,video,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:10px 0;padding:0;}p{margin:20px 0 10px;}body{background-color:#1A1A1A;margin:10px;}embed,img,video{max-width:100%;margin:10px auto}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:50px 0 10px;}h1{margin-top:100px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  </style>
+  
+  
+  <meta charset="UTF-8"/>
+  <meta name="author" content="潘霄鹏 - weibo.com/pxp1230">
+  <meta name="keywords" content="潘霄鹏笔记">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+  tex2jax: {inlineMath:[['$','$']],processEscapes:true}
+  });
+  </script>
+  <script type="text/javascript" src="file:///storage/emulated/0/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///C:/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///C:/highlight/highlight.pack.js"></script>
+  <script type="text/javascript" src="file:///storage/emulated/0/pxp1230.github.io.js"></script>
+  <script type="text/javascript" src="file:///C:/pxp1230.github.io.js"></script>
+  <script type="text/javascript">
+  if(window.location.protocol!="file:"){var d=document,s=d.createElement('script');s.src='/pxp1230.github.io.js';d.head.appendChild(s);}
+  </script>
+</head>
+<body>
+<h1 id="math.net">Math.NET关于定积分的实现</h1>
+<p>Math.NET中对定积分的实现都在Integrate.cs中,Integrate静态类其实是对几个近似积分方法的实现。Math.NET定积分的近似求解主要是用到了“梯形法则”，其原理非常简单，内部实现过程可以查源码：</p>
+<pre><code>using System;
+using MathNet.Numerics.Integration;
+
+namespace MathNet.Numerics
+{
+    /// &lt;summary&gt;
+    /// 数值积分类
+    /// &lt;/summary&gt;
+    public static class Integrate
+    {
+        /// &lt;summary&gt;      
+        /// 近似解析光滑函数在闭区间上的定积分
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;f&quot;&gt;The analytic smooth function to integrate.&lt;/param&gt;
+        /// &lt;param name=&quot;intervalBegin&quot;&gt;Where the interval starts, inclusive and finite.&lt;/param&gt;
+        /// &lt;param name=&quot;intervalEnd&quot;&gt;Where the interval stops, inclusive and finite.&lt;/param&gt;
+        /// &lt;param name=&quot;targetAbsoluteError&quot;&gt;The expected relative accuracy of the approximation.&lt;/param&gt;
+        /// &lt;returns&gt;Approximation of the finite integral in the given interval.&lt;/returns&gt;
+        public static double OnClosedInterval(Func&lt;double, double&gt; f, double intervalBegin, double intervalEnd, double targetAbsoluteError)
+        {
+            return DoubleExponentialTransformation.Integrate(f, intervalBegin, intervalEnd, targetAbsoluteError);
+        }
+
+        /// &lt;summary&gt;   
+        ///  近似解析光滑函数在闭区间上的定积分
+        /// &lt;/summary&gt;
+        /// &lt;param name=&quot;f&quot;&gt;The analytic smooth function to integrate.&lt;/param&gt;
+        /// &lt;param name=&quot;intervalBegin&quot;&gt;Where the interval starts, inclusive and finite.&lt;/param&gt;
+        /// &lt;param name=&quot;intervalEnd&quot;&gt;Where the interval stops, inclusive and finite.&lt;/param&gt;
+        /// &lt;returns&gt;Approximation of the finite integral in the given interval.&lt;/returns&gt;
+        public static double OnClosedInterval(Func&lt;double, double&gt; f, double intervalBegin, double intervalEnd)
+        {
+            return DoubleExponentialTransformation.Integrate(f, intervalBegin, intervalEnd, 1e-8);
+        }
+    }
+}</code></pre>
+<h1>求解定积分的例子</h1>
+<pre><code>// 1. Integrate x*x on interval [0, 10]
+Console.WriteLine(@&quot;1.函数 x*x 在闭区间 [0, 10] 上的积分&quot;);
+var result = Integrate.OnClosedInterval(x =&gt; x * x, 0, 10);
+Console.WriteLine(result);
+Console.WriteLine();
+
+// 2. Integrate 1/(x^3 + 1) on interval [0, 1]
+Console.WriteLine(@&quot;2.函数 1/(x^3 + 1) 在闭区间 [0, 1] 上的积分&quot;);
+result = Integrate.OnClosedInterval(x =&gt; 1 / (Math.Pow(x, 3) + 1), 0, 1);
+Console.WriteLine(result);
+Console.WriteLine();
+
+// 3. Integrate f(x) = exp(-x/5) (2 + sin(2 * x)) on [0, 10]
+Console.WriteLine(@&quot;3.函数 f(x) = exp(-x/5) (2 + sin(2 * x)) 在 [0, 10]上的积分&quot;);
+result = Integrate.OnClosedInterval(x =&gt; Math.Exp(-x / 5) * (2 + Math.Sin(2 * x)), 0, 100);
+Console.WriteLine(result);
+Console.WriteLine();
+
+// 4. Integrate target function with absolute error = 1E-4
+Console.WriteLine(@&quot;4. 对目标函数进行积分，绝对误差= 1E-4 ,区间 [0, 10]&quot;);
+Console.WriteLine(@&quot;public static double TargetFunctionA(double x)
+{
+return Math.Exp(-x / 5) * (2 + Math.Sin(2 * x));
+}&quot;);
+result = Integrate.OnClosedInterval(TargetFunctionA, 0, 100, 1e-4);
+Console.WriteLine(result);
+Console.WriteLine();</code></pre>
+<p>参数主要有3个：函数，积分下限，积分上限，其他的就是附带一个绝对误差了，看看运行结果：</p>
+<ol>
+<li>函数 x*x 在闭区间 [0, 10] 上的积分<br />
+333.333333333332</li>
+<li>函数 1/(x^3 + 1) 在闭区间 [0, 1] 上的积分<br />
+0.835648848264702</li>
+<li>函数 f(x) = exp(-x/5) (2 + sin(2 * x)) 在 [0, 10]上的积分<br />
+10.4950494839272</li>
+<li>对目标函数进行积分，绝对误差= 1E-4 ,区间 [0, 10]<br />
+public static double TargetFunctionA(double x)<br />
+{<br />
+ return Math.Exp(-x / 5) * (2 + Math.Sin(2 * x));<br />
+}<br />
+10.4950494839276</li>
+</ol>
+<p><br><br />
+参考资料：<a href="http://www.cnblogs.com/asxinyu/p/4301017.html" class="uri">http://www.cnblogs.com/asxinyu/p/4301017.html</a></p>
+</body>
+</html>

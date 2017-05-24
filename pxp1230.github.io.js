@@ -100,7 +100,7 @@ window.onload = function() {
 		s2.async = true;
 		(d.head || d.body).appendChild(s2);
 	})();
-	if(isIndex||a=="readme"){
+	if((isIndex||a=="readme")&&window.location.host.indexOf('1')!=0){
 		var logo = d.createElement("img");
 		logo.id = "logo";
 		//http://www.tietuku.com/upload

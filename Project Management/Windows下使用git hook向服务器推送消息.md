@@ -11,6 +11,19 @@ https://git-scm.com/book/zh/v2/%E8%87%AA%E5%AE%9A%E4%B9%89-Git-Git-%E9%92%A9%E5%
 
 
 
+# 注意事项
+
+* post-receive文件的第一行必须添加SHEBANG，就像这样：
+```
+#!/bin/sh
+echo "executing post-receive"
+exit 0
+```
+
+* 必须将 `C:\Program Files\Git\cmd` 和 `C:\Program Files\Git\bin` 添加到Path环境变量
+
+
+
 # post-receive示例
 
 post-receive
@@ -23,8 +36,12 @@ hooks/post-receive.exe
 post-receive.bat
 ```
 @echo off
+set utf8=65001
+set ansi=936
+chcp %utf8%>nul
 echo AGY
 git --no-pager log --pretty=format:"%%an	%%ae	%%s" -1 --no-merges
+chcp %ansi%>nul
 ```
 
 post-receive.exe

@@ -31,8 +31,8 @@ nav.id="navbar";
 nav.innerHTML="<div class=\"m-nav\">"+
 		"<a href=\"/\">首页</a>"+
 		"<a href=\"./\">目录</a>"+
-		"<a  target=\"_blank\" href=\"http://wpa.qq.com/msgrd?v=3&uin=2423200363&site=qq&menu=yes\" onclick=\"manual_load_js()\">留言</a>"+
 		"<a href=\"/README.html\">关于</a>"+
+		"<a  target=\"_blank\" href=\"http://wpa.qq.com/msgrd?v=3&uin=2423200363&site=qq&menu=yes\" onclick=\"manual_load_js()\">QQ在线</a>"+
 	"</div>";
 if(isIndex){
 	surrounderEnable = false;
@@ -89,11 +89,7 @@ window.onload = function() {
 		d.body.appendChild(s1);
 		//https://pxp1230.qiyukf.com/
 		if(a=="readme"){
-			var s3 = d.createElement('script');
-			s3.src = 'https://qiyukf.com/script/0df53532e5f9eed1c406c616d31dea34.js';
-			s3.defer = true;
-			s3.async = true;
-			d.head.appendChild(s3);
+			manual_load_js();
 		}
 	})();
 	if((isIndex||a=="readme")&&window.location.host.indexOf('1')!=0){

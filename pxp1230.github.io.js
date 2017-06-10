@@ -96,7 +96,7 @@ window.onload = function() {
 		var logo = d.createElement("img");
 		logo.id = "logo";
 		//http://www.tietuku.com/upload
-		logo.src = "//i4.buimg.com/1949/4eab887b8097f4df.png";
+		logo.src = "http://i4.piimg.com/583495/4eab887b8097f4df.png";
 		d.body.insertBefore(logo,nav);
 	}
 };

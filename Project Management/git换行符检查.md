@@ -26,11 +26,10 @@ git config --global core.safecrlf warn
 ```
 
 
-如果你是Windows程序员，且正在开发仅运行在Windows上的项目，可以如下进行设置，取消换行符检查功能（core.safecrlf）和自动转换行结束符（core.autocrlf）：
+如果你是Windows程序员，且正在开发仅运行在Windows上的项目，可以如下进行设置，取消换行符检查功能（core.safecrlf）：
 ```
 [core]
 	safecrlf = false
-	autocrlf = false
 ```
 
 参考链接：

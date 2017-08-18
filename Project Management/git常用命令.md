@@ -45,9 +45,11 @@ explorer /select,$(cygpath -w ${PWD}"/"${FILENAME})
 # git常用变量
 
 查看当前所有可用的环境变量：输入 set 即可查看
+```
 $FILENAME
 $FILENAMES
 $PWD
+```
 
 
 

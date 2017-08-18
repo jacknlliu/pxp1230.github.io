@@ -1,5 +1,10 @@
 # git常用命令
 
+拉取
+```
+git pull --rebase
+```
+
 提交（no message）
 ```
 git commit -m "no message"
@@ -30,7 +35,7 @@ IFS=$OLDIFS
 git clean -fd
 ```
 
-打开所在文件夹
+在文件资源管理器中打开
 ```
 explorer /select,$(cygpath -w ${PWD}"/"${FILENAME})
 ```

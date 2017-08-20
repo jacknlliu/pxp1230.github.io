@@ -35,10 +35,24 @@
 </head>
 <body>
 <h1 id="git">git常用命令</h1>
-<p>拉取</p>
-<pre><code>git pull --rebase</code></pre>
+<p>不常用/列出所有本地分支和跟踪哪个远程分支</p>
+<pre><code>git branch -vv</code></pre>
+<p>不常用/设置master分支跟踪远程master分支</p>
+<pre><code>git branch -u origin/master</code></pre>
+<p>不常用/将当前分支重置到HEAD</p>
+<pre><code>git reset --hard</code></pre>
+<p>储藏并拉取</p>
+<pre><code>git stash;
+git pull</code></pre>
+<p>提取储藏</p>
+<pre><code>git stash apply</code></pre>
+<p>不常用/清空储藏</p>
+<pre><code>git stash clear</code></pre>
 <p>提交（no message）</p>
 <pre><code>git commit -m &quot;no message&quot;</code></pre>
+<p>提交（no message）并推送</p>
+<pre><code>git commit -m &quot;no message&quot;;
+git push</code></pre>
 <p>丢弃修改（Git GUI已有，Ctrl+J）</p>
 <pre><code>OLDIFS=$IFS;
 IFS=$&#39;\n&#39;;
@@ -46,14 +60,14 @@ for f in $FILENAMES;
 do git checkout -- &quot;$f&quot;;
 done;
 IFS=$OLDIFS</code></pre>
-<p>丢弃未跟踪文件</p>
+<p>不常用/丢弃未跟踪文件</p>
 <pre><code>OLDIFS=$IFS;
 IFS=$&#39;\n&#39;;
 for f in $FILENAMES;
 do git clean -f &quot;$f&quot;;
 done;
 IFS=$OLDIFS</code></pre>
-<p>删除空文件夹和未跟踪文件</p>
+<p>不常用/删除空文件夹和未跟踪文件</p>
 <pre><code>git clean -fd</code></pre>
 <p>在文件资源管理器中打开</p>
 <pre><code>explorer /select,$(cygpath -w ${PWD}&quot;/&quot;${FILENAME})</code></pre>

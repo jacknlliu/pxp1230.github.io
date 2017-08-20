@@ -1,13 +1,45 @@
 # git常用命令
 
-拉取
+不常用/列出所有本地分支和跟踪哪个远程分支
 ```
-git pull --rebase
+git branch -vv
+```
+
+不常用/设置master分支跟踪远程master分支
+```
+git branch -u origin/master
+```
+
+不常用/将当前分支重置到HEAD
+```
+git reset --hard
+```
+
+储藏并拉取
+```
+git stash;
+git pull
+```
+
+提取储藏
+```
+git stash apply
+```
+
+不常用/清空储藏
+```
+git stash clear
 ```
 
 提交（no message）
 ```
 git commit -m "no message"
+```
+
+提交（no message）并推送
+```
+git commit -m "no message";
+git push
 ```
 
 丢弃修改（Git GUI已有，Ctrl+J）
@@ -20,7 +52,7 @@ done;
 IFS=$OLDIFS
 ```
 
-丢弃未跟踪文件
+不常用/丢弃未跟踪文件
 ```
 OLDIFS=$IFS;
 IFS=$'\n';
@@ -30,7 +62,7 @@ done;
 IFS=$OLDIFS
 ```
 
-删除空文件夹和未跟踪文件
+不常用/删除空文件夹和未跟踪文件
 ```
 git clean -fd
 ```

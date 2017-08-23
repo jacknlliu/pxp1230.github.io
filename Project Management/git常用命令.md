@@ -1,5 +1,10 @@
 # git常用命令
 
+不常用/不弹出“Loose Object”提醒
+```
+git config --global gui.gcwarning false
+```
+
 查看该文件历史（2条）（不能放到Tools，因为会乱码）
 ```
 git log -2 -- "文件相对路径或绝对路径"
@@ -138,6 +143,8 @@ $PWD
 	cmd = git checkout $ARGS \"$FILENAME\"
 	needsfile = yes
 	argprompt = yes
+[guitool "不常用/不弹出“Loose Object”提醒"]
+	cmd = git config --global gui.gcwarning false
 ```
 
 

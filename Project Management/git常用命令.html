@@ -35,6 +35,8 @@
 </head>
 <body>
 <h1 id="git">git常用命令</h1>
+<p>不常用/不弹出“Loose Object”提醒</p>
+<pre><code>git config --global gui.gcwarning false</code></pre>
 <p>查看该文件历史（2条）（不能放到Tools，因为会乱码）</p>
 <pre><code>git log -2 -- &quot;文件相对路径或绝对路径&quot;</code></pre>
 <p>查看该文件历史（2星期）（不能放到Tools，因为会乱码）</p>
@@ -114,6 +116,8 @@ $PWD</code></pre>
 [guitool &quot;不常用/回滚该文件到指定提交&quot;]
     cmd = git checkout $ARGS \&quot;$FILENAME\&quot;
     needsfile = yes
-    argprompt = yes</code></pre>
+    argprompt = yes
+[guitool &quot;不常用/不弹出“Loose Object”提醒&quot;]
+    cmd = git config --global gui.gcwarning false</code></pre>
 </body>
 </html>

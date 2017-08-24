@@ -8,6 +8,7 @@ class Human
     string citizenhood = "Interplanetary Immigrant";
     string weixin = "GhostCTO";
     string blog = "https://pxp1230.github.io/";
+    string code = "https://coding.net/u/GhostCTO";
     string webStation = "http://qq2423200363.github.io/";
     string[] professionalFields = {
                              "Physics",

@@ -7,22 +7,24 @@ class Human
     string wife = "CiCi";
     string citizenhood = "Interplanetary Immigrant";
     string weixin = "GhostCTO";
-    string blog = "https://pxp1230.github.io/";
-    string code = "https://coding.net/u/GhostCTO";
-    string webStation = "http://qq2423200363.github.io/";
+    string[] blogs = {
+        "https://pxp1230.github.io/",
+        "http://qq2423200363.github.io/",
+        "http://ghostcto.coding.me/"
+    };
     string[] professionalFields = {
-                             "Physics",
-                             "Mathematics",
-                             "Simulation",
-                             "Visualization",
-                         };
+        "Physics",
+        "Mathematics",
+        "Simulation",
+        "Visualization",
+    };
     string[] interestsOfLife = {
-                             "Pet Cat",
-                             "Reading",
-                             "Film",
-                             "Music",
-                             "Tea/Coffee",
-                         };
+        "Pet Cat",
+        "Reading",
+        "Film",
+        "Music",
+        "Tea/Coffee",
+    };
                          
     void Everyday()
     {

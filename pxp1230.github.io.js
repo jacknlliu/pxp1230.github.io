@@ -25,7 +25,7 @@ if(!isIndex){
 //创建首部元素
 c = d.createElement('style');
 c.type = "text/css";
-var css = "#navbar{background:#333;background:-webkit-gradient(linear,0% 0%,0% 100%,from(#333),to(#232323));margin:20px 0;border:none;box-shadow:4px 8px 20px #000;border-radius:2px;}#navbar .m-nav{margin:0 auto;text-align:center;}#navbar a{display:inline-flex;justify-content:center;align-items:center;color:#666;font:bold 15px 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',tahoma,arial,simsun,'宋体';width:16%;min-width:80px;max-width:250px;line-height:35px;height:35px;text-decoration:none;}#navbar a:hover{color:#666;background:#282828;background:-webkit-gradient(linear,0% 0%,0% 100%,from(#333),to(#15292f));box-shadow:0px 0px 4px #111;}#logo{display:block;margin:0 auto -20px;width:40%;min-width:320px;max-width:640px;z-index:-1;position:relative;}#busuanzi{width:100%;text-align:center;color:rgba(73,73,73,0.7);font:bold 12px 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',tahoma,arial,simsun,'宋体';margin:20px auto 16px;line-height:1.6;}#busuanzi .no-break-span{display:inline-block !important;margin:0 10px;}";
+var css = "#navbar{background:#333;background:-webkit-gradient(linear,0% 0%,0% 100%,from(#333),to(#232323));margin:20px 0;border:none;box-shadow:4px 8px 20px #000;border-radius:2px;}#navbar .m-nav{margin:0 auto;text-align:center;}#navbar a{display:inline-flex;justify-content:center;align-items:center;color:#666;font:bold 15px 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',tahoma,arial,simsun,'宋体';width:16%;min-width:80px;max-width:250px;line-height:35px;height:35px;text-decoration:none;}#navbar a:hover{color:#666;background:#282828;background:-webkit-gradient(linear,0% 0%,0% 100%,from(#333),to(#15292f));box-shadow:0px 0px 4px #111;}#busuanzi{width:100%;text-align:center;color:rgba(73,73,73,0.7);font:bold 12px 'Hiragino Sans GB','Microsoft YaHei','微软雅黑',tahoma,arial,simsun,'宋体';margin:20px auto 16px;line-height:1.6;}#busuanzi .no-break-span{display:inline-block !important;margin:0 10px;}";
 nav = d.createElement("div");
 nav.id="navbar";
 nav.innerHTML="<div class=\"m-nav\">"+
@@ -92,13 +92,6 @@ window.onload = function() {
 			manual_load_js();
 		}
 	})();
-	if((isIndex||a=="readme")&&window.location.host.indexOf('1')!=0){
-		var logo = d.createElement("img");
-		logo.id = "logo";
-		//http://www.tietuku.com/upload
-		logo.src = "http://i4.piimg.com/583495/4eab887b8097f4df.png";
-		d.body.insertBefore(logo,nav);
-	}
 };
 function manual_load_js(){
 	if(typeof(disableListenKeyDownEvent)!='undefined')return;

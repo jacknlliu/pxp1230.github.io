@@ -1,32 +1,5 @@
 http://pxp1230.github.io/index.html
 http://pxp1230.github.io/README.html
-http://pxp1230.github.io/Arduino/index.html
-http://pxp1230.github.io/Arduino/Unity与Arduino通信/index.html
-http://pxp1230.github.io/Arduino/Unity与Arduino通信/dotNET串口编程与Arduino通信.html
-http://pxp1230.github.io/Arduino/Unity与Arduino通信/Unity与Arduino通信.html
-http://pxp1230.github.io/Bookmarks/index.html
-http://pxp1230.github.io/Bookmarks/下App.html
-http://pxp1230.github.io/Bookmarks/黄页.html
-http://pxp1230.github.io/Bookmarks/破解资源.html
-http://pxp1230.github.io/Bookmarks/思维导图.html
-http://pxp1230.github.io/Bookmarks/学习Web开发.html
-http://pxp1230.github.io/Bookmarks/办公.html
-http://pxp1230.github.io/Bookmarks/优秀Web应用.html
-http://pxp1230.github.io/Bookmarks/下素材.html
-http://pxp1230.github.io/Bookmarks/虚拟现实.html
-http://pxp1230.github.io/Bookmarks/下电影.html
-http://pxp1230.github.io/Bookmarks/Chrome移动设备书签.html
-http://pxp1230.github.io/Bookmarks/Windows软件官网/index.html
-http://pxp1230.github.io/Bookmarks/Windows软件官网/装机必备.html
-http://pxp1230.github.io/Bookmarks/Windows软件官网/杀毒.html
-http://pxp1230.github.io/Bookmarks/Windows软件官网/小众软件.html
-http://pxp1230.github.io/Bookmarks/Windows软件官网/下载.html
-http://pxp1230.github.io/Bookmarks/Windows软件官网/CG.html
-http://pxp1230.github.io/Bookmarks/Windows软件官网/翻墙.html
-http://pxp1230.github.io/Bookmarks/Windows软件官网/项目管理.html
-http://pxp1230.github.io/Bookmarks/Windows软件官网/知识管理.html
-http://pxp1230.github.io/Bookmarks/Windows软件官网/办公.html
-http://pxp1230.github.io/Bookmarks/Windows软件官网/虚拟现实.html
 http://pxp1230.github.io/Calculus/index.html
 http://pxp1230.github.io/Calculus/无穷级数.html
 http://pxp1230.github.io/Calculus/矢量运算法则.html
@@ -43,6 +16,7 @@ http://pxp1230.github.io/Calculus/三重积分.html
 http://pxp1230.github.io/Calculus/二重积分.html
 http://pxp1230.github.io/Calculus/无理数指数的起源.html
 http://pxp1230.github.io/Electrodynamics/index.html
+http://pxp1230.github.io/Electrodynamics/数学物理方程.html
 http://pxp1230.github.io/Electrodynamics/电偶极子.html
 http://pxp1230.github.io/Electrodynamics/非恒定磁场.html
 http://pxp1230.github.io/Electrodynamics/光速计算公式.html
@@ -58,26 +32,14 @@ http://pxp1230.github.io/Math.NET/Math.NET Numerics/入门/入门.html
 http://pxp1230.github.io/Math.NET/Math.NET Numerics/数论/index.html
 http://pxp1230.github.io/Math.NET/Math.NET Numerics/数论/CShape中的伪随机数生成算法.html
 http://pxp1230.github.io/Math.NET/Math.NET Numerics/数论/数论 Number Theory.html
+http://pxp1230.github.io/Math.NET/Math.NET Numerics/积分/index.html
+http://pxp1230.github.io/Math.NET/Math.NET Numerics/积分/求解定积分.html
 http://pxp1230.github.io/Math.NET/Math.NET Numerics/线性代数/index.html
 http://pxp1230.github.io/Math.NET/Math.NET Numerics/线性代数/行列式 Trace and Determinant.html
 http://pxp1230.github.io/Math.NET/Math.NET Numerics/线性代数/矩阵和向量 Matrices and Vectors.html
 http://pxp1230.github.io/Math.NET/Math.NET Numerics/线性代数/条件数 Condition Number.html
 http://pxp1230.github.io/Math.NET/Math.NET Numerics/统计学和概率论/index.html
 http://pxp1230.github.io/Math.NET/Math.NET Numerics/统计学和概率论/描述性统计学 Descriptive Statistics.html
-http://pxp1230.github.io/Project Management/index.html
-http://pxp1230.github.io/Project Management/安装Apache服务器.html
-http://pxp1230.github.io/Project Management/内网穿透.html
-http://pxp1230.github.io/Project Management/从git中获取log信息写周报月报.html
-http://pxp1230.github.io/Project Management/打开发送到文件夹.html
-http://pxp1230.github.io/Project Management/项目管理常用图表.html
-http://pxp1230.github.io/Project Management/删除空文件夹.html
-http://pxp1230.github.io/Project Management/使修改后的.gitignore生效.html
-http://pxp1230.github.io/Project Management/unity gitignore.html
-http://pxp1230.github.io/Project Management/安装SourceTree.html
-http://pxp1230.github.io/Project Management/安装Git.html
-http://pxp1230.github.io/Project Management/使用Bitvise SSH Server在Windows上建立Git服务器.html
-http://pxp1230.github.io/Project Management/git push remote error解决办法.html
-http://pxp1230.github.io/Project Management/解决 Git 冲突的工具 - P4Merge.html
 http://pxp1230.github.io/光学/index.html
 http://pxp1230.github.io/光学/波动光学.html
 http://pxp1230.github.io/光学/几何光学.html

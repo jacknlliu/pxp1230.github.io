@@ -53,10 +53,10 @@ d.head.appendChild(c);
 //https://highlightjs.org/，使用过的样式：pojoaque.min.css
 highlight_style = d.createElement('link');
 highlight_style.rel = "stylesheet";
-highlight_style.href = "https://cdn.bootcss.com/highlight.js/9.12.0/styles/railscasts.min.css";
+highlight_style.href = "//cdn.bootcss.com/highlight.js/9.12.0/styles/railscasts.min.css";
 //创建尾部元素
 mathjax = d.createElement('script');
-mathjax.src = 'https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML';
+mathjax.src = '//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML';
 busuanzi = d.createElement("div");
 busuanzi.id="busuanzi";
 var year = new Date().getFullYear();
@@ -79,7 +79,7 @@ window.onload = function() {
 	d.body.appendChild(busuanzi);
 	//https://highlightjs.org/
 	d.head.appendChild(highlight_style);
-	JSLoader.load('https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js',function(){hljs.initHighlighting();});
+	JSLoader.load('//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js',function(){hljs.initHighlighting();});
 	(d.head || d.body).appendChild(mathjax);
 	(function() {
 		//http://ibruce.info/
@@ -98,7 +98,7 @@ function manual_load_js(){
 	disableListenKeyDownEvent = true;
 	//https://pxp1230.qiyukf.com/
 	var s3 = d.createElement('script');
-	s3.src = 'https://qiyukf.com/script/0df53532e5f9eed1c406c616d31dea34.js';
+	s3.src = '//qiyukf.com/script/0df53532e5f9eed1c406c616d31dea34.js';
 	s3.defer = true;
 	s3.async = true;
 	d.head.appendChild(s3);

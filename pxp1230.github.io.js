@@ -41,7 +41,7 @@ if(isIndex){
 		d.title = "DEATH MATCH";
 }else{
 	css += "div#surrounder{max-width:700px;margin:25px auto;}";
-	d.title += " "+d.domain;
+	d.title += " - "+d.domain;
 	surrounderEnable = true;
 }
 if(c.styleSheet){

@@ -5,12 +5,11 @@ class Human
 {
     string name = "Pan Xiaopeng";
     string wife = "CiCi";
-    string citizenhood = "Interplanetary Immigrant";
     string weixin = "GhostCTO";
     string[] blogs = {
         "https://pxp1230.github.io/",
-        "http://qq2423200363.github.io/",
-        "http://ghostcto.coding.me/"
+        "https://ghostcto.coding.me/",
+        "http://qq2423200363.github.io/"
     };
     string[] professionalFields = {
         "Physics",

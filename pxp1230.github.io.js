@@ -12,7 +12,7 @@ if(!isIndex){
 	var ch=d.title.charAt(d.title.length-1);
 	if(ch==" "){
 		d.title=d.title.substr(0,d.title.length-3);
-	}else if(ch=="–"){
+	}else if(ch=="–"||ch=="-"){
 		d.title=d.title.substr(0,d.title.length-2);
 	}
 	//监听键盘事件

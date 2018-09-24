@@ -9,26 +9,21 @@ class Human
     string[] blogs = {
         "https://pxp1230.github.io/",
         "https://ghostcto.coding.me/",
-        "http://qq2423200363.github.io/"
+        "https://pxp1230.gitee.io/"
     };
     string[] professionalFields = {
         "Physics",
-        "Mathematics",
-        "Simulation",
-        "Visualization",
+        "Mathematics"
     };
     string[] interestsOfLife = {
-        "Pet Cat",
         "Reading",
-        "Film",
         "Music",
-        "Tea/Coffee",
+        "Tea/Coffee"
     };
                          
     void Everyday()
     {
         Console.WriteLine("Seeking For Truth");
-        Console.WriteLine("Defending Home");
     }
 }
 ```

@@ -53,10 +53,10 @@ d.head.appendChild(c);
 //https://highlightjs.org/，使用过的样式：pojoaque.min.css
 highlight_style = d.createElement('link');
 highlight_style.rel = "stylesheet";
-highlight_style.href = "//cdn.bootcss.com/highlight.js/9.12.0/styles/railscasts.min.css";
+highlight_style.href = "//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/railscasts.min.css";
 //创建尾部元素
 mathjax = d.createElement('script');
-mathjax.src = '//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS_HTML';
+mathjax.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML';
 busuanzi = d.createElement("div");
 busuanzi.id="busuanzi";
 var year = new Date().getFullYear();
@@ -79,7 +79,7 @@ window.onload = function() {
 	d.body.appendChild(busuanzi);
 	//https://highlightjs.org/
 	d.head.appendChild(highlight_style);
-	JSLoader.load('//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js',function(){hljs.initHighlighting();});
+	JSLoader.load('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js',function(){hljs.initHighlighting();});
 	(d.head || d.body).appendChild(mathjax);
 	(function() {
 		//http://ibruce.info/

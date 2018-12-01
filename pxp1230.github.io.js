@@ -82,12 +82,12 @@ window.onload = function() {
 	JSLoader.load('//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js',function(){hljs.initHighlighting();});
 	(d.head || d.body).appendChild(mathjax);
 	(function() {
-		//http://ibruce.info/
+		//不蒜子http://ibruce.info/
 		var s1 = d.createElement('script');
-		s1.src = '//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js';
+		s1.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
 		s1.async = true;
 		d.body.appendChild(s1);
-		//https://pxp1230.qiyukf.com/
+		//网易七鱼https://pxp1230.qiyukf.com/
 		if(a=="readme"){
 			manual_load_js();
 		}

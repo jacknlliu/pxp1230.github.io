@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>刚体力学 - </title>
-  <style type="text/css">code{white-space: pre;}</style>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>刚体力学</title>
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
   <style type="text/css">
-  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:0 0 10px;padding:0;}body{background-color:#1A1A1A;margin:10px;}embed,img{max-width:100%;margin:5px auto 0;}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:20px 0 10px;}h1{margin-top:80px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-top:1px dashed #0CF;border-width:0;margin:10px;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
+  h1,h2,h3,h4,h5,h6,p,div,blockquote,ol,ul,li,img,video,li div{font-size:14px;font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,arial,simsun;line-height:21px;vertical-align:baseline;color:#0CF;word-wrap:break-word;word-break:normal;margin:10px 0;padding:0;}p{margin:20px 0 10px;}body{background-color:#1A1A1A;margin:10px;}embed,img,video{max-width:100%;margin:10px auto}embed{margin:5px auto;}strong,em{color:#C0F;}ol,ul{margin:0 0 10px 2em;}ul ul,ol ol,ul ol,ol ul{margin:0 0 5px 2em;}li{margin-bottom:5px;}h1,h2,h3,h4,h5,h6{color:#FC0;border-color:#FC0;margin:50px 0 10px;}h1{margin-top:100px;font-size:28px;line-height:32px;border-bottom:2px solid;padding-bottom:0;}h2{font-size:24px;line-height:28px;}h3{font-size:22px;line-height:26px;}h4{font-size:20px;line-height:24px;}h5{font-size:18px;line-height:22px;}h6{font-size:16px;line-height:20px;}code{font-family:Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;font-size:12px;line-height:1.5;box-shadow:0 0 8px rgba(0,0,0,0.4);color:#C0F;background-color:#510065;border:1px solid #C0F;border-radius:3px;word-wrap:normal;padding:0 4px;}pre{display:inline-block;margin:0 0 10px;min-width: 100%;}pre>code{border:none!important;padding:5px 10px!important;}a,a:active,a:visited{font-weight:bold;color:#C0F;}a:hover{background-color:#510065;}hr{border-width:0;border-top:1px dashed #0CF;margin:20px 0;}blockquote{background-color:#005266;border-left:5px solid #0CF;border-radius:3px;padding:5px 10px;}blockquote p{margin:0;}
   </style>
   
   
@@ -25,9 +30,7 @@
   </script>
   <script type="text/javascript" src="file:///storage/emulated/0/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
   <script type="text/javascript" src="file:///C:/MathJax-master/MathJax-master/MathJax.js?config=TeX-AMS_HTML"></script>
-  <link rel="stylesheet" href="file:///storage/emulated/0/highlight/styles/pojoaque.css">
   <script type="text/javascript" src="file:///storage/emulated/0/highlight/highlight.pack.js"></script>
-  <link rel="stylesheet" href="file:///C:/highlight/styles/pojoaque.css">
   <script type="text/javascript" src="file:///C:/highlight/highlight.pack.js"></script>
   <script type="text/javascript" src="file:///storage/emulated/0/pxp1230.github.io.js"></script>
   <script type="text/javascript" src="file:///C:/pxp1230.github.io.js"></script>
@@ -36,68 +39,75 @@
   </script>
 </head>
 <body>
-<h1>刚体力学</h1>
+<h1 id="刚体力学">刚体力学</h1>
 <ul>
 <li>刚体（rigid body）</li>
 <li>刚体运动：平动（translation）、转动（rotation）</li>
 <li>圆周运动 circular motion</li>
 <li>角位移 angular displacement 单位（弧度rad）</li>
-<li>角速度 angular velocity 矢量，方向沿转轴向上或向下，由右手螺旋法则确定；用 $\vec \omega $ 表示，单位（$rad \cdot {s^{ - 1}}$）</li>
+<li>角速度 angular velocity 矢量，方向和转轴同向，在右手坐标系中就用右手螺旋法则确定，用 $\vec \omega $ 表示，单位（$rad \cdot {s^{ - 1}}$）</li>
 <li>$\vec v = \vec \omega \times \vec r$</li>
+<li>$\overrightarrow \omega {\rm{ = }}\frac{{\widehat r \times \overrightarrow v }}{{\left| {\overrightarrow r } \right|}}$ ，这是上式的一个推导，前提必须三个向量正交</li>
 <li>角加速度（angular acceleration）：$\vec \alpha = \frac{{d\vec \omega }}{{dt}}$<br />
-<img src="刚体力学_files/4151607.png" alt="" /></li>
+<img src="刚体力学_files/4151607.png" /></li>
 <li>质元（element of mass）：dm</li>
-<li>转动惯量（moment of inertia）J：标量，类似于质量，是刚体转动惯性的量度；单位（$kg \cdot {m^2}$）；r为质元dm至转轴的距离<br />
-<img src="刚体力学_files/37491845.png" alt="" /></li>
-<li>回旋半径（radius of gyroration）${r_G}$：又称惯性半径，将刚体全部质元集中于某一等效点（非质心），该点到转轴的距离<br />
-$J = mr_G^2$</li>
-<li>平行轴定理（parallel axis theorem）：如果刚体对通过其质心的某一转轴的转动惯量为 ${J_C}$，则该轴平移一段距离d后，转动惯量变为$J = {J_C} + m{d^2}$（可数学推导）</li>
-<li>刚体定轴转动时的角动量（${\vec \omega }$方向必须与轴一致）：$\overrightarrow L = J\vec \omega $</li>
+<li>转动惯量（moment of inertia）J或I：标量（注意区别于惯性张量 ${\bf{I}}$ ），类似于质量m（平动惯性的量值），是刚体转动惯性的量度；单位（$kg \cdot {m^2}$）；下式中r为质元dm至转轴的距离<br />
+<img src="刚体力学_files/37491845.png" /><br />
+$I = \int {{{\left| {\hat \omega \times \vec r} \right|}^2}dm} $ ，这是转动惯量的定义式，其中 ${\hat \omega }$ 是旋转轴的单位向量， ${\vec r}$ 是微小质量dm的位置</li>
+<li>回旋半径（radius of gyroration）${r_G}$：又称惯性半径，将刚体全部质元集中于某一等效点（非质心），该等效点到转轴的距离，则转动惯量 $J = mr_G^2$</li>
+<li>平行轴定理（parallel axis theorem）：如果刚体对通过其质心的某一转轴的转动惯量为 ${J_C}$，则该轴平移一段距离d后，转动惯量变为 $J = {J_C} + m{d^2}$</li>
+<li>角动量的定义：一个质点对于给定点G与以点G为原点的直角坐标系 ${G_{xyz}}$ 的角动量L定义为（矢径和动量的叉积，${\vec \omega }$ 的轴向是质点绕原点旋转的轴向）<br />
+$\vec L = \vec r \times \vec p = \int {\vec r \times \vec vdm} = \int {\vec r \times \left( {\vec \omega \times \vec r} \right)dm} $<br />
+力矩 $\vec M = \vec r \times \vec F$ 和角动量一样都和坐标系的选择有关，对不同的参考点有不同的角动量和力矩。特别的，若各质点的速度或所受外力与参考点共面，则其角动量或力矩方向在同一直线方向上，可取正向，用代数和代替矢量和。（更多请参考百度文库：<a href="https://wenku.baidu.com/view/d882daf409a1284ac850ad02de80d4d8d15a01d9）" class="uri">https://wenku.baidu.com/view/d882daf409a1284ac850ad02de80d4d8d15a01d9）</a></li>
 <li>力矩做功：力矩的空间积累效应<br />
 $W = \int_0^\theta {Md\theta }$<br />
 $P = M\omega$</li>
 <li>刚体定轴转动动能：<br />
 ${E_k} = \frac{1}{2}J{\omega ^2}$</li>
 <li>刚体绕定轴转动的动能定理：刚体转动动能的增量 = 合外力矩对刚体所做的功</li>
-<li><strong>刚体定点转动：绕固定点转动的刚体只有一点不动，而其余各点则分别在以该固定点为中心的同心球面上运动。</strong>
+</ul>
+<h1 id="惯性张量">惯性张量</h1>
 <ul>
-<li>瞬时角速度：定点转动刚体的任何有限位移可用绕某轴的一次转动来实现，该轴通过刚体的固定点。假设该瞬时轴为OP，在短暂的时间间隔$\Delta t$内，刚体绕轴OP转过一微小角度$\Delta \theta $，称为角位移，它具有矢量的性质，可按平行四边形规则相加。$\Delta t$趋向于零时，$\Delta \theta $趋于一个极限方向，$\Delta \theta $与$\Delta t$之比也趋于一个极限值${\vec \omega }$。矢量${\vec \omega }$称为刚体在瞬时t的角速度。</li>
-<li>瞬轴锥面：随着时间的推移，刚体的瞬时轴要改变位置，它在固定空间描出一个锥面，称定瞬轴锥面（即空间极锥的锥面）；同时在刚体内部也描出一个锥面，称为动瞬轴锥面（即本体极锥的锥面）。由此可得潘索定理：刚体定点转动可用动瞬轴锥面在定瞬轴锥面上的纯滚动来代替。</li>
-<li>角加速度：作定点转动的刚体角速度${\vec \omega }$通常是变量。角速度变化$\Delta \vec \omega $与对应时间间隔$\Delta t$的比值，当Δt→0时所趋至的极限值称为刚体在瞬时t的角加速度。</li>
-</ul></li>
-<li>刚体定点转动时的角动量（${\vec \omega }$为瞬时角速度，方向会随时间改变，得出的角动量方向一般不同于${\vec \omega }$）：
-<ul>
-<li>$\overrightarrow L = \sum {{m_i}\overrightarrow {{r_i}} \times \left( {\overrightarrow \omega \times \overrightarrow {{r_i}} } \right)} $<br />
-<img src="刚体力学_files/d9cdf770-51b4-4ef9-9f6f-59178857086b.png" alt="" /></li>
-<li>$\overrightarrow L = I\overrightarrow \omega $，I就是惯性张量（三阶矩阵）</li>
-<li>惯性张量（inertia tensor）I：是种三阶矩阵，类似于质量m（平动惯性的量值），从整体的角度来看惯性张量I表示刚体绕定点转动惯性的量值，而转动惯量J表示绕定轴转动惯性的量值，即I与J都是表示刚体转动惯性的大小，详见<a href="http://zh.wikipedia.org/wiki/%E6%85%A3%E6%80%A7%E5%BC%B5%E9%87%8F#.E6.85.A3.E6.80.A7.E5.BC.B5.E9.87.8F">维基百科</a></li>
-<li>I和J相互转化：
-<ul>
-<li>设原点为O，OM为转轴，$\overrightarrow {{e_{OM}}} $ 为转轴单位向量，瞬时角速度 ${\vec \omega }$ 同定轴转动角速度，定轴转动角动量 ${\overrightarrow {{L_{OM}}} }$ 就是定点转动角动量L在OM上的投影：<br />
-$$\left\| {\overrightarrow {{L_{OM}}} } \right\| = \overrightarrow {{e_{OM}}} \cdot \vec L = \overrightarrow {{e_{OM}}} \cdot \left( {I\vec \omega } \right) = \left[ {\overrightarrow {{e_{OM}}} \cdot \left( {I\overrightarrow {{e_{OM}}} } \right)} \right]\left\| {\vec \omega } \right\|$$<br />
-等价于<br />
-$$\overrightarrow {{L_{OM}}} = \left[ {\overrightarrow {{e_{OM}}} \cdot \left( {I\overrightarrow {{e_{OM}}} } \right)} \right]\vec \omega = J\vec \omega $$<br />
-$$J = \overrightarrow {{e_{OM}}} \cdot \left( {I\overrightarrow {{e_{OM}}} } \right) = \left( {\begin{array}{*{20}{c}}<br />
- \alpha &amp;\beta &amp;\gamma<br />
+<li><p>惯性张量（inertia tensor）I：表示刚体绕通过该点任一轴的转动惯量的大小，是二阶对称张量（惯性的坐标分量是矩阵，用 ${\bf{I}}$ 表示，角动量 $\vec L = {\bf{I}}\vec \omega $ ，角动量不一定和 ${\vec \omega }$ 同方向 ），用惯性张量可以求得物体在任意坐标系下对于任意轴的转动惯量，关于惯性张量的分量、角动量的推导和平行轴定理的证明详见维基百科：<a href="https://zh.wikipedia.org/wiki/%E8%BD%89%E5%8B%95%E6%85%A3%E9%87%8F#%E5%B0%8E%E5%BC%95">https://zh.wikipedia.org/wiki/%E8%BD%89%E5%8B%95%E6%85%A3%E9%87%8F#%E5%B0%8E%E5%BC%95</a><br />
+<img src="刚体力学_files/d9cdf770-51b4-4ef9-9f6f-59178857086b.png" /></p></li>
+<li><p>以一个旋转中心点（求刚体旋转动能时以质心作为旋转点和原点）为原点的坐标系统 ${G_{xyz}}$ ，求任意一个过原点的轴（设 ${\vec \eta }$ 是轴的单位向量， ${\vec \eta }$ 不一定和 ${\vec \omega }$ 同方向）的转动惯量I可用如下公式：<br />
+$I = \left( {\begin{array}{*{20}{c}}<br />
+{{\eta _x}}&amp;{{\eta _y}}&amp;{{\eta _z}}<br />
+\end{array}} \right){\bf{I}}\left( {\begin{array}{*{20}{c}}<br />
+{{\eta _x}}\\<br />
+{{\eta _y}}\\<br />
+{{\eta _z}}<br />
+\end{array}} \right) = \left( {\begin{array}{*{20}{c}}<br />
+{{\eta _x}}&amp;{{\eta _y}}&amp;{{\eta _z}}<br />
 \end{array}} \right)\left( {\begin{array}{*{20}{c}}<br />
- {{I_{xx}}}&amp;{{I_{xy}}}&amp;{{I_{xz}}} \\<br />
- {{I_{yx}}}&amp;{{I_{yy}}}&amp;{{I_{yz}}} \\<br />
- {{I_{zx}}}&amp;{{I_{zy}}}&amp;{{I_{zz}}}<br />
+{\int {\left( {{y^2} + {z^2}} \right)dm} }&amp;{\int {\left( { - xy} \right)dm} }&amp;{\int {\left( { - xz} \right)dm} }\\<br />
+{\int {\left( { - xy} \right)dm} }&amp;{\int {\left( {{x^2} + {z^2}} \right)dm} }&amp;{\int {\left( { - yz} \right)dm} }\\<br />
+{\int {\left( { - xz} \right)dm} }&amp;{\int {\left( { - yz} \right)dm} }&amp;{\int {\left( {{x^2} + {y^2}} \right)dm} }<br />
 \end{array}} \right)\left( {\begin{array}{*{20}{c}}<br />
- \alpha \\<br />
- \beta \\<br />
- \gamma<br />
-\end{array}} \right)$$</li>
-</ul></li>
-</ul></li>
-<li>刚体绕定点转动的动能 ${E_k}$：（以单一质点为例）<br />
+{{\eta _x}}\\<br />
+{{\eta _y}}\\<br />
+{{\eta _z}}<br />
+\end{array}} \right)$<br />
+对应的转动动能为 $K = \frac{1}{2}{{\vec \omega }^T}{\bf{I}}\vec \omega = \frac{1}{2}\vec \omega \cdot \vec L$<br />
+以上推导请参考维基百科：<a href="https://zh.wikipedia.org/wiki/%E8%BD%89%E5%8B%95%E6%85%A3%E9%87%8F#%E5%8B%95%E8%83%BD">https://zh.wikipedia.org/wiki/%E8%BD%89%E5%8B%95%E6%85%A3%E9%87%8F#%E5%8B%95%E8%83%BD</a><br />
+一个质点在 ${\vec \eta }$ 和 ${\vec \omega }$ 同方向的情形下，并且找到一种坐标系使 ${\vec r}$ 、 ${\vec v}$ 、 ${\vec \omega }$ 三者正交，则有：<br />
+$\vec L = \vec r \times \vec p = \vec r \times \left( {m\vec v} \right) = \vec r \times \left( {\vec \omega \times \vec r} \right)m = m{r^2}\vec \omega = I\vec \omega $</p></li>
+<li><p>惯性张量的分量 ${\bf{I}}$ 和转动惯量 I 的关系：<br />
+根据 $I = \left( {\begin{array}{*{20}{c}}<br />
+{{\eta _1}}&amp;{{\eta _2}}&amp;{{\eta _3}}<br />
+\end{array}} \right){\bf{I}}\left( {\begin{array}{*{20}{c}}<br />
+{{\eta _1}}\\<br />
+{{\eta _2}}\\<br />
+{{\eta _3}}<br />
+\end{array}} \right)$ 可以得出 $I = {I_{ij}}{\eta _i}{\eta _j}$ ，只要证明在任意笛卡尔直角坐标系下有 $I = {I_{ij}}{\eta _i}{\eta _j} = I{'_{kl}}\eta {'_k}\eta {'_l}$ ，则 I 就是二阶张量，可以用平行轴定理的证明来证明这个。</p></li>
+<li><p>刚体转动动能 ${E_k}$ 的简单推导：<br />
 $$\begin{split}<br />
- {E_k} &amp;= \frac{1}{2}m\left( {\vec v \cdot \vec v} \right) \\<br />
- &amp;= \frac{1}{2}m\vec v \cdot \left( {\vec \omega \times \vec r} \right) \\<br />
- &amp;= \frac{1}{2}m\vec \omega \cdot \left( {\vec r \times \vec v} \right) \\<br />
- &amp;= \frac{1}{2}\vec \omega \cdot \vec L \\<br />
- &amp;= \frac{1}{2}\vec \omega \cdot \left( {I\vec \omega } \right) \\<br />
-\end{split} $$</li>
+{E_k} &amp;= \frac{1}{2}m\left( {\vec v \cdot \vec v} \right) \\<br />
+&amp;= \frac{1}{2}m\vec v \cdot \left( {\vec \omega \times \vec r} \right) \\<br />
+&amp;= \frac{1}{2}m\vec \omega \cdot \left( {\vec r \times \vec v} \right) \\<br />
+&amp;= \frac{1}{2}\vec \omega \cdot \vec L \\<br />
+&amp;= \frac{1}{2}\vec \omega \cdot \left( {I\vec \omega } \right) \\<br />
+\end{split} $$</p></li>
 </ul>
 </body>
 </html>

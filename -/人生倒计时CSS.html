@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<title>人生倒计时</title>
+<style type="text/css">
+body {
+	background: #161616 url(pattern_40.gif) top left repeat;
+	margin: 10px;
+	padding: 0;
+	font: 12px normal Verdana, Arial, Helvetica, sans-serif;
+	height: 100%;
+	color:#fff;
+}
+
+* {margin: 0; padding: 0; outline: none;}
+
+img {border: none;}
+
+a { 
+	text-decoration:none; 
+	color:#00c6ff;
+}
+
+h1 {
+	font: 4em normal Arial, Helvetica, sans-serif;
+	padding: 20px;	margin: 0;
+	text-align:center;
+	color:#bbb;
+}
+
+h1 small{
+	font: 0.2em normal  Arial, Helvetica, sans-serif;
+	text-transform:uppercase; letter-spacing: 0.2em; line-height: 5em;
+	display: block;
+}
+
+h2 {
+	font: 2em normal Arial, Helvetica, sans-serif;
+	padding-bottom:30px;
+	color:#fff;
+	display:block;
+}
+
+
+.container {
+	display: block;
+    width: 100%;
+    max-width: 500px;
+    padding: 0;
+    margin: 0 auto;
+    border-style: none;
+    border-spacing: 10px 1px;
+}
+
+.content{
+    width:100%;
+	margin:0;
+	position:relative;
+	float:left;
+	font-size:12px;
+	line-height:2em;
+	padding:30px 0 30px;
+}
+.col { width:100%; }
+
+#skill { 
+	list-style:none; 
+	padding-top:30px;
+}
+
+#skill li { 
+	margin-bottom:70px;
+	background:#000; 
+	height:5px; 
+	border-radius:3px; 
+	border-left:1px solid #111; 
+	border-top:1px solid #111; 
+	border-right:1px solid #333; 
+	border-bottom:1px solid #333;  
+}
+
+#skill li em { 
+	position:relative; 
+	top:-30px;
+}
+
+.expand { 
+	height:1px;
+	margin:2px 0;
+	background:#2187e7; 
+	position:absolute;
+	box-shadow:0px 0px 10px 1px rgba(0,198,255,0.4);
+}
+</style>
+</head>
+<body>
+<h1>人生倒计时<small><a href="index.html">pxp1230.github.io</a></small></h1>
+<div class="container">
+	<div class="content">
+    	<div class="col">
+        <h2>寿命：80年（1993.5.12-2073.5.12）</h2>
+        <ul id="skill">
+        <li><span id="ss0" class="expand"></span><em>1/4（满00周岁-19周岁末）：1993.5.12-2013.5.12</em></li>
+        <li><span id="ss1" class="expand"></span><em><a href="%E4%BA%BA%E7%94%9F%E5%80%92%E8%AE%A1%E6%97%B6CSS_20-40.html">2/4（满20周岁-39周岁末）：2013.5.12-2033.5.12</a></em></li>
+        <li><span id="ss2" class="expand"></span><em>3/4（满40周岁-59周岁末）：2033.5.12-2053.5.12</em></li>
+        <li><span id="ss3" class="expand"></span><em>4/4（满60周岁-79周岁末）：2053.5.12-2073.5.12</em></li>
+        </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+var cur = new Date().valueOf();
+var d0 = new Date(1993,5,12).valueOf();
+var d1 = new Date(2013,5,12).valueOf();
+var d2 = new Date(2033,5,12).valueOf();
+var d3 = new Date(2053,5,12).valueOf();
+var delta = d1-d0;
+var a0 = Math.max(0,Math.min(1,(cur-d0)/delta));
+var a1 = Math.max(0,Math.min(1,(cur-d1)/delta));
+var a2 = Math.max(0,Math.min(1,(cur-d2)/delta));
+var a3 = Math.max(0,Math.min(1,(cur-d3)/delta));
+var b0=Number(a0*100).toFixed();
+var b1=Number(a1*100).toFixed();
+var b2=Number(a2*100).toFixed();
+var b3=Number(a3*100).toFixed();
+
+
+
+
+
+d = document;
+
+if(a0!=1){
+var runkeyframes ="@keyframes run0{0%{ width:0px;} 100%{ width:"+b0+"%;}}";
+var c = d.createElement('style');
+c.type = "text/css";
+c.appendChild(d.createTextNode(runkeyframes));
+d.head.appendChild(c);
+d.getElementById("ss0").setAttribute('style',"width:"+b0+"%;animation:run0 1s ease-out;");
+}else{
+d.getElementById("ss0").setAttribute('style','width:100%;');
+}
+
+if(a1!=1){
+var runkeyframes ="@keyframes run1{0%{ width:0px;} 100%{ width:"+b1+"%;}}";
+var c = d.createElement('style');
+c.type = "text/css";
+c.appendChild(d.createTextNode(runkeyframes));
+d.head.appendChild(c);
+d.getElementById("ss1").setAttribute('style',"width:"+b1+"%;animation:run1 1s ease-out;");
+}else{
+d.getElementById("ss1").setAttribute('style','width:100%;');
+}
+
+
+if(a2!=1){
+var runkeyframes ="@keyframes run2{0%{ width:0px;} 100%{ width:"+b2+"%;}}";
+var c = d.createElement('style');
+c.type = "text/css";
+c.appendChild(d.createTextNode(runkeyframes));
+d.head.appendChild(c);
+d.getElementById("ss2").setAttribute('style',"width:"+b2+"%;animation:run2 1s ease-out;");
+}else{
+d.getElementById("ss2").setAttribute('style','width:100%;');
+}
+
+
+if(a3!=1){
+var runkeyframes ="@keyframes run3{0%{ width:0px;} 100%{ width:"+b3+"%;}}";
+var c = d.createElement('style');
+c.type = "text/css";
+c.appendChild(d.createTextNode(runkeyframes));
+d.head.appendChild(c);
+d.getElementById("ss3").setAttribute('style',"width:"+b3+"%;animation:run3 1s ease-out;");
+}else{
+d.getElementById("ss3").setAttribute('style','width:100%;');
+}
+</script>
+</body>
+</html>

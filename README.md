@@ -8,7 +8,6 @@ class Human
     string weixin = "GhostCTO";
     string[] blogs = {
         "https://pxp1230.github.io/",
-        "https://ghostcto.coding.me/",
         "https://pxp1230.gitee.io/"
     };
     string[] professionalFields = {
